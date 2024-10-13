@@ -26,7 +26,7 @@ namespace StoreManager
 
         private ProductsAndOrdersLinker productsAndOrdersLinker;
         private UsrCtrlCashiering buyView;
-        private UsrCtrlInventory inventoryView;
+        private UsrCtrlInventory2 inventoryView;
         private UsrCtrlAnalytics analyticsView;
 
         public MainWindow()
@@ -39,7 +39,7 @@ namespace StoreManager
             //this.productsAndOrdersLinker = new ProductsAndOrdersLinker(this.PnlOrdersPanel, this.PnlProductsPanel);
             //this.PnlProductsPanel.PanelSizeUpdated();
             this.buyView = new UsrCtrlCashiering(this.dbConnection);
-            this.inventoryView = new UsrCtrlInventory(this.dbConnection);
+            this.inventoryView = new UsrCtrlInventory2(this.dbConnection);
             this.analyticsView = new UsrCtrlAnalytics();
         }
 
