@@ -77,9 +77,10 @@ namespace StoreManager.Database
 
             while (reader.Read())
             {
-                Item item = new Item(int.Parse(reader["id"].ToString()), reader["name"].ToString(), reader["Size"].ToString(), double.Parse(reader["price"].ToString()));
+                Item item = new Item(int.Parse(reader["id"].ToString()), reader["name"].ToString(), reader["Size"].ToString(), double.Parse(reader["price"].ToString()), int.Parse(reader["stocks_left"].ToString()));
                 //Debug.WriteLine(reader["id"] + " " + reader["name"] + " " + reader["price"]);
                 list.Add(item);
+                item.Display();
             }
 
             reader.Close();

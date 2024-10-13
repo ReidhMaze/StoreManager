@@ -484,6 +484,7 @@ namespace StoreManager
             this.BtnCheckout.TabIndex = 1;
             this.BtnCheckout.Text = "CHECKOUT";
             this.BtnCheckout.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.BtnCheckout.Click += new System.EventHandler(this.BtnCheckout_Click);
             // 
             // LblTaxOutput
             // 

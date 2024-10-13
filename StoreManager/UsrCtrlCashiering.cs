@@ -104,5 +104,9 @@ namespace StoreManager
             this.LblPaginationText.Text = currentPage + " of " + numOfPages;
         }
 
+        private void BtnCheckout_Click(object sender, EventArgs e)
+        {
+            PnlOrdersPanel.displayOrders();
+        }
     }
 }
