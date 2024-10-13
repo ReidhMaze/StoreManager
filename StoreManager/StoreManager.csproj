@@ -232,6 +232,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\search_icon.png" />
+    <Content Include="Resources\upload_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CompoundComponents\" />
