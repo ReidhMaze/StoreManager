@@ -12,10 +12,14 @@ namespace StoreObjects
     public class Item
     {
         public int Id { get; }
+        public int ItemCode { get; }
         public string Name { get; }
-        public string Size { get; }
         public double Price { get; }
-        public int Stocks { get; }
+        public double CostPerItem { get; }
+        public string Size { get; }
+        public string Type { get; }
+        public int CurrentStocks { get; }
+        public string ImgLocation { get; }
 
         public Item(int id, string name, string size, double price, int stocks)
         {
@@ -23,17 +27,30 @@ namespace StoreObjects
             this.Name = name;
             this.Size = size;
             this.Price = price;
-            this.Stocks = stocks;
+            this.CurrentStocks = stocks;
+        }
+
+        public Item(int id, int itemCode, string name, double price, double costPerItem, string size, string type, int currentStocks, string imgLocation)
+        {
+            this.Id = id;
+            this.ItemCode = itemCode;
+            this.Name = name;
+            this.Price = price;
+            this.CostPerItem = costPerItem;
+            this.Size = size;
+            this.Type = type;
+            this.CurrentStocks = currentStocks;
+            this.ImgLocation = imgLocation;
         }
 
         public CartItem ToCartItem()
         {
-            return new CartItem(this.Id, this.Name, this.Size, this.Price, this.Stocks);
+            return new CartItem(this.Id, this.Name, this.Size, this.Price, this.CurrentStocks);
         }
 
         public void Display()
         {
-            Debug.WriteLine(Name + " " + " " + Size + " " + Price + " " + Stocks);
+            Debug.WriteLine(Name + " " + " " + Size + " " + Price + " " + CurrentStocks);
         }
 
     }

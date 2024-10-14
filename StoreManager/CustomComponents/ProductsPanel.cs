@@ -234,7 +234,7 @@ namespace CustomComponents
             {
                 
                 this.pdpDisplays[i].Item = items[i + starting];
-                if (this.pdpDisplays[i].Item.Stocks == 0) 
+                if (this.pdpDisplays[i].Item.CurrentStocks == 0) 
                 { 
                     this.pdpDisplays[i].BtnAddToCart.Enabled = false;
                     this.pdpDisplays[i].BtnAddToCart.InactiveColor = Color.Gray;

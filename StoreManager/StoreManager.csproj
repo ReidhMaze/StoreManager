@@ -142,6 +142,7 @@
     </Compile>
     <Compile Include="CustomComponents\StoreObjects.cs" />
     <Compile Include="Database\DbConnection.cs" />
+    <Compile Include="Database\GlobalProcedure.cs" />
     <Compile Include="Extensions\GraphicsExtension.cs" />
     <Compile Include="Icons.cs" />
     <Compile Include="MainWindow.cs">

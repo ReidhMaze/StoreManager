@@ -13,6 +13,7 @@ using StoreManager.CustomComponentsLinker;
 using CustomComponents;
 using System.Data.Common;
 using System.Text.RegularExpressions;
+using LaundrySystem;
 
 namespace StoreManager
 {
@@ -23,6 +24,7 @@ namespace StoreManager
         private int currentPage = 1;
 
         private DBConnect dbConnection = new DBConnect();
+        private GlobalProcedure globalProcedure = new GlobalProcedure();
 
         private ProductsAndOrdersLinker productsAndOrdersLinker;
         private UsrCtrlCashiering buyView;
@@ -38,9 +40,10 @@ namespace StoreManager
             //this.PnlProductsPanel.InitializeDisplay(dbConnection.GetItemList(), BtnPdpClicked);
             //this.productsAndOrdersLinker = new ProductsAndOrdersLinker(this.PnlOrdersPanel, this.PnlProductsPanel);
             //this.PnlProductsPanel.PanelSizeUpdated();
-            this.buyView = new UsrCtrlCashiering(this.dbConnection);
+            this.buyView = new UsrCtrlCashiering(this.dbConnection, globalProcedure);
             this.inventoryView = new UsrCtrlInventory2(this.dbConnection);
             this.analyticsView = new UsrCtrlAnalytics();
+            this.globalProcedure.FncConnectToDatabase();
         }
 
         private void MainWindow_Load(object sender, EventArgs e)

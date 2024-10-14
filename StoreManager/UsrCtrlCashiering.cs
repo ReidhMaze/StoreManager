@@ -1,6 +1,8 @@
 ﻿using CustomComponents;
+using LaundrySystem;
 using StoreManager.CustomComponentsLinker;
 using StoreManager.Database;
+using StoreObjects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,26 +24,28 @@ namespace StoreManager
 
         private int currentPage = 1;
         private DBConnect dbConnection;
+        private GlobalProcedure gProc;
 
         ProductsAndOrdersLinker productsAndOrdersLinker;
 
-        public UsrCtrlCashiering(DBConnect dbConnection)
+        public UsrCtrlCashiering(DBConnect dbConnection, GlobalProcedure gProc)
         {
             InitializeComponent();
             this.dbConnection = dbConnection;
+            this.gProc = gProc;
         }
 
         public void InitializeCardView()
         {
             Debug.WriteLine(this.PanelPOS.Size);
-            this.PnlProductsPanel.InitializeItems(dbConnection.GetItemList(), this.BtnPdpClicked);
+            this.PnlProductsPanel.InitializeItems(gProc.FncGetProducts(), this.BtnPdpClicked);
             this.PnlProductsPanel.InitializeCards();
             this.PnlProductsPanel.ArrangeProductPanels(currentPage);
 
             this.productsAndOrdersLinker = new ProductsAndOrdersLinker(this.PnlOrdersPanel, this.PnlProductsPanel);
 
             this.PnlOrdersPanel.InitializeCheckoutLabels(this.LblTotalOutput, this.LblTaxOutput, this.LblSubtotalOutput);
-            this.CmbSizes.Items.AddRange(dbConnection.GetSizesList());
+            this.CmbSizes.Items.AddRange(gProc.FncGetDistinctSizes());
             UpdatePaginationText();
         }
 
@@ -106,7 +110,26 @@ namespace StoreManager
 
         private void BtnCheckout_Click(object sender, EventArgs e)
         {
-            PnlOrdersPanel.displayOrders();
+            //PnlOrdersPanel.displayOrders();
+            PrintItemList(gProc.FncGetProducts());
         }
+
+        public void PrintItemList(List<Item> items)
+        {
+            foreach (var item in items)
+            {
+                Console.WriteLine($"ID: {item.Id}");
+                Console.WriteLine($"Item Code: {item.ItemCode}");
+                Console.WriteLine($"Name: {item.Name}");
+                Console.WriteLine($"Price: {item.Price}");
+                Console.WriteLine($"Cost Per Item: {item.CostPerItem}");
+                Console.WriteLine($"Size: {item.Size}");
+                Console.WriteLine($"Type: {item.Type}");
+                Console.WriteLine($"Current Stocks: {item.CurrentStocks}");
+                Console.WriteLine($"Image Location: {item.ImgLocation}");
+                Console.WriteLine("----------------------------");
+            }
+        }
+
     }
 }
