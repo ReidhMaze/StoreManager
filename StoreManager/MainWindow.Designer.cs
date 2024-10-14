@@ -111,7 +111,7 @@ namespace StoreManager
             this.BtnAnalytics.IdleBorderRadius = 5;
             this.BtnAnalytics.IdleBorderThickness = 1;
             this.BtnAnalytics.IdleFillColor = System.Drawing.Color.White;
-            this.BtnAnalytics.IdleIconLeftImage = ((System.Drawing.Image)(resources.GetObject("BtnAnalytics.IdleIconLeftImage")));
+            this.BtnAnalytics.IdleIconLeftImage = global::StoreManager.Properties.Resources.stats_icon;
             this.BtnAnalytics.IdleIconRightImage = null;
             this.BtnAnalytics.IndicateFocus = true;
             this.BtnAnalytics.Location = new System.Drawing.Point(12, 265);
@@ -138,7 +138,7 @@ namespace StoreManager
             this.BtnAnalytics.OnIdleState.BorderThickness = 1;
             this.BtnAnalytics.OnIdleState.FillColor = System.Drawing.Color.White;
             this.BtnAnalytics.OnIdleState.ForeColor = System.Drawing.Color.Black;
-            this.BtnAnalytics.OnIdleState.IconLeftImage = ((System.Drawing.Image)(resources.GetObject("bunifuButton23.OnIdleState.IconLeftImage")));
+            this.BtnAnalytics.OnIdleState.IconLeftImage = global::StoreManager.Properties.Resources.stats_icon;
             this.BtnAnalytics.OnIdleState.IconRightImage = null;
             this.BtnAnalytics.OnPressedState.BorderColor = System.Drawing.Color.DimGray;
             this.BtnAnalytics.OnPressedState.BorderRadius = 5;
@@ -229,7 +229,7 @@ namespace StoreManager
             this.BtnInventory.OnIdleState.BorderThickness = 1;
             this.BtnInventory.OnIdleState.FillColor = System.Drawing.Color.White;
             this.BtnInventory.OnIdleState.ForeColor = System.Drawing.Color.Black;
-            this.BtnInventory.OnIdleState.IconLeftImage = ((System.Drawing.Image)(resources.GetObject("bunifuButton22.OnIdleState.IconLeftImage")));
+            this.BtnInventory.OnIdleState.IconLeftImage = ((System.Drawing.Image)(resources.GetObject("BtnInventory.OnIdleState.IconLeftImage")));
             this.BtnInventory.OnIdleState.IconRightImage = null;
             this.BtnInventory.OnPressedState.BorderColor = System.Drawing.Color.DimGray;
             this.BtnInventory.OnPressedState.BorderRadius = 5;
