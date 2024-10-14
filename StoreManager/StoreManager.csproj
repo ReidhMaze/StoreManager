@@ -238,6 +238,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CompoundComponents\" />
+    <Folder Include="ProductImages\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
