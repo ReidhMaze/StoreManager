@@ -12,6 +12,7 @@ using StoreManager.Icons;
 using System.Drawing;
 using Plasmoid.Extensions;
 using System.Drawing.Drawing2D;
+using System.Diagnostics;
 
 namespace CustomComponents
 {
@@ -35,7 +36,7 @@ namespace CustomComponents
         private ReaLTaiizor.Controls.NightLabel LblProdName = new ReaLTaiizor.Controls.NightLabel();
         private Label LblPrice = new Label();
         private OrdersPanel ordersPanel;
-        private CartItem cartItem;
+        private CartItem item;
 
         private int xLoc = 5;
         private int gap = 10;
@@ -48,16 +49,16 @@ namespace CustomComponents
         public Order(CartItem cartItem, OrdersPanel ordersPanel)
         {
 
-            this.cartItem = cartItem;
+            this.item = cartItem;
 
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "orderPanel";
             this.Size = PANEL_SIZE;
-            this.price = this.cartItem.Price;
-            this.totalPrice = this.cartItem.Price;
+            this.price = this.item.Price;
+            this.totalPrice = this.item.Price;
             this.BackColor = System.Drawing.Color.Transparent;
 
-            this.LblProdName.Text = this.cartItem.Name;
+            this.LblProdName.Text = this.item.Name;
             this.LblProdName.Location = new System.Drawing.Point(xLoc, noPadding);
             this.LblProdName.Size = LBL_PROD_NAME_SIZE;
             this.LblProdName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -76,7 +77,7 @@ namespace CustomComponents
 
             xLoc = xLoc + this.BtnDecr.Size.Width + gap;
 
-            this.LblQty.Text = "X" + this.cartItem.Qty.ToString();
+            this.LblQty.Text = "X" + this.item.Qty.ToString();
             this.LblQty.Location = new System.Drawing.Point(xLoc, topPadding);
             this.LblQty.Size = LBL_QTY_SIZE;
             this.LblQty.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -126,21 +127,22 @@ namespace CustomComponents
 
         public void BtnDecr_Clicked(object sender, EventArgs e)
         {
-            if (this.cartItem.Qty > 1)
+            if (this.item.Qty > 1)
             {
-                this.cartItem.DecrementQty();
+                this.item.DecrementQty();
             }
-            this.LblQty.Text = "X" + cartItem.Qty.ToString();
-            this.totalPrice = price * cartItem.Qty;
+            this.LblQty.Text = "X" + item.Qty.ToString();
+            this.totalPrice = price * item.Qty;
             this.LblPrice.Text = "₱" + totalPrice.ToString("N2");
             this.ordersPanel.UpdateCheckoutLabels();
         }
 
         public void BtnIncr_Clicked(object sender, EventArgs e)
         {
-            this.cartItem.IncrementQty();
-            this.LblQty.Text = "X" + cartItem.Qty.ToString();
-            this.totalPrice = price * cartItem.Qty;
+            if (this.item.Qty == item.StocksLeft) return;
+            this.item.IncrementQty();
+            this.LblQty.Text = "X" + item.Qty.ToString();
+            this.totalPrice = price * item.Qty;
             this.LblPrice.Text = "₱" + totalPrice.ToString("N2");
             this.ordersPanel.UpdateCheckoutLabels();
         }
@@ -150,6 +152,8 @@ namespace CustomComponents
             this.ordersPanel.DeleteOrder(this);
             this.ordersPanel.UpdateCheckoutLabels();
         }
+
+        public CartItem CartItem { get { return this.item; } }
 
         public double TotalPrice { get { return this.totalPrice; } }
 
@@ -189,6 +193,14 @@ namespace CustomComponents
         {
             //this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 
+        }
+
+        public void displayOrders()
+        {
+            for (int i = 0; i < orders.Count(); i++)
+            {
+                Debug.WriteLine(orders[i].CartItem.Name);
+            }
         }
 
         protected override void OnPaint(PaintEventArgs e)

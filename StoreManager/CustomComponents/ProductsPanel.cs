@@ -216,7 +216,7 @@ namespace CustomComponents
 
         public void ArrangeProductPanels(int page)
         {
-            if (this.IsOnLastPage() && !(page < this.lastPage && page > 0)) return;
+            if ((this.IsOnLastPage() && !(page < this.lastPage && page > 0)) && page != 1) return;
             this.Visible = false;
             // the page is not zero indexed
 
@@ -234,6 +234,12 @@ namespace CustomComponents
             {
                 
                 this.pdpDisplays[i].Item = items[i + starting];
+                if (this.pdpDisplays[i].Item.Stocks == 0) 
+                { 
+                    this.pdpDisplays[i].BtnAddToCart.Enabled = false;
+                    this.pdpDisplays[i].BtnAddToCart.InactiveColor = Color.Gray;
+                    this.pdpDisplays[i].BtnAddToCart.BorderColor = Color.Gray;
+                }
                 
             }
 
