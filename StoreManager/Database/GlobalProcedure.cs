@@ -415,5 +415,36 @@ namespace LaundrySystem
             }
         }
 
+        public double FncGetLatestTaxRate()
+        {
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                this.sqlAdapter = new MySqlDataAdapter();
+                this.datStoreMgr = new DataTable();
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_latest_tax_rate";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+                this.sqlAdapter.SelectCommand = this.sqlCommand;
+                this.datStoreMgr.Clear();
+                this.sqlAdapter.Fill(this.datStoreMgr);
+
+
+                DataTable dataTable = this.datStoreMgr;
+
+                ClearData();
+
+                return double.Parse(dataTable.Rows[0]["rate"].ToString());
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return 0.0;
+            }
+        }
+
     }
 }

@@ -34,6 +34,8 @@ namespace StoreManager
             this.PnlOrdersPanel.OrderDeleted += new System.EventHandler(OnOrderDeleted);
             this.dbConnection = dbConnection;
             this.gProc = gProc;
+            this.PnlOrdersPanel.TaxRate = gProc.FncGetLatestTaxRate();
+            this.LblTax.Text = "VAT (" + (int)(this.PnlOrdersPanel.TaxRate * 100) + "%)";
         }
 
         public void InitializeCardView()

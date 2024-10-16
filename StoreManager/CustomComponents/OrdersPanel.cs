@@ -184,7 +184,7 @@ namespace CustomComponents
         private Label lblTotal;
         private Label lblTax;
         private Label lblSubtotal;
-        private double taxRate = 0.03;
+        public double TaxRate { get; set; }
         int marginLeft = 5;
         int gap = 5;
         int yloc = 10;
@@ -194,6 +194,7 @@ namespace CustomComponents
 
         public OrdersPanel()
         {
+            TaxRate = 0;
             //this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 
         }
@@ -311,8 +312,8 @@ namespace CustomComponents
         public void UpdateCheckoutLabels()
         {
             this.lblTotal.Text = "₱" + this.TotalPrice.ToString("N2");
-            this.lblTax.Text = "₱" + (this.TotalPrice * this.taxRate).ToString("N2");
-            this.lblSubtotal.Text = "₱" + (this.TotalPrice - (this.TotalPrice * this.taxRate)).ToString("N2");
+            this.lblTax.Text = "₱" + (this.TotalPrice * this.TaxRate).ToString("N2");
+            this.lblSubtotal.Text = "₱" + (this.TotalPrice - (this.TotalPrice * this.TaxRate)).ToString("N2");
         }
 
         public void ClearOrders()

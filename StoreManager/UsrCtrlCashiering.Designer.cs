@@ -544,7 +544,7 @@ namespace StoreManager
             this.LblTax.Name = "LblTax";
             this.LblTax.Size = new System.Drawing.Size(39, 22);
             this.LblTax.TabIndex = 0;
-            this.LblTax.Text = "Tax";
+            this.LblTax.Text = "VAT";
             // 
             // LblTotal
             // 

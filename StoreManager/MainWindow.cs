@@ -40,10 +40,10 @@ namespace StoreManager
             //this.PnlProductsPanel.InitializeDisplay(dbConnection.GetItemList(), BtnPdpClicked);
             //this.productsAndOrdersLinker = new ProductsAndOrdersLinker(this.PnlOrdersPanel, this.PnlProductsPanel);
             //this.PnlProductsPanel.PanelSizeUpdated();
+            this.globalProcedure.FncConnectToDatabase();
             this.buyView = new UsrCtrlCashiering(this.dbConnection, globalProcedure);
             this.inventoryView = new UsrCtrlInventory2(this.dbConnection);
             this.analyticsView2 = new UsrCtrlAnalytics2();
-            this.globalProcedure.FncConnectToDatabase();
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
