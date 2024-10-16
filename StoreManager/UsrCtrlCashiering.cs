@@ -11,6 +11,7 @@ using System.Data.Common;
 using System.Data.Odbc;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -115,12 +116,16 @@ namespace StoreManager
 
         private void BtnCheckout_Click(object sender, EventArgs e)
         {
-            List<CartItem> cartItems = PnlOrdersPanel.Cart;
-            gProc.ProcCheckout(cartItems);
-            PnlOrdersPanel.ClearOrders();
-            this.PnlProductsPanel.InitializeItems(gProc.FncGetProducts(), this.BtnPdpClicked);
-            //this.PnlProductsPanel.InitializeCards();
-            this.PnlProductsPanel.ArrangeProductPanels(currentPage);
+            //List<CartItem> cartItems = PnlOrdersPanel.Cart;
+            //gProc.ProcCheckout(cartItems);
+            //PnlOrdersPanel.ClearOrders();
+            //this.PnlProductsPanel.InitializeItems(gProc.FncGetProducts(), this.BtnPdpClicked);
+            ////this.PnlProductsPanel.InitializeCards();
+            //this.PnlProductsPanel.ArrangeProductPanels(currentPage);
+
+            string currentDir = Environment.CurrentDirectory;
+            string imageFolderDir = "@" + currentDir.Substring(0, currentDir.Length - 9) + "ProductImages\\";
+            Debug.WriteLine(imageFolderDir);
         }
 
         private void OnOrderDeleted(object sender, EventArgs e)

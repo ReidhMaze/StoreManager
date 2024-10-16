@@ -42,11 +42,15 @@ namespace StoreManager
 
         private void BtnSubmit_Click(object sender, EventArgs e)
         {
+
+            string currentDir = Environment.CurrentDirectory;
+            string imageFolderDir = Path.Combine(currentDir, "..\\..\\ProductImages");
+
             try 
             {
                 if (needImage == true)
                 {
-                    File.Copy(imgLocation, Path.Combine(@"C:\Users\Dorelyn\source\repos\StoreManager\StoreManager\ProductImages\", Path.GetFileName(imgLocation)), true);
+                    File.Copy(imgLocation, Path.Combine(imageFolderDir, Path.GetFileName(imgLocation)), true);
                     StandardView();
                 }
                 else
