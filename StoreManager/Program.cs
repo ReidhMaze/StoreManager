@@ -9,8 +9,7 @@ using System.Windows.Forms;
 //using StoreManager.CustomComponentsLinker;
 
 namespace StoreManager
-{
-    internal static class Program
+{    internal static class Program
     {
         /// <summary>
         /// The main entry point for the application.
