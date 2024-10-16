@@ -45,7 +45,7 @@ namespace StoreObjects
 
         public CartItem ToCartItem()
         {
-            return new CartItem(this.Id, this.Name, this.Size, this.Price, this.CurrentStocks);
+            return new CartItem(this.Id, this.ItemCode, this.Name, this.Size, this.Price, this.CurrentStocks, this.CostPerItem);
         }
 
         public void Display()
@@ -60,18 +60,24 @@ namespace StoreObjects
         public int Id { get; }
         public string Name { get; }
         public string Size { get; }
+        public double CostPerItem { get; }
+        public int ItemCode { get; }
+
+
         private double price;
         private int qty = 1;
         private int stocksLeft;
 
 
-        public CartItem(int id, string name, string size, double price, int stocksLeft)
+        public CartItem(int id, int itemCode, string name, string size, double price, int stocksLeft, double costPerItem)
         {
             this.Id = id;
+            this.ItemCode = itemCode;
             this.Name = name;
             this.Size = size;
             this.price = price;
             this.stocksLeft = stocksLeft;
+            this.CostPerItem = costPerItem;
         }
 
         public void IncrementQty()

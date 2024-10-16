@@ -31,6 +31,7 @@ namespace StoreManager
         public UsrCtrlCashiering(DBConnect dbConnection, GlobalProcedure gProc)
         {
             InitializeComponent();
+            this.PnlOrdersPanel.OrderDeleted += new System.EventHandler(OnOrderDeleted);
             this.dbConnection = dbConnection;
             this.gProc = gProc;
         }
@@ -51,9 +52,11 @@ namespace StoreManager
 
         public void BtnPdpClicked(object sender, EventArgs e)
         {
-            ProductDisplayPanel PdpPressed = productsAndOrdersLinker.GetProdDisplayPanel(sender.GetHashCode());
-            this.PnlOrdersPanel.AddOrder(PdpPressed.Item.ToCartItem());
+            ProductDisplayPanel pdpPressed = productsAndOrdersLinker.GetProdDisplayPanel(sender.GetHashCode());
+            this.PnlOrdersPanel.AddOrder(pdpPressed.Item.ToCartItem());
             this.PnlOrdersPanel.UpdateCheckoutLabels();
+            pdpPressed.DisableButton();
+            //pdpPressed.EnableButton();
             //this.PnlOrdersPanel.DisplayOrders();
         }
 
@@ -110,9 +113,25 @@ namespace StoreManager
 
         private void BtnCheckout_Click(object sender, EventArgs e)
         {
-            //PnlOrdersPanel.displayOrders();
-            PrintItemList(gProc.FncGetProducts());
+            List<CartItem> cartItems = PnlOrdersPanel.Cart;
+            gProc.ProcCheckout(cartItems);
+            PnlOrdersPanel.ClearOrders();
+            this.PnlProductsPanel.InitializeItems(gProc.FncGetProducts(), this.BtnPdpClicked);
+            //this.PnlProductsPanel.InitializeCards();
+            this.PnlProductsPanel.ArrangeProductPanels(currentPage);
         }
+
+        private void OnOrderDeleted(object sender, EventArgs e)
+        {
+            int deletedItemId = this.PnlOrdersPanel.DeletedOrder.CartItem.Id;
+            ProductDisplayPanel pdpPanel = this.productsAndOrdersLinker.ProductsPanelId[deletedItemId];
+
+            this.PnlOrdersPanel.DeletedOrder = null;
+
+            pdpPanel.EnableButton();
+        }
+
+
 
         public void PrintItemList(List<Item> items)
         {

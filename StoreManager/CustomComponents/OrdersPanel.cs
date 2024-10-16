@@ -13,6 +13,7 @@ using System.Drawing;
 using Plasmoid.Extensions;
 using System.Drawing.Drawing2D;
 using System.Diagnostics;
+using static ReaLTaiizor.Controls.MaterialSlider;
 
 namespace CustomComponents
 {
@@ -188,6 +189,8 @@ namespace CustomComponents
         int gap = 5;
         int yloc = 10;
         int orderPanelHeight = Order.PanelHeight;
+        public EventHandler orderDeleted;
+        public Order DeletedOrder { get; set; }
 
         public OrdersPanel()
         {
@@ -195,11 +198,12 @@ namespace CustomComponents
 
         }
 
-        public void displayOrders()
+        public void DisplayOrderDetails()
         {
             for (int i = 0; i < orders.Count(); i++)
             {
-                Debug.WriteLine(orders[i].CartItem.Name);
+                Debug.WriteLine(orders[i].CartItem.Name + ": " + orders[i].CartItem.Qty);
+                //Debug.WriteLine(orders[i].CartItem.Qty);
             }
         }
 
@@ -254,21 +258,33 @@ namespace CustomComponents
             this.Controls.Remove(order);
             order.Dispose();
             this.DisplayOrders();
+
+            this.DeletedOrder = order;
+
+            OnOrderDeleted(EventArgs.Empty);
+        }
+
+        public event EventHandler OrderDeleted
+        {
+            add
+            {
+                orderDeleted += value;
+            }
+            remove
+            {
+                orderDeleted -= value;
+            }
+        }
+
+        public virtual void OnOrderDeleted(EventArgs e)
+        {
+            orderDeleted?.Invoke(this, e);
+            //Debug.WriteLine("delted order");
         }
 
         public void DisplayOrders()
         {
             yloc = 10;
-
-            //foreach (Control control in this.Controls)
-            //{
-            //    if (control is Order)
-            //    {
-            //        control.Location = new System.Drawing.Point(marginLeft, yloc);
-            //    }
-
-            //    yloc += orderPanelHeight + gap;
-            //}
 
             foreach (Order order in  this.orders)
             {
@@ -277,13 +293,6 @@ namespace CustomComponents
             }
 
             this.Refresh();
-
-            //foreach (Order order in orders)
-            //{
-            //    order.Location = new System.Drawing.Point(marginLeft, yloc);
-            //    orders.Add(order);
-            //    yloc += 5;
-            //}
         }
 
         public double TotalPrice
@@ -306,12 +315,32 @@ namespace CustomComponents
             this.lblSubtotal.Text = "₱" + (this.TotalPrice - (this.TotalPrice * this.taxRate)).ToString("N2");
         }
 
-        //public List<Order> Orders
-        //{
-        //    get { return this.orders; }
-        //}
+        public void ClearOrders()
+        {
+            for(int i = orders.Count() - 1; i >= 0; i--)
+            {
+                DeleteOrder(orders[i]);
+            }
+            UpdateCheckoutLabels();
+        }
 
+        public List<CartItem> Cart
+        {
+            get
+            {
+                List<CartItem > items = new List<CartItem>();
+                for(int i = 0; i < this.orders.Count; i++)
+                {
+                    items.Add(orders[i].CartItem);
+                }
+                return items;
+            }
+        }
 
+        public List<Order> Orders
+        {
+            get { return orders; }
+        }
 
     }
 

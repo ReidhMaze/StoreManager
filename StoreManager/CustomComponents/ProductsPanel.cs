@@ -132,6 +132,20 @@ namespace CustomComponents
             this.ResumeLayout(false);
 
         }
+
+        public void DisableButton()
+        {
+            this.BtnAddToCart.Enabled = false;
+            this.BtnAddToCart.InactiveColor = Color.Gray;
+            this.BtnAddToCart.BorderColor = Color.Gray;
+        }
+
+        public void EnableButton()
+        {
+            this.BtnAddToCart.Enabled = true;
+            this.BtnAddToCart.InactiveColor = Color.Black;
+            this.BtnAddToCart.BorderColor = Color.Black;
+        }
     }
 
     public class ProductsPanel : Panel
@@ -235,10 +249,8 @@ namespace CustomComponents
                 
                 this.pdpDisplays[i].Item = items[i + starting];
                 if (this.pdpDisplays[i].Item.CurrentStocks == 0) 
-                { 
-                    this.pdpDisplays[i].BtnAddToCart.Enabled = false;
-                    this.pdpDisplays[i].BtnAddToCart.InactiveColor = Color.Gray;
-                    this.pdpDisplays[i].BtnAddToCart.BorderColor = Color.Gray;
+                {
+                    this.pdpDisplays[i].DisableButton();
                 }
                 
             }
