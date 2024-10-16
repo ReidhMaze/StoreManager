@@ -23,9 +23,9 @@ namespace StoreManager.Database
         public DBConnect()
         {
             server = "localhost";
-            database = "store_manager";
+            database = "store_manager_db";
             username = "root";
-            password = "bajed"; //your server password
+            password = ""; //your server password
             port = "3306";
 
             //implement connection
