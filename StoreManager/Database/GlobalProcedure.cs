@@ -7,6 +7,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Bunifu.UI.WinForms;
+using CustomComponents;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.Mozilla;
 using ReaLTaiizor.Util;
@@ -45,8 +47,8 @@ namespace LaundrySystem
                 servername = "localhost";
                 databasename = "store_manager_db";
                 username = "root";
-                password = "bajed";
-                port = "3306";
+                password = "android52romance";
+                port = "3307";
 
                 strConnection = "Server=" + servername + ";" +
                     "Database=" + databasename + ";" +
@@ -683,5 +685,171 @@ namespace LaundrySystem
             }
         }
 
+        public double FncTotalSales()
+        {
+            
+            
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                this.sqlAdapter = new MySqlDataAdapter();
+                this.datStoreMgr = new DataTable();
+
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_total_sales";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+                this.sqlAdapter.SelectCommand = this.sqlCommand;
+                this.datStoreMgr.Clear();
+                this.sqlAdapter.Fill(this.datStoreMgr);
+
+
+                DataTable dataTable = this.datStoreMgr;
+
+                ClearData();
+
+
+
+
+
+                return double.Parse(dataTable.Rows[0]["total_sales"].ToString()); 
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return 0.0;
+            }
+            
+        }
+        public int FncTotalOrder()
+        {
+           
+
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                this.sqlAdapter = new MySqlDataAdapter();
+                this.datStoreMgr = new DataTable();
+
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_total_order";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+                this.sqlAdapter.SelectCommand = this.sqlCommand;
+                this.datStoreMgr.Clear();
+                this.sqlAdapter.Fill(this.datStoreMgr);
+
+
+                DataTable dataTable = this.datStoreMgr;
+
+                ClearData();
+                    
+
+
+                 
+
+                return Int32.Parse(dataTable.Rows[0]["order_id"].ToString());
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return 0;
+            }
+        }
+        public void productSold()
+        {
+
+        }
+        public void totalCustomer()
+        {
+
+        }
+       /* public void productSold()
+        {
+
+        }*/
+        public void totalIncome()
+        {
+
+        }
+
+        public void ProcAddCmbProductSoldItems(ComboBox cmb)
+        {
+            int rowCount = 0;
+            int row = 0;
+
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                this.sqlAdapter = new MySqlDataAdapter();
+                this.datStoreMgr = new DataTable();
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_item_name";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+                this.sqlAdapter.SelectCommand = this.sqlCommand;
+                this.datStoreMgr.Clear();
+                this.sqlAdapter.Fill(this.datStoreMgr);
+
+                DataTable dataTable = this.datStoreMgr;
+                if (dataTable.Rows.Count > 0)
+                {
+                     rowCount = dataTable.Rows.Count;
+                    while (dataTable.Rows.Count - 1 < rowCount)
+                    {
+
+                        cmb.Items.Add(dataTable.Rows[row]["item_name"].ToString());
+                         
+
+                        row++;
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+               
+            }
+        }
+
+        public void ProcGetProductSoldCount(string itemName, BunifuLabel lbl)
+        {
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                this.sqlAdapter = new MySqlDataAdapter();
+                this.datStoreMgr = new DataTable();
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_product_order_count";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+                this.sqlAdapter.SelectCommand = this.sqlCommand;
+                gProcCmd.Parameters.AddWithValue("@p_name", itemName);
+                this.datStoreMgr.Clear();
+                this.sqlAdapter.Fill(this.datStoreMgr);
+
+                DataTable dataTable = this.datStoreMgr;
+                if (dataTable.Rows.Count <= 0)
+                {
+                    lbl.Text = "0";
+                }
+                else
+                {
+                    lbl.Text = dataTable.Rows[0]["orders"].ToString();
+                }
+               
+
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
     }
 }
