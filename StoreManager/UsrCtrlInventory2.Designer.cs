@@ -108,8 +108,8 @@
             this.BtnAddProduct = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.BtnRestock = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.materialCard1 = new ReaLTaiizor.Controls.MaterialCard();
-            this.TbSearch = new CustomComponents.CustomMaterialMaskedTextBox();
             this.ofdPic = new System.Windows.Forms.OpenFileDialog();
+            this.TbSearch = new CustomComponents.CustomMaterialMaskedTextBox();
             this.PnlContainer.SuspendLayout();
             this.PnlItemInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImgItem)).BeginInit();
@@ -454,7 +454,7 @@
             this.CmbTypeInfo.DisabledBackColor = System.Drawing.Color.DarkGray;
             this.CmbTypeInfo.DisabledBorderColor = System.Drawing.Color.DarkGray;
             this.CmbTypeInfo.DisabledColor = System.Drawing.Color.DarkGray;
-            this.CmbTypeInfo.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.CmbTypeInfo.DisabledForeColor = System.Drawing.Color.Black;
             this.CmbTypeInfo.DisabledIndicatorColor = System.Drawing.Color.DarkGray;
             this.CmbTypeInfo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.CmbTypeInfo.DropdownBorderThickness = Bunifu.UI.WinForms.BunifuDropdown.BorderThickness.Thin;
@@ -477,9 +477,9 @@
             this.CmbTypeInfo.ItemForeColor = System.Drawing.Color.Black;
             this.CmbTypeInfo.ItemHeight = 25;
             this.CmbTypeInfo.ItemHighLightColor = System.Drawing.Color.LightGray;
-            this.CmbTypeInfo.ItemHighLightForeColor = System.Drawing.Color.White;
+            this.CmbTypeInfo.ItemHighLightForeColor = System.Drawing.Color.Black;
             this.CmbTypeInfo.Items.AddRange(new object[] {
-            "shoe"});
+            "Shoe"});
             this.CmbTypeInfo.ItemTopMargin = 3;
             this.CmbTypeInfo.Location = new System.Drawing.Point(320, 162);
             this.CmbTypeInfo.Name = "CmbTypeInfo";
@@ -501,7 +501,7 @@
             this.CmbSizeInfo.DisabledBackColor = System.Drawing.Color.DarkGray;
             this.CmbSizeInfo.DisabledBorderColor = System.Drawing.Color.DarkGray;
             this.CmbSizeInfo.DisabledColor = System.Drawing.Color.DarkGray;
-            this.CmbSizeInfo.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.CmbSizeInfo.DisabledForeColor = System.Drawing.Color.Black;
             this.CmbSizeInfo.DisabledIndicatorColor = System.Drawing.Color.DarkGray;
             this.CmbSizeInfo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.CmbSizeInfo.DropdownBorderThickness = Bunifu.UI.WinForms.BunifuDropdown.BorderThickness.Thin;
@@ -524,7 +524,7 @@
             this.CmbSizeInfo.ItemForeColor = System.Drawing.Color.Black;
             this.CmbSizeInfo.ItemHeight = 25;
             this.CmbSizeInfo.ItemHighLightColor = System.Drawing.Color.LightGray;
-            this.CmbSizeInfo.ItemHighLightForeColor = System.Drawing.Color.White;
+            this.CmbSizeInfo.ItemHighLightForeColor = System.Drawing.Color.Black;
             this.CmbSizeInfo.Items.AddRange(new object[] {
             "31",
             "20"});
@@ -857,7 +857,7 @@
             this.BtnUploadImg.IdleIconLeftImage = global::StoreManager.Properties.Resources.upload_icon;
             this.BtnUploadImg.IdleIconRightImage = null;
             this.BtnUploadImg.IndicateFocus = false;
-            this.BtnUploadImg.Location = new System.Drawing.Point(52, 212);
+            this.BtnUploadImg.Location = new System.Drawing.Point(48, 212);
             this.BtnUploadImg.Name = "BtnUploadImg";
             this.BtnUploadImg.OnDisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.BtnUploadImg.OnDisabledState.BorderRadius = 5;
@@ -966,7 +966,7 @@
             this.BtnSubmit.IdleIconLeftImage = null;
             this.BtnSubmit.IdleIconRightImage = null;
             this.BtnSubmit.IndicateFocus = false;
-            this.BtnSubmit.Location = new System.Drawing.Point(878, 199);
+            this.BtnSubmit.Location = new System.Drawing.Point(876, 198);
             this.BtnSubmit.Name = "BtnSubmit";
             this.BtnSubmit.OnDisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.BtnSubmit.OnDisabledState.BorderRadius = 5;
@@ -2024,6 +2024,10 @@
             this.materialCard1.Size = new System.Drawing.Size(883, 47);
             this.materialCard1.TabIndex = 44;
             // 
+            // ofdPic
+            // 
+            this.ofdPic.FileName = "OpenFileDialog";
+            // 
             // TbSearch
             // 
             this.TbSearch.AllowPromptAsInput = true;
@@ -2069,10 +2073,6 @@
             this.TbSearch.UseSystemPasswordChar = false;
             this.TbSearch.ValidatingType = null;
             this.TbSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbInvSearch_KeyPress);
-            // 
-            // ofdPic
-            // 
-            this.ofdPic.FileName = "OpenFileDialog";
             // 
             // UsrCtrlInventory2
             // 

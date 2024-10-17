@@ -24,9 +24,6 @@ namespace StoreManager
 
         string imgLocation;
         Boolean needImage, addProduct, editProduct, removeProduct, restock, disposeStock;
-        string itemName, size, type, imgName, supplier, remainingStocks;
-        double price, costPerItem;
-        int restockThreshold;
 
         public UsrCtrlInventory2(DBConnect dbConnection)
         {
@@ -52,23 +49,30 @@ namespace StoreManager
             string currentDir = Environment.CurrentDirectory;
             string imageFolderDir = Path.Combine(currentDir, "..\\..\\ProductImages");
 
+            string itemName = TxtName.Text;
+            string size = CmbSizeInfo.Text;
+            string type = CmbTypeInfo.Text;
+            string imgName = imgLocation;
+            string supplier = TxtSupplier.Text;
+            int restockThreshold = int.Parse(TxtRestockThreshold.Text);
+            int remainingStocks = int.Parse(TxtRemainingStocks.Text);
+            double price = double.Parse(TxtPrice.Text);
+            double costPerItem = double.Parse(TxtCostPerItem.Text);
+
             try 
             {
                 if (needImage == true)
                 {
                     File.Copy(imgLocation, Path.Combine(imageFolderDir, Path.GetFileName(imgLocation)), true);
-                    StandardView();
                 }
-                else if (addProduct == true)
+                
+
+                if (addProduct == true)
                 {
-                    InitializeItems();
                     gProc.ProcAddItem(itemName, size, type, price, costPerItem, imgName, supplier, restockThreshold);
                     StandardView();
                 }
-                else
-                {
-                    StandardView();
-                }
+               
             }
             catch (Exception err)
             {
@@ -184,8 +188,8 @@ namespace StoreManager
         public void ClearAll()
         {
             TxtName.Clear();
-            CmbSizeInfo.Items.Clear();
-            CmbTypeInfo.Items.Clear();
+            CmbSizeInfo.SelectedIndex = -1;
+            CmbTypeInfo.SelectedIndex = -1;
             TxtPrice.Clear();
             TxtCostPerItem.Clear();
             TxtRestockThreshold.Clear();
@@ -202,18 +206,6 @@ namespace StoreManager
             disposeStock = false;
         }
 
-        public void InitializeItems()
-        {
-            itemName = TxtName.Text;
-            size = CmbSizeInfo.Text;
-            type = CmbTypeInfo.Text;
-            imgName = ImgItem.Text;
-            supplier = TxtSupplier.Text;
-            remainingStocks = TxtRemainingStocks.Text;
-            restockThreshold = Convert.ToInt32(TxtRestockThreshold.Text);
-            price = Convert.ToDouble(TxtPrice.Text);
-            costPerItem = Convert.ToDouble(TxtCostPerItem.Text);
-        }
     }
 }
 
