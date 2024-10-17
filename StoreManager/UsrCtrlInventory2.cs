@@ -1,5 +1,6 @@
 ﻿using StoreManager.CustomComponentsLinker;
 using StoreManager.Database;
+using LaundrySystem;
 using StoreManager.Properties;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,10 @@ namespace StoreManager
     public partial class UsrCtrlInventory2 : UserControl
     {
         private DBConnect dbConnection;
+        private GlobalProcedure gProc;
+
         string imgLocation;
-        Boolean needImage = true;
+        Boolean needImage, addProduct, editProduct, removeProduct, restock, disposeStock;
 
         public UsrCtrlInventory2(DBConnect dbConnection)
         {
@@ -46,17 +49,30 @@ namespace StoreManager
             string currentDir = Environment.CurrentDirectory;
             string imageFolderDir = Path.Combine(currentDir, "..\\..\\ProductImages");
 
+            string itemName = TxtName.Text;
+            string size = CmbSizeInfo.Text;
+            string type = CmbTypeInfo.Text;
+            string imgName = imgLocation;
+            string supplier = TxtSupplier.Text;
+            int restockThreshold = int.Parse(TxtRestockThreshold.Text);
+            int remainingStocks = int.Parse(TxtRemainingStocks.Text);
+            double price = double.Parse(TxtPrice.Text);
+            double costPerItem = double.Parse(TxtCostPerItem.Text);
+
             try 
             {
                 if (needImage == true)
                 {
                     File.Copy(imgLocation, Path.Combine(imageFolderDir, Path.GetFileName(imgLocation)), true);
-                    StandardView();
                 }
-                else
+                
+
+                if (addProduct == true)
                 {
+                    gProc.ProcAddItem(itemName, size, type, price, costPerItem, imgName, supplier, restockThreshold);
                     StandardView();
                 }
+               
             }
             catch (Exception err)
             {
@@ -67,18 +83,20 @@ namespace StoreManager
         private void BtnAddProduct_Click(object sender, EventArgs e)
         {
             EnabledAll();
+            needImage = true;
+            addProduct = true;
         }
 
         private void BtnEditProduct_Click(object sender, EventArgs e)
         {
             EnabledAll();
+            needImage = true;
         }
 
         private void BtnRemoveProduct_Click(object sender, EventArgs e)
         {
             StandardView();
             BtnSubmit.Enabled = true;
-            needImage = false;
         }
 
         private void BtnRestock_Click(object sender, EventArgs e)
@@ -88,7 +106,6 @@ namespace StoreManager
             TxtRemainingStocks.Enabled = false;
             TxtQuantity.Visible = true;
             LblQuantity.Visible = true;
-            needImage = false;
         }
 
         private void BtnDisposeStock_Click(object sender, EventArgs e)
@@ -97,7 +114,6 @@ namespace StoreManager
             TxtQuantity.Visible = true;
             LblQuantity.Visible = true;
             BtnSubmit.Enabled = true;
-            needImage = false;
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
@@ -172,8 +188,8 @@ namespace StoreManager
         public void ClearAll()
         {
             TxtName.Clear();
-            CmbSizeInfo.Items.Clear();
-            CmbTypeInfo.Items.Clear();
+            CmbSizeInfo.SelectedIndex = -1;
+            CmbTypeInfo.SelectedIndex = -1;
             TxtPrice.Clear();
             TxtCostPerItem.Clear();
             TxtRestockThreshold.Clear();
@@ -182,7 +198,12 @@ namespace StoreManager
             TxtQuantity.Clear();
             ImgItem.Image = null;
             imgLocation = null;
-            needImage = true;
+            needImage = false;
+            addProduct = false;
+            editProduct = false;
+            removeProduct = false;
+            restock = false;
+            disposeStock = false;
         }
 
     }
