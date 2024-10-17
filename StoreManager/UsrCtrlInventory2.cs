@@ -29,6 +29,8 @@ namespace StoreManager
         {
             InitializeComponent();
             this.dbConnection = dbConnection;
+            this.gProc = new GlobalProcedure();
+            this.gProc.FncConnectToDatabase();
             StandardView();
         }
 
@@ -52,7 +54,8 @@ namespace StoreManager
             string itemName = TxtName.Text;
             string size = CmbSizeInfo.Text;
             string type = CmbTypeInfo.Text;
-            string imgName = imgLocation;
+            string imgLocation = this.imgLocation;
+            string imgName = Path.GetFileName(imgLocation);
             string supplier = TxtSupplier.Text;
             int restockThreshold = int.Parse(TxtRestockThreshold.Text);
             int remainingStocks = int.Parse(TxtRemainingStocks.Text);
@@ -63,7 +66,7 @@ namespace StoreManager
             {
                 if (needImage == true)
                 {
-                    File.Copy(imgLocation, Path.Combine(imageFolderDir, Path.GetFileName(imgLocation)), true);
+                    File.Copy(this.imgLocation, Path.Combine(imageFolderDir, imgName), true);
                 }
                 
 
