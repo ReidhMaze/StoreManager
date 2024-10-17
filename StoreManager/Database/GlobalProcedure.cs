@@ -131,7 +131,7 @@ namespace LaundrySystem
                         string size = dataTable.Rows[row]["size"].ToString();
                         string type = dataTable.Rows[row]["type"].ToString();
                         int currentStocks = int.Parse(dataTable.Rows[row]["current_stocks"].ToString());
-                        string imgLocation = dataTable.Rows[row]["img_location"].ToString();
+                        string imgLocation = dataTable.Rows[row]["img_name"].ToString();
 
                         Item item = new Item(id, itemCode, itemName, price, costPerItem, size, type, currentStocks, imgLocation);
                         list.Add(item);
@@ -290,6 +290,243 @@ namespace LaundrySystem
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        public void ProcAddItem(string p_item_name, string p_size, string p_type, double p_price, double p_cost_per_item, string p_img_name, string p_supplier, int p_restock_threshold)
+        {
+            int v_type_id;
+            int v_supplier_id = -1;
+            int v_item_id;
+
+            v_type_id = FncGetTypeId(p_type);
+
+            if(!FncSupplierExists(p_supplier)) 
+            {
+                ProcAddSupplier(p_supplier);
+            }
+
+            v_supplier_id = FncGetSupplierId(p_supplier);
+
+            ProcAddItemToInventory(p_item_name, p_size, v_type_id, p_cost_per_item, p_img_name, v_supplier_id, p_restock_threshold);
+
+            v_item_id = FncGetLatestItemId();
+            
+            ProcAddProduct(v_item_id, p_price);
+
+        }
+
+        private void ProcAddItemToInventory(string p_item_name, string p_size, int p_type_id, double p_cost_per_item, string p_img_name, int p_supplier_id, int p_restock_threshold)
+        {
+            MySqlCommand gProcCmd = this.sqlCommand;
+
+            try
+            {
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_add_item";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Add parameters for the stored procedure
+                gProcCmd.Parameters.AddWithValue("@p_item_name", p_item_name);
+                gProcCmd.Parameters.AddWithValue("@p_size", p_size);
+                gProcCmd.Parameters.AddWithValue("@p_type_id", p_type_id);
+                gProcCmd.Parameters.AddWithValue("@p_cost_per_item", p_cost_per_item);
+                gProcCmd.Parameters.AddWithValue("@p_img_name", p_img_name);
+                gProcCmd.Parameters.AddWithValue("@p_supplier_id", p_supplier_id);
+                gProcCmd.Parameters.AddWithValue("@p_restock_threshold", p_restock_threshold);
+
+                // Execute the stored procedure
+                gProcCmd.ExecuteNonQuery();
+
+                if (EnableDebugging)
+                    MessageBox.Show("Item added successfully");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);  // Display the exception message for debugging
+            }
+        }
+
+        private void ProcAddProduct(int p_inventory_id, double p_price)
+        {
+            MySqlCommand gProcCmd = this.sqlCommand;
+
+            try
+            {
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_add_product";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Add parameters for the stored procedure
+                gProcCmd.Parameters.AddWithValue("@p_inventory_id", p_inventory_id);
+                gProcCmd.Parameters.AddWithValue("@p_price", p_price);
+
+                // Execute the stored procedure
+                gProcCmd.ExecuteNonQuery();
+
+                if (EnableDebugging)
+                    MessageBox.Show("Product added successfully");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);  // Display the exception message for debugging
+            }
+        }
+
+        private void ProcAddSupplier(string p_supplier_name)
+        {
+            MySqlCommand gProcCmd = this.sqlCommand;
+
+            try
+            {
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_add_supplier";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Add parameter for supplier name
+                gProcCmd.Parameters.AddWithValue("@p_supplier_name", p_supplier_name);
+
+                // Execute the stored procedure
+                gProcCmd.ExecuteNonQuery();
+
+                if (EnableDebugging)
+                    MessageBox.Show("Supplier added successfully");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);  // Display the exception message for debugging
+            }
+        }
+
+        private bool FncSupplierExists(string p_supplier_name)
+        {
+            MySqlCommand gProcCmd = this.sqlCommand;
+            bool supplierExists = false;
+
+            try
+            {
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_supplier_exists";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Add input parameter for supplier name
+                gProcCmd.Parameters.AddWithValue("@p_supplier_name", p_supplier_name);
+
+                // Execute the command and retrieve the result
+                object result = gProcCmd.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    int exists = Convert.ToInt32(result);
+                    supplierExists = (exists == 1);  // If 1, supplier exists
+                }
+
+                if (EnableDebugging)
+                    MessageBox.Show("Supplier exists: " + supplierExists);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);  // Display the exception message for debugging
+            }
+
+            return supplierExists;
+        }
+
+
+        private int FncGetSupplierId(string p_supplier_name)
+        {
+            MySqlCommand gProcCmd = this.sqlCommand;
+            int supplierId = 0;
+
+            try
+            {
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_supplier_id";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Add parameter for supplier name
+                gProcCmd.Parameters.AddWithValue("@p_supplier_name", p_supplier_name);
+
+                // Execute the command and retrieve the result
+                object result = gProcCmd.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    supplierId = Convert.ToInt32(result);
+                }
+
+                if (EnableDebugging)
+                    MessageBox.Show("Supplier ID: " + supplierId);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);  // Display the exception message for debugging
+            }
+
+            return supplierId;
+        }
+
+        private int FncGetTypeId(string p_type)
+        {
+            MySqlCommand gProcCmd = this.sqlCommand;
+            int typeId = -1;  // Default value in case the type is not found
+
+            try
+            {
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_type_id";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Add input parameter for product type
+                gProcCmd.Parameters.AddWithValue("@p_type", p_type);
+
+                // Execute the stored procedure and get the result
+                object result = gProcCmd.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    typeId = Convert.ToInt32(result);  // Assign the returned id to typeId
+                }
+
+                if (EnableDebugging)
+                    MessageBox.Show("Type ID: " + typeId);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);  // Display the exception message for debugging
+            }
+
+            return typeId;  // Return the retrieved type ID or -1 if not found
+        }
+
+
+        private int FncGetLatestItemId()
+        {
+            MySqlCommand gProcCmd = this.sqlCommand;
+            int latestItemId = 0;
+
+            try
+            {
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_latest_item_id";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Execute the command and retrieve the result
+                object result = gProcCmd.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    latestItemId = Convert.ToInt32(result);
+                }
+
+                if (EnableDebugging)
+                    MessageBox.Show("Latest Item ID: " + latestItemId);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);  // Display the exception message for debugging
+            }
+
+            return latestItemId;
         }
 
         private int FncGetLatestTaxRateId()
