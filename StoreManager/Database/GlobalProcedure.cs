@@ -116,14 +116,6 @@ namespace LaundrySystem
 
                     while (!(totalRecords - 1 < row))
                     {
-                        //this.GridCustomers.Rows[row].Cells[0].Value = dataTable.Rows[row]["id"].ToString();
-                        //this.GridCustomers.Rows[row].Cells[1].Value = dataTable.Rows[row]["fullname"].ToString();
-                        //this.GridCustomers.Rows[row].Cells[2].Value = DateTime.Parse(dataTable.Rows[row]["birthdate"].ToString()).Date;
-                        //this.GridCustomers.Rows[row].Cells[3].Value = dataTable.Rows[row]["gender"].ToString();
-                        //this.GridCustomers.Rows[row].Cells[4].Value = dataTable.Rows[row]["address"].ToString();
-                        //this.GridCustomers.Rows[row].Cells[5].Value = dataTable.Rows[row]["contactno"].ToString();
-                        //this.GridCustomers.Rows[row].Cells[6].Value = dataTable.Rows[row]["emailadd"].ToString();
-                        //this.GridCustomers.Rows[row].Cells[7].Value = dataTable.Rows[row]["cust_photo"].ToString();
 
                         int id = int.Parse(dataTable.Rows[row]["id"].ToString());
                         int itemCode = int.Parse(dataTable.Rows[row]["item_code"].ToString());
@@ -158,6 +150,67 @@ namespace LaundrySystem
             return list;
 
         }
+
+        public List<Item> FncGetItems()
+        {
+            List<Item> list = new List<Item>();
+
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                this.sqlAdapter = new MySqlDataAdapter();
+                this.datStoreMgr = new DataTable();
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proce_select_all_items"; // Updated procedure name
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+                this.sqlAdapter.SelectCommand = this.sqlCommand;
+                this.datStoreMgr.Clear();
+                this.sqlAdapter.Fill(this.datStoreMgr);
+
+                if (this.datStoreMgr.Rows.Count > 0)
+                {
+                    DataTable dataTable = this.datStoreMgr;
+                    int row = 0;
+                    int totalRecords = dataTable.Rows.Count;
+
+                    while (row < totalRecords)
+                    {
+                        int id = int.Parse(dataTable.Rows[row]["id"].ToString());
+                        int itemCode = int.Parse(dataTable.Rows[row]["item_code"].ToString());
+                        string itemName = dataTable.Rows[row]["item_name"].ToString();
+                        double price = double.Parse(dataTable.Rows[row]["price"].ToString());
+                        double costPerItem = double.Parse(dataTable.Rows[row]["cost_per_item"].ToString());
+                        string size = dataTable.Rows[row]["size"].ToString();
+                        string type = dataTable.Rows[row]["type"].ToString();
+                        int currentStocks = int.Parse(dataTable.Rows[row]["current_stocks"].ToString());
+                        int restockThreshold = int.Parse(dataTable.Rows[row]["restock_threshold"].ToString());
+                        string supplierName = dataTable.Rows[row]["supplier_name"].ToString();
+                        string imgLocation = dataTable.Rows[row]["img_name"].ToString();
+
+                        // Use the constructor with the correct parameters
+                        Item item = new Item(id, itemCode, itemName, price, costPerItem, size, type, currentStocks, restockThreshold, supplierName, imgLocation);
+                        list.Add(item);
+
+                        row++;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No data");
+                }
+
+                ClearData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return list;
+        }
+
 
         public string[] FncGetDistinctSizes()
         {

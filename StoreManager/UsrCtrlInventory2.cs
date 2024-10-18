@@ -1,5 +1,6 @@
 ﻿using StoreManager.CustomComponentsLinker;
 using StoreManager.Database;
+using LaundrySystem;
 using StoreManager.Properties;
 using System;
 using System.Collections.Generic;
@@ -13,20 +14,26 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using StoreObjects;
 
 namespace StoreManager
 {
     public partial class UsrCtrlInventory2 : UserControl
     {
         private DBConnect dbConnection;
+        private GlobalProcedure gProc;
+
         string imgLocation;
-        Boolean needImage = true;
+        Boolean needImage, addProduct, editProduct, removeProduct, restock, disposeStock;
 
         public UsrCtrlInventory2(DBConnect dbConnection)
         {
             InitializeComponent();
             this.dbConnection = dbConnection;
+            this.gProc = new GlobalProcedure();
+            this.gProc.FncConnectToDatabase();
             StandardView();
+            InitializeItemsGrid();
         }
 
         private void BtnUploadImg_Click(object sender, EventArgs e)
@@ -46,17 +53,31 @@ namespace StoreManager
             string currentDir = Environment.CurrentDirectory;
             string imageFolderDir = Path.Combine(currentDir, "..\\..\\ProductImages");
 
+            string itemName = TxtName.Text;
+            string size = CmbSizeInfo.Text;
+            string type = CmbTypeInfo.Text;
+            string imgLocation = this.imgLocation;
+            string imgName = Path.GetFileName(imgLocation);
+            string supplier = TxtSupplier.Text;
+            int restockThreshold = int.Parse(TxtRestockThreshold.Text);
+            int remainingStocks = int.Parse(TxtRemainingStocks.Text);
+            double price = double.Parse(TxtPrice.Text);
+            double costPerItem = double.Parse(TxtCostPerItem.Text);
+
             try 
             {
                 if (needImage == true)
                 {
-                    File.Copy(imgLocation, Path.Combine(imageFolderDir, Path.GetFileName(imgLocation)), true);
-                    StandardView();
+                    File.Copy(this.imgLocation, Path.Combine(imageFolderDir, imgName), true);
                 }
-                else
+                
+
+                if (addProduct == true)
                 {
+                    gProc.ProcAddItem(itemName, size, type, price, costPerItem, imgName, supplier, restockThreshold);
                     StandardView();
                 }
+               
             }
             catch (Exception err)
             {
@@ -67,18 +88,20 @@ namespace StoreManager
         private void BtnAddProduct_Click(object sender, EventArgs e)
         {
             EnabledAll();
+            needImage = true;
+            addProduct = true;
         }
 
         private void BtnEditProduct_Click(object sender, EventArgs e)
         {
             EnabledAll();
+            needImage = true;
         }
 
         private void BtnRemoveProduct_Click(object sender, EventArgs e)
         {
             StandardView();
             BtnSubmit.Enabled = true;
-            needImage = false;
         }
 
         private void BtnRestock_Click(object sender, EventArgs e)
@@ -88,7 +111,6 @@ namespace StoreManager
             TxtRemainingStocks.Enabled = false;
             TxtQuantity.Visible = true;
             LblQuantity.Visible = true;
-            needImage = false;
         }
 
         private void BtnDisposeStock_Click(object sender, EventArgs e)
@@ -97,7 +119,6 @@ namespace StoreManager
             TxtQuantity.Visible = true;
             LblQuantity.Visible = true;
             BtnSubmit.Enabled = true;
-            needImage = false;
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
@@ -117,6 +138,25 @@ namespace StoreManager
             if (regex.IsMatch(e.KeyChar.ToString()))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void InitializeItemsGrid()
+        {
+            List<Item> items = gProc.FncGetItems();
+            this.DataGridItems.RowCount = items.Count;
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                this.DataGridItems.Rows[i].Cells[0].Value = items[i].Name;              // Name
+                this.DataGridItems.Rows[i].Cells[1].Value = items[i].ItemCode;          // Item Code
+                this.DataGridItems.Rows[i].Cells[2].Value = items[i].Price;             // Price
+                this.DataGridItems.Rows[i].Cells[3].Value = items[i].CostPerItem;       // Cost per Item
+                this.DataGridItems.Rows[i].Cells[4].Value = items[i].Size;              // Size
+                this.DataGridItems.Rows[i].Cells[5].Value = items[i].Type;              // Type
+                this.DataGridItems.Rows[i].Cells[6].Value = items[i].CurrentStocks;     // Current Stocks
+                this.DataGridItems.Rows[i].Cells[7].Value = items[i].SupplierName;      // Supplier Name
+                this.DataGridItems.Rows[i].Cells[8].Value = items[i].RestockThreshold;  // Restock Threshold
             }
         }
 
@@ -172,8 +212,8 @@ namespace StoreManager
         public void ClearAll()
         {
             TxtName.Clear();
-            CmbSizeInfo.Items.Clear();
-            CmbTypeInfo.Items.Clear();
+            CmbSizeInfo.SelectedIndex = -1;
+            CmbTypeInfo.SelectedIndex = -1;
             TxtPrice.Clear();
             TxtCostPerItem.Clear();
             TxtRestockThreshold.Clear();
@@ -182,7 +222,12 @@ namespace StoreManager
             TxtQuantity.Clear();
             ImgItem.Image = null;
             imgLocation = null;
-            needImage = true;
+            needImage = false;
+            addProduct = false;
+            editProduct = false;
+            removeProduct = false;
+            restock = false;
+            disposeStock = false;
         }
 
     }
