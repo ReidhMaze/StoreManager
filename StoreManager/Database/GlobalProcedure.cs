@@ -149,6 +149,41 @@ namespace LaundrySystem
 
         }
 
+        public bool FncItemExists(string p_itemName, double p_price, double p_costPerItem, string p_size, string p_type, string p_supplier_name)
+        {
+            bool exists = false;
+
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_item_exists";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Add parameters
+                gProcCmd.Parameters.AddWithValue("@p_item_name", p_itemName);
+                gProcCmd.Parameters.AddWithValue("@p_price", p_price);
+                gProcCmd.Parameters.AddWithValue("@p_cost_per_item", p_costPerItem);
+                gProcCmd.Parameters.AddWithValue("@p_size", p_size);
+                gProcCmd.Parameters.AddWithValue("@p_type", p_type);
+                gProcCmd.Parameters.AddWithValue("@p_supplier_name", p_supplier_name);
+
+                // Execute and get result
+                int result = Convert.ToInt32(gProcCmd.ExecuteScalar());
+
+                // If the count is greater than 0, the item exists
+                exists = (result > 0);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return exists;
+        }
+
+
         public List<Item> FncGetItems()
         {
             List<Item> list = new List<Item>();
@@ -352,6 +387,12 @@ namespace LaundrySystem
             int v_item_id;
 
             v_type_id = FncGetTypeId(p_type);
+
+            if(FncItemExists(p_item_name, p_price, p_cost_per_item, p_size, p_type, p_supplier))
+            {
+                MessageBox.Show("Item already exists\nCanceling new product");
+                return;
+            }
 
             if(!FncSupplierExists(p_supplier)) 
             {
