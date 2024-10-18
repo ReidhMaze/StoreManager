@@ -9,15 +9,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LaundrySystem;
+using StoreManager.Database;
 
 namespace StoreManager
 {
     public partial class UsrCtrlAnalytics2 : UserControl
     {
-        public UsrCtrlAnalytics2()
+        private DBConnect dbConnection;
+        private GlobalProcedure gProc;
+      
+        public UsrCtrlAnalytics2(DBConnect dbConnection, GlobalProcedure gProc)
         {
             InitializeComponent();
+            this.dbConnection = dbConnection;
+            this.gProc = gProc;
+            displayTotalOrders();
+            displayTotalSales();
+            gProc.ProcAddCmbProductSoldItems(cmbProductSold);
+            //displayTotalSales();
             addSalesToGrid();
+           
             //addChartValues();
         }
 
@@ -155,6 +167,48 @@ namespace StoreManager
         private void pnlSideBottom_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtBestSeller_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        public void displayTotalSales()
+        {
+            double sales = gProc.FncTotalSales();
+            string totalSales = sales.ToString("0.00");
+            lblTotalSales.Text = "₱" + totalSales;
+            
+        }
+
+        public void displayTotalOrders()
+        {
+            int orders = gProc.FncTotalOrder();
+            string totalOrders = orders.ToString();
+            lblTotalOrder.Text =  totalOrders;
+        }
+
+        private void bunifuDropdown1_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if(bunifuDropdown1.Text == "Last 30 Days")
+            {
+                lblProuductSales.Text = "30 days";
+            }
+            else if(bunifuDropdown1.Text == "Last 15 days")
+            {
+                lblProuductSales.Text = "15 days";
+            }
+            else if (bunifuDropdown1.Text == "Last 7 days")
+            {
+                lblProuductSales.Text = "7 days";
+            }
+        }
+
+        private void cmbProductSold_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string itemName = cmbProductSold.Text;
+            gProc.ProcGetProductSoldCount(itemName, lblProductSold);
         }
     }
 

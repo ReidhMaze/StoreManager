@@ -43,7 +43,7 @@ namespace StoreManager
             this.globalProcedure.FncConnectToDatabase();
             this.buyView = new UsrCtrlCashiering(this.dbConnection, globalProcedure);
             this.inventoryView = new UsrCtrlInventory2(this.dbConnection);
-            this.analyticsView2 = new UsrCtrlAnalytics2();
+            this.analyticsView2 = new UsrCtrlAnalytics2(this.dbConnection, globalProcedure);
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
