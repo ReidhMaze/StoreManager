@@ -47,8 +47,8 @@ namespace LaundrySystem
                 servername = "localhost";
                 databasename = "store_manager_db";
                 username = "root";
-                password = "android52romance";
-                port = "3307";
+                password = "bajed";
+                port = "3306";
 
                 strConnection = "Server=" + servername + ";" +
                     "Database=" + databasename + ";" +
@@ -151,39 +151,111 @@ namespace LaundrySystem
 
         }
 
-        public bool FncItemExists(string p_itemName, double p_price, double p_costPerItem, string p_size, string p_type, string p_supplier_name)
+        public void ProcRestock(string p_itemName, double p_price, double p_cost_per_item, string p_size, string p_type, string p_supplier_name, int p_qty)
         {
-            bool exists = false;
+            int v_item_id = FncGetItemId(p_itemName, p_price, p_cost_per_item, p_size, p_type, p_supplier_name);
+            int v_supplier_id = FncGetSupplierId(p_supplier_name);
+
+            if(v_item_id == -1)
+            {
+                MessageBox.Show("Item does not exist");
+                return;
+            }
+
+            if (EnableDebugging) MessageBox.Show("Item restocked successfuly");
+
+            ProcRestockItem(v_item_id, p_qty);
+            ProcAddInventoryAdded(v_item_id, p_qty, p_cost_per_item, v_supplier_id, this.v_logged_staff_id);
+        }
+
+        public void ProcAddInventoryAdded(int p_item_id, int p_qty_added, double p_cost_per_item, int p_supplier_id, int p_staff_id)
+        {
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_add_inventory_added";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Add parameters
+                gProcCmd.Parameters.AddWithValue("@p_item_id", p_item_id);
+                gProcCmd.Parameters.AddWithValue("@p_qty_added", p_qty_added);
+                gProcCmd.Parameters.AddWithValue("@p_cost_per_item", p_cost_per_item);
+                gProcCmd.Parameters.AddWithValue("@p_supplier_id", p_supplier_id);
+                gProcCmd.Parameters.AddWithValue("@p_staff_id", p_staff_id);
+
+                // Execute the stored procedure
+                gProcCmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+
+        private int FncGetItemId(string p_item_name, double p_price, double p_cost_per_item, string p_size, string p_type, string p_supplier_name)
+        {
+            int v_item_id = -1;
 
             try
             {
                 MySqlCommand gProcCmd = this.sqlCommand;
 
                 gProcCmd.Parameters.Clear();
-                gProcCmd.CommandText = "proc_item_exists";
+                gProcCmd.CommandText = "proc_get_item_id";
                 gProcCmd.CommandType = CommandType.StoredProcedure;
 
                 // Add parameters
-                gProcCmd.Parameters.AddWithValue("@p_item_name", p_itemName);
+                gProcCmd.Parameters.AddWithValue("@p_item_name", p_item_name);
                 gProcCmd.Parameters.AddWithValue("@p_price", p_price);
-                gProcCmd.Parameters.AddWithValue("@p_cost_per_item", p_costPerItem);
+                gProcCmd.Parameters.AddWithValue("@p_cost_per_item", p_cost_per_item);
                 gProcCmd.Parameters.AddWithValue("@p_size", p_size);
                 gProcCmd.Parameters.AddWithValue("@p_type", p_type);
                 gProcCmd.Parameters.AddWithValue("@p_supplier_name", p_supplier_name);
 
-                // Execute and get result
-                int result = Convert.ToInt32(gProcCmd.ExecuteScalar());
+                // Execute and get the result
+                var result = gProcCmd.ExecuteScalar();
 
-                // If the count is greater than 0, the item exists
-                exists = (result > 0);
+                // Check if result is not null and assign it to itemId
+                if (result != null)
+                {
+                    v_item_id = Convert.ToInt32(result);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
 
-            return exists;
+            return v_item_id;
         }
+
+        private void ProcRestockItem(int p_id, int p_qty)
+        {
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_restock_item";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Add parameters
+                gProcCmd.Parameters.AddWithValue("@p_id", p_id);
+                gProcCmd.Parameters.AddWithValue("@p_qty", p_qty);
+
+                // Execute the procedure
+                gProcCmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
 
 
         public List<Item> FncGetItems()
@@ -381,6 +453,41 @@ namespace LaundrySystem
             }
 
         }
+
+        private bool FncItemExists(string p_item_name, double p_price, double p_cost_per_item, string p_size, string p_type, string p_supplier_name)
+        {
+            bool v_exists = false;
+
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_item_exists";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Add parameters
+                gProcCmd.Parameters.AddWithValue("@p_item_name", p_item_name);
+                gProcCmd.Parameters.AddWithValue("@p_price", p_price);
+                gProcCmd.Parameters.AddWithValue("@p_cost_per_item", p_cost_per_item);
+                gProcCmd.Parameters.AddWithValue("@p_size", p_size);
+                gProcCmd.Parameters.AddWithValue("@p_type", p_type);
+                gProcCmd.Parameters.AddWithValue("@p_supplier_name", p_supplier_name);
+
+                // Execute and get result
+                int v_result = Convert.ToInt32(gProcCmd.ExecuteScalar());
+
+                // If the count is greater than 0, the item exists
+                v_exists = (v_result > 0);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return v_exists;
+        }
+
 
         public void ProcAddItem(string p_item_name, string p_size, string p_type, double p_price, double p_cost_per_item, string p_img_name, string p_supplier, int p_restock_threshold)
         {
