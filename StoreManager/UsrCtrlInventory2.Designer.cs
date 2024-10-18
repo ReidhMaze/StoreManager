@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UsrCtrlInventory2));
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties1 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties2 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
@@ -59,9 +62,6 @@
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties26 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties27 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties28 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges5 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
@@ -69,6 +69,7 @@
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges7 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges8 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.PnlContainer = new System.Windows.Forms.Panel();
+            this.DataGridItems = new Bunifu.UI.WinForms.BunifuDataGridView();
             this.PnlItemInfo = new Bunifu.UI.WinForms.BunifuPanel();
             this.TxtRestockThreshold = new Bunifu.UI.WinForms.BunifuTextBox();
             this.TxtQuantity = new Bunifu.UI.WinForms.BunifuTextBox();
@@ -91,7 +92,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.TxtName = new Bunifu.UI.WinForms.BunifuTextBox();
-            this.DtGrdInventory = new Bunifu.UI.WinForms.BunifuDataGridView();
             this.CmbViewType = new Bunifu.UI.WinForms.BunifuDropdown();
             this.CmbSortBy = new Bunifu.UI.WinForms.BunifuDropdown();
             this.CmbSize = new Bunifu.UI.WinForms.BunifuDropdown();
@@ -109,11 +109,20 @@
             this.BtnRestock = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.materialCard1 = new ReaLTaiizor.Controls.MaterialCard();
             this.ofdPic = new System.Windows.Forms.OpenFileDialog();
+            this.item_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.item_code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cost_per_item = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.current_stocks = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supplier_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.restock_threshold = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TbSearch = new CustomComponents.CustomMaterialMaskedTextBox();
             this.PnlContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridItems)).BeginInit();
             this.PnlItemInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImgItem)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DtGrdInventory)).BeginInit();
             this.PnlButtons.SuspendLayout();
             this.materialCard1.SuspendLayout();
             this.SuspendLayout();
@@ -125,8 +134,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PnlContainer.BackColor = System.Drawing.Color.Silver;
             this.PnlContainer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PnlContainer.Controls.Add(this.DataGridItems);
             this.PnlContainer.Controls.Add(this.PnlItemInfo);
-            this.PnlContainer.Controls.Add(this.DtGrdInventory);
             this.PnlContainer.Controls.Add(this.CmbViewType);
             this.PnlContainer.Controls.Add(this.CmbSortBy);
             this.PnlContainer.Controls.Add(this.CmbSize);
@@ -141,6 +150,76 @@
             this.PnlContainer.Name = "PnlContainer";
             this.PnlContainer.Size = new System.Drawing.Size(1720, 1080);
             this.PnlContainer.TabIndex = 2;
+            // 
+            // DataGridItems
+            // 
+            this.DataGridItems.AllowCustomTheming = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            this.DataGridItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.DataGridItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DataGridItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DataGridItems.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.DataGridItems.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(115)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.DataGridItems.ColumnHeadersHeight = 40;
+            this.DataGridItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.item_name,
+            this.item_code,
+            this.price,
+            this.cost_per_item,
+            this.size,
+            this.type,
+            this.current_stocks,
+            this.supplier_name,
+            this.restock_threshold});
+            this.DataGridItems.CurrentTheme.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
+            this.DataGridItems.CurrentTheme.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.DataGridItems.CurrentTheme.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Black;
+            this.DataGridItems.CurrentTheme.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            this.DataGridItems.CurrentTheme.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.DataGridItems.CurrentTheme.BackColor = System.Drawing.Color.White;
+            this.DataGridItems.CurrentTheme.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(238)))), ((int)(((byte)(255)))));
+            this.DataGridItems.CurrentTheme.HeaderStyle.BackColor = System.Drawing.Color.DodgerBlue;
+            this.DataGridItems.CurrentTheme.HeaderStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
+            this.DataGridItems.CurrentTheme.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.DataGridItems.CurrentTheme.HeaderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(115)))), ((int)(((byte)(204)))));
+            this.DataGridItems.CurrentTheme.HeaderStyle.SelectionForeColor = System.Drawing.Color.White;
+            this.DataGridItems.CurrentTheme.Name = null;
+            this.DataGridItems.CurrentTheme.RowsStyle.BackColor = System.Drawing.Color.White;
+            this.DataGridItems.CurrentTheme.RowsStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.DataGridItems.CurrentTheme.RowsStyle.ForeColor = System.Drawing.Color.Black;
+            this.DataGridItems.CurrentTheme.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            this.DataGridItems.CurrentTheme.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridItems.DefaultCellStyle = dataGridViewCellStyle3;
+            this.DataGridItems.EnableHeadersVisualStyles = false;
+            this.DataGridItems.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(238)))), ((int)(((byte)(255)))));
+            this.DataGridItems.HeaderBackColor = System.Drawing.Color.DodgerBlue;
+            this.DataGridItems.HeaderBgColor = System.Drawing.Color.Empty;
+            this.DataGridItems.HeaderForeColor = System.Drawing.Color.White;
+            this.DataGridItems.Location = new System.Drawing.Point(20, 370);
+            this.DataGridItems.Name = "DataGridItems";
+            this.DataGridItems.RowHeadersVisible = false;
+            this.DataGridItems.RowTemplate.Height = 40;
+            this.DataGridItems.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DataGridItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataGridItems.Size = new System.Drawing.Size(1679, 689);
+            this.DataGridItems.TabIndex = 47;
+            this.DataGridItems.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
             // 
             // PnlItemInfo
             // 
@@ -1138,69 +1217,6 @@
             this.TxtName.UseSystemPasswordChar = false;
             this.TxtName.WordWrap = true;
             // 
-            // DtGrdInventory
-            // 
-            this.DtGrdInventory.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.DtGrdInventory.AllowCustomTheming = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            this.DtGrdInventory.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.DtGrdInventory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DtGrdInventory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DtGrdInventory.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.DtGrdInventory.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.DtGrdInventory.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(115)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DtGrdInventory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.DtGrdInventory.ColumnHeadersHeight = 40;
-            this.DtGrdInventory.CurrentTheme.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
-            this.DtGrdInventory.CurrentTheme.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
-            this.DtGrdInventory.CurrentTheme.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.DtGrdInventory.CurrentTheme.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
-            this.DtGrdInventory.CurrentTheme.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.DtGrdInventory.CurrentTheme.BackColor = System.Drawing.Color.White;
-            this.DtGrdInventory.CurrentTheme.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(238)))), ((int)(((byte)(255)))));
-            this.DtGrdInventory.CurrentTheme.HeaderStyle.BackColor = System.Drawing.Color.DodgerBlue;
-            this.DtGrdInventory.CurrentTheme.HeaderStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
-            this.DtGrdInventory.CurrentTheme.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.DtGrdInventory.CurrentTheme.HeaderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(115)))), ((int)(((byte)(204)))));
-            this.DtGrdInventory.CurrentTheme.HeaderStyle.SelectionForeColor = System.Drawing.Color.White;
-            this.DtGrdInventory.CurrentTheme.Name = null;
-            this.DtGrdInventory.CurrentTheme.RowsStyle.BackColor = System.Drawing.Color.White;
-            this.DtGrdInventory.CurrentTheme.RowsStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
-            this.DtGrdInventory.CurrentTheme.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.DtGrdInventory.CurrentTheme.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
-            this.DtGrdInventory.CurrentTheme.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(232)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DtGrdInventory.DefaultCellStyle = dataGridViewCellStyle3;
-            this.DtGrdInventory.EnableHeadersVisualStyles = false;
-            this.DtGrdInventory.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(238)))), ((int)(((byte)(255)))));
-            this.DtGrdInventory.HeaderBackColor = System.Drawing.Color.DodgerBlue;
-            this.DtGrdInventory.HeaderBgColor = System.Drawing.Color.Empty;
-            this.DtGrdInventory.HeaderForeColor = System.Drawing.Color.White;
-            this.DtGrdInventory.Location = new System.Drawing.Point(20, 371);
-            this.DtGrdInventory.Name = "DtGrdInventory";
-            this.DtGrdInventory.RowHeadersVisible = false;
-            this.DtGrdInventory.RowTemplate.Height = 40;
-            this.DtGrdInventory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DtGrdInventory.Size = new System.Drawing.Size(1679, 688);
-            this.DtGrdInventory.TabIndex = 0;
-            this.DtGrdInventory.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Light;
-            // 
             // CmbViewType
             // 
             this.CmbViewType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -2028,6 +2044,51 @@
             // 
             this.ofdPic.FileName = "OpenFileDialog";
             // 
+            // item_name
+            // 
+            this.item_name.HeaderText = "Name";
+            this.item_name.Name = "item_name";
+            // 
+            // item_code
+            // 
+            this.item_code.HeaderText = "Item Code";
+            this.item_code.Name = "item_code";
+            // 
+            // price
+            // 
+            this.price.HeaderText = "Price";
+            this.price.Name = "price";
+            // 
+            // cost_per_item
+            // 
+            this.cost_per_item.HeaderText = "Cost Per Item";
+            this.cost_per_item.Name = "cost_per_item";
+            // 
+            // size
+            // 
+            this.size.HeaderText = "Size";
+            this.size.Name = "size";
+            // 
+            // type
+            // 
+            this.type.HeaderText = "Type";
+            this.type.Name = "type";
+            // 
+            // current_stocks
+            // 
+            this.current_stocks.HeaderText = "Current Stocks";
+            this.current_stocks.Name = "current_stocks";
+            // 
+            // supplier_name
+            // 
+            this.supplier_name.HeaderText = "Supplier Name";
+            this.supplier_name.Name = "supplier_name";
+            // 
+            // restock_threshold
+            // 
+            this.restock_threshold.HeaderText = "Restock Threshold";
+            this.restock_threshold.Name = "restock_threshold";
+            // 
             // TbSearch
             // 
             this.TbSearch.AllowPromptAsInput = true;
@@ -2083,10 +2144,10 @@
             this.Size = new System.Drawing.Size(1720, 1080);
             this.PnlContainer.ResumeLayout(false);
             this.PnlContainer.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridItems)).EndInit();
             this.PnlItemInfo.ResumeLayout(false);
             this.PnlItemInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImgItem)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DtGrdInventory)).EndInit();
             this.PnlButtons.ResumeLayout(false);
             this.materialCard1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -2113,7 +2174,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private Bunifu.UI.WinForms.BunifuPanel PnlButtons;
-        private Bunifu.UI.WinForms.BunifuDataGridView DtGrdInventory;
         private Bunifu.UI.WinForms.BunifuPanel PnlItemInfo;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton BtnSubmit;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 BtnUploadImg;
@@ -2137,5 +2197,15 @@
         private Bunifu.UI.WinForms.BunifuTextBox TxtPrice;
         private System.Windows.Forms.Label label13;
         private Bunifu.UI.WinForms.BunifuTextBox TxtRestockThreshold;
+        private Bunifu.UI.WinForms.BunifuDataGridView DataGridItems;
+        private System.Windows.Forms.DataGridViewTextBoxColumn item_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn item_code;
+        private System.Windows.Forms.DataGridViewTextBoxColumn price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cost_per_item;
+        private System.Windows.Forms.DataGridViewTextBoxColumn size;
+        private System.Windows.Forms.DataGridViewTextBoxColumn type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn current_stocks;
+        private System.Windows.Forms.DataGridViewTextBoxColumn supplier_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn restock_threshold;
     }
 }

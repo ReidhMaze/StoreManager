@@ -14,6 +14,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using StoreObjects;
 
 namespace StoreManager
 {
@@ -32,6 +33,7 @@ namespace StoreManager
             this.gProc = new GlobalProcedure();
             this.gProc.FncConnectToDatabase();
             StandardView();
+            InitializeItemsGrid();
         }
 
         private void BtnUploadImg_Click(object sender, EventArgs e)
@@ -136,6 +138,25 @@ namespace StoreManager
             if (regex.IsMatch(e.KeyChar.ToString()))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void InitializeItemsGrid()
+        {
+            List<Item> items = gProc.FncGetItems();
+            this.DataGridItems.RowCount = items.Count;
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                this.DataGridItems.Rows[i].Cells[0].Value = items[i].Name;              // Name
+                this.DataGridItems.Rows[i].Cells[1].Value = items[i].ItemCode;          // Item Code
+                this.DataGridItems.Rows[i].Cells[2].Value = items[i].Price;             // Price
+                this.DataGridItems.Rows[i].Cells[3].Value = items[i].CostPerItem;       // Cost per Item
+                this.DataGridItems.Rows[i].Cells[4].Value = items[i].Size;              // Size
+                this.DataGridItems.Rows[i].Cells[5].Value = items[i].Type;              // Type
+                this.DataGridItems.Rows[i].Cells[6].Value = items[i].CurrentStocks;     // Current Stocks
+                this.DataGridItems.Rows[i].Cells[7].Value = items[i].SupplierName;      // Supplier Name
+                this.DataGridItems.Rows[i].Cells[8].Value = items[i].RestockThreshold;  // Restock Threshold
             }
         }
 

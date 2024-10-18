@@ -10,6 +10,7 @@ using System.Diagnostics;
 using StoreObjects;
 using StoreManager;
 using StoreManager.Icons;
+using System.IO;
 //using ReaLTaiizor.Controls;
 
 namespace CustomComponents
@@ -29,6 +30,9 @@ namespace CustomComponents
         public ReaLTaiizor.Controls.Button BtnAddToCart;
         public EventHandler Clicked;
         private Item item;
+        private string currentDir = Environment.CurrentDirectory;
+        private string imageFolderDir;
+        private string imageLocation;
 
         public string ProdName { get; }
 
@@ -38,6 +42,9 @@ namespace CustomComponents
 
         public ProductDisplayPanel(EventHandler eventHandler)
         {
+
+            //this.imageFolderDir = Path.Combine(currentDir, "..\\..\\ProductImages");
+            //this.imageLocation = currentDir + "\\" + Item.ImgName;
 
             //this.Item = item;
             //this.ProdName = item.Name;
@@ -50,7 +57,7 @@ namespace CustomComponents
             this.Size = PANEL_SIZE;
             this.Location = new Point(10, 10);
 
-            this.PicBoxProductPicture.ImageLocation = @"Image\airforce.png";
+            //this.PicBoxProductPicture.ImageLocation = @"Image\airforce.png";
             this.PicBoxProductPicture.Size = PICBOX_PROD_PIC_SIZE;
             this.PicBoxProductPicture.Location = new Point(xLoc, yLoc);
             this.PicBoxProductPicture.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -83,6 +90,8 @@ namespace CustomComponents
             //this.BtnAddToCart.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAddToCart.Click += eventHandler;
 
+            //Debug.WriteLine(imageLocation);
+
             this.BackColor = Color.White;
 
             this.Controls.Add(this.PicBoxProductPicture);
@@ -106,7 +115,25 @@ namespace CustomComponents
                 this.BtnAddToCart.Text = "₱" + this.item.Price.ToString("N2");
                 this.BtnAddToCart.Name = this.item.Name;
                 this.Visible = true;
-                //this.Refresh();
+
+                InitializeImage();
+            }
+        }
+
+        public void InitializeImage()
+        {
+            this.imageFolderDir = Path.Combine(currentDir, "..\\..\\ProductImages");
+            this.imageLocation = Path.Combine(imageFolderDir, this.item.ImgName);
+
+            try
+            {
+                //Debug.WriteLine(imageLocation);
+                this.PicBoxProductPicture.ImageLocation = this.imageLocation;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -248,6 +275,7 @@ namespace CustomComponents
             {
                 
                 this.pdpDisplays[i].Item = items[i + starting];
+                this.pdpDisplays[i].InitializeImage();
                 if (this.pdpDisplays[i].Item.CurrentStocks == 0) 
                 {
                     this.pdpDisplays[i].DisableButton();

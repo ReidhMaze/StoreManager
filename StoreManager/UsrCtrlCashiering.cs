@@ -126,18 +126,6 @@ namespace StoreManager
             //string currentDir = Environment.CurrentDirectory;
             //string imageFolderDir = "@" + currentDir.Substring(0, currentDir.Length - 9) + "ProductImages\\";
             //Debug.WriteLine(imageFolderDir);
-
-            // Sample values for the parameters
-            string itemName = "Air Max 2021"; // Example item name
-            string size = "10";                // Example size
-            string type = "Shoe";              // Item type
-            double price = 149.99;             // Selling price
-            double costPerItem = 100.00;      // Cost per item
-            string imgName = "images/airmax2021.jpg"; // Image file location
-            int restockThreshold = 5;          // Example restock threshold
-
-            // Call the ProcAddItem method
-            gProc.ProcAddItem(itemName, size, type, price, costPerItem, imgName, "CLC", restockThreshold);
         }
 
         private void OnOrderDeleted(object sender, EventArgs e)
@@ -164,7 +152,7 @@ namespace StoreManager
                 Console.WriteLine($"Size: {item.Size}");
                 Console.WriteLine($"Type: {item.Type}");
                 Console.WriteLine($"Current Stocks: {item.CurrentStocks}");
-                Console.WriteLine($"Image Location: {item.ImgLocation}");
+                Console.WriteLine($"Image Location: {item.ImgName}");
                 Console.WriteLine("----------------------------");
             }
         }

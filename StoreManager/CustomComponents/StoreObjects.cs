@@ -19,7 +19,9 @@ namespace StoreObjects
         public string Size { get; }
         public string Type { get; }
         public int CurrentStocks { get; }
-        public string ImgLocation { get; }
+        public string ImgName { get; }
+        public string SupplierName { get; }
+        public int RestockThreshold { get; }
 
         public Item(int id, string name, string size, double price, int stocks)
         {
@@ -40,7 +42,22 @@ namespace StoreObjects
             this.Size = size;
             this.Type = type;
             this.CurrentStocks = currentStocks;
-            this.ImgLocation = imgLocation;
+            this.ImgName = imgLocation;
+        }
+
+        public Item(int id, int itemCode, string name, double price, double costPerItem, string size, string type, int currentStocks, int restockThreshold, string supplierName, string imgLocation)
+        {
+            this.Id = id;
+            this.ItemCode = itemCode;
+            this.Name = name;
+            this.Price = price;
+            this.CostPerItem = costPerItem;
+            this.Size = size;
+            this.Type = type;
+            this.CurrentStocks = currentStocks;
+            this.ImgName = imgLocation;
+            this.SupplierName = supplierName;
+            this.RestockThreshold = restockThreshold;
         }
 
         public CartItem ToCartItem()
