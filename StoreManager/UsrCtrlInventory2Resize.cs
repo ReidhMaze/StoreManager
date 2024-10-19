@@ -18,7 +18,7 @@ using StoreObjects;
 
 namespace StoreManager
 {
-    public partial class UsrCtrlInventory2 : UserControl
+    public partial class UsrCtrlInventory2Resize : UserControl
     {
         private DBConnect dbConnection;
         private GlobalProcedure gProc;
@@ -26,7 +26,7 @@ namespace StoreManager
         string imgLocation;
         Boolean needImage, addProduct, editProduct, removeProduct, restock, disposeStock;
 
-        public UsrCtrlInventory2(DBConnect dbConnection)
+        public UsrCtrlInventory2Resize(DBConnect dbConnection)
         {
             InitializeComponent();
             this.dbConnection = dbConnection;

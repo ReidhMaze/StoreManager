@@ -151,6 +151,71 @@ namespace LaundrySystem
 
         }
 
+        public List<Item> FncGetFilteredProducts(string p_name, string p_size, string p_type, string order)
+        {
+            List<Item> list = new List<Item>();
+
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                this.sqlAdapter = new MySqlDataAdapter();
+                this.datStoreMgr = new DataTable();
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_select_filtered_prod_cashier";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Add parameters
+                gProcCmd.Parameters.AddWithValue("@p_name", p_name);
+                gProcCmd.Parameters.AddWithValue("@p_size", p_size);
+                gProcCmd.Parameters.AddWithValue("@p_type", p_type);
+                gProcCmd.Parameters.AddWithValue("@p_order", order);
+
+                this.sqlAdapter.SelectCommand = gProcCmd;
+                this.datStoreMgr.Clear();
+                this.sqlAdapter.Fill(this.datStoreMgr);
+
+                if (this.datStoreMgr.Rows.Count > 0)
+                {
+                    DataTable dataTable = this.datStoreMgr;
+                    int row = 0;
+                    int totalRecords = FncGetTotalRecords();
+
+                    while (row < totalRecords)
+                    {
+                        int id = int.Parse(dataTable.Rows[row]["id"].ToString());
+                        int itemCode = int.Parse(dataTable.Rows[row]["item_code"].ToString());
+                        string itemName = dataTable.Rows[row]["item_name"].ToString();
+                        double price = double.Parse(dataTable.Rows[row]["price"].ToString());
+                        double costPerItem = double.Parse(dataTable.Rows[row]["cost_per_item"].ToString());
+                        string size = dataTable.Rows[row]["size"].ToString();
+                        string type = dataTable.Rows[row]["type"].ToString();
+                        int currentStocks = int.Parse(dataTable.Rows[row]["current_stocks"].ToString());
+                        string imgLocation = dataTable.Rows[row]["img_name"].ToString();
+
+                        Item item = new Item(id, itemCode, itemName, price, costPerItem, size, type, currentStocks, imgLocation);
+                        list.Add(item);
+
+                        row++;
+                    }
+                }
+                else
+                {
+                    //MessageBox.Show("No data");
+                }
+
+                ClearData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return list;
+        }
+
+
         public void ProcRestock(string p_item_name, double p_price, double p_cost_per_item, string p_size, string p_type, string p_supplier_name, int p_qty)
         {
             int v_item_id = FncGetItemId(p_item_name, p_price, p_cost_per_item, p_size, p_type, p_supplier_name);
@@ -1197,11 +1262,16 @@ namespace LaundrySystem
             }
         }
 
+
         public void ProcGetProductSales(string itemName, BunifuLabel lbl)
         {
+        public string[] FncGetProductTypes()
+        {
+            List<string> productTypes = new List<string>();
             try
             {
                 MySqlCommand gProcCmd = this.sqlCommand;
+
 
                 this.sqlAdapter = new MySqlDataAdapter();
                 this.datStoreMgr = new DataTable();
@@ -1299,5 +1369,34 @@ namespace LaundrySystem
         }
 
 
+                gProcCmd.Parameters.Clear();
+
+                gProcCmd.CommandText = "proc_select_product_type";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                this.sqlAdapter = new MySqlDataAdapter(gProcCmd);
+                this.datStoreMgr = new DataTable();
+
+                this.sqlAdapter.Fill(this.datStoreMgr);
+
+                if (this.datStoreMgr.Rows.Count > 0)
+                {
+                    foreach (DataRow row in this.datStoreMgr.Rows)
+                    {
+                        productTypes.Add(row["type"].ToString());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No product types found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return productTypes.ToArray();
+        }
     }
 }

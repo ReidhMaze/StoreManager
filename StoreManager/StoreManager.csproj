@@ -191,6 +191,12 @@
     <Compile Include="UsrCtrlAnalytics.Designer.cs">
       <DependentUpon>UsrCtrlAnalytics.cs</DependentUpon>
     </Compile>
+    <Compile Include="UsrCtrlInventory2Resize.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UsrCtrlInventory2Resize.Designer.cs">
+      <DependentUpon>UsrCtrlInventory2Resize.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsrCtrlInventory2.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -225,6 +231,9 @@
     <EmbeddedResource Include="UsrCtrlAnalytics.resx">
       <DependentUpon>UsrCtrlAnalytics.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UsrCtrlInventory2Resize.resx">
+      <DependentUpon>UsrCtrlInventory2Resize.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UsrCtrlInventory2.resx">
       <DependentUpon>UsrCtrlInventory2.cs</DependentUpon>
     </EmbeddedResource>
@@ -256,6 +265,7 @@
     <None Include="Resources\stock_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\no-image_placeholder.jpg" />
     <Content Include="Resources\search_icon.png" />
     <Content Include="Resources\upload_icon.png" />
   </ItemGroup>

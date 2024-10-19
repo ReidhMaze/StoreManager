@@ -31,8 +31,8 @@ namespace StoreManager
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UsrCtrlCashiering));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.PanelPOS = new System.Windows.Forms.Panel();
             this.PanelPaginationContainer = new Bunifu.UI.WinForms.BunifuPanel();
             this.PanelPagination = new Bunifu.UI.WinForms.BunifuPanel();
@@ -40,13 +40,12 @@ namespace StoreManager
             this.BtnNextPage = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.BtnPrevPage = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.materialCard1 = new ReaLTaiizor.Controls.MaterialCard();
-            this.TbPosSearch = new CustomComponents.CustomMaterialMaskedTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.crownComboBox2 = new ReaLTaiizor.Controls.CrownComboBox();
-            this.crownComboBox3 = new ReaLTaiizor.Controls.CrownComboBox();
-            this.CmbSizes = new ReaLTaiizor.Controls.CrownComboBox();
+            this.CmbType = new Bunifu.UI.WinForms.BunifuDropdown();
+            this.CmbOrder = new Bunifu.UI.WinForms.BunifuDropdown();
+            this.CmbSizes = new Bunifu.UI.WinForms.BunifuDropdown();
             this.PnlCheckout = new System.Windows.Forms.Panel();
             this.BtnCheckout = new ReaLTaiizor.Controls.Button();
             this.LblTaxOutput = new ReaLTaiizor.Controls.HeaderLabel();
@@ -55,6 +54,7 @@ namespace StoreManager
             this.LblSubtotal = new ReaLTaiizor.Controls.HeaderLabel();
             this.LblTax = new ReaLTaiizor.Controls.HeaderLabel();
             this.LblTotal = new ReaLTaiizor.Controls.HeaderLabel();
+            this.TbPosSearch = new CustomComponents.CustomMaterialMaskedTextBox();
             this.PnlProductsPanel = new CustomComponents.ProductsPanel();
             this.PnlOrdersPanel = new CustomComponents.OrdersPanel();
             this.PanelPOS.SuspendLayout();
@@ -75,8 +75,8 @@ namespace StoreManager
             this.PanelPOS.Controls.Add(this.label3);
             this.PanelPOS.Controls.Add(this.label2);
             this.PanelPOS.Controls.Add(this.label1);
-            this.PanelPOS.Controls.Add(this.crownComboBox2);
-            this.PanelPOS.Controls.Add(this.crownComboBox3);
+            this.PanelPOS.Controls.Add(this.CmbType);
+            this.PanelPOS.Controls.Add(this.CmbOrder);
             this.PanelPOS.Controls.Add(this.CmbSizes);
             this.PanelPOS.Controls.Add(this.PnlCheckout);
             this.PanelPOS.Controls.Add(this.PnlProductsPanel);
@@ -156,11 +156,11 @@ namespace StoreManager
             this.BtnNextPage.ColorContrastOnClick = 45;
             this.BtnNextPage.ColorContrastOnHover = 45;
             this.BtnNextPage.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges1.BottomLeft = true;
-            borderEdges1.BottomRight = true;
-            borderEdges1.TopLeft = true;
-            borderEdges1.TopRight = true;
-            this.BtnNextPage.CustomizableEdges = borderEdges1;
+            borderEdges3.BottomLeft = true;
+            borderEdges3.BottomRight = true;
+            borderEdges3.TopLeft = true;
+            borderEdges3.TopRight = true;
+            this.BtnNextPage.CustomizableEdges = borderEdges3;
             this.BtnNextPage.DialogResult = System.Windows.Forms.DialogResult.None;
             this.BtnNextPage.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.BtnNextPage.DisabledFillColor = System.Drawing.Color.Empty;
@@ -249,11 +249,11 @@ namespace StoreManager
             this.BtnPrevPage.ColorContrastOnClick = 45;
             this.BtnPrevPage.ColorContrastOnHover = 45;
             this.BtnPrevPage.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges2.BottomLeft = true;
-            borderEdges2.BottomRight = true;
-            borderEdges2.TopLeft = true;
-            borderEdges2.TopRight = true;
-            this.BtnPrevPage.CustomizableEdges = borderEdges2;
+            borderEdges4.BottomLeft = true;
+            borderEdges4.BottomRight = true;
+            borderEdges4.TopLeft = true;
+            borderEdges4.TopRight = true;
+            this.BtnPrevPage.CustomizableEdges = borderEdges4;
             this.BtnPrevPage.DialogResult = System.Windows.Forms.DialogResult.None;
             this.BtnPrevPage.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.BtnPrevPage.DisabledFillColor = System.Drawing.Color.Empty;
@@ -339,52 +339,6 @@ namespace StoreManager
             this.materialCard1.Size = new System.Drawing.Size(652, 47);
             this.materialCard1.TabIndex = 9;
             // 
-            // TbPosSearch
-            // 
-            this.TbPosSearch.AllowPromptAsInput = true;
-            this.TbPosSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.TbPosSearch.AnimateReadOnly = false;
-            this.TbPosSearch.AsciiOnly = false;
-            this.TbPosSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.TbPosSearch.BeepOnError = false;
-            this.TbPosSearch.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludeLiterals;
-            this.TbPosSearch.Depth = 0;
-            this.TbPosSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.TbPosSearch.HidePromptOnLeave = false;
-            this.TbPosSearch.HideSelection = true;
-            this.TbPosSearch.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
-            this.TbPosSearch.LeadingIcon = null;
-            this.TbPosSearch.Location = new System.Drawing.Point(0, -1);
-            this.TbPosSearch.Margin = new System.Windows.Forms.Padding(0);
-            this.TbPosSearch.Mask = "";
-            this.TbPosSearch.MaxLength = 32767;
-            this.TbPosSearch.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.OUT;
-            this.TbPosSearch.Name = "TbPosSearch";
-            this.TbPosSearch.PasswordChar = '\0';
-            this.TbPosSearch.PrefixSuffixText = null;
-            this.TbPosSearch.PromptChar = '_';
-            this.TbPosSearch.ReadOnly = false;
-            this.TbPosSearch.RejectInputOnFirstFailure = false;
-            this.TbPosSearch.ResetOnPrompt = true;
-            this.TbPosSearch.ResetOnSpace = true;
-            this.TbPosSearch.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.TbPosSearch.SelectedText = "";
-            this.TbPosSearch.SelectionLength = 0;
-            this.TbPosSearch.SelectionStart = 0;
-            this.TbPosSearch.ShortcutsEnabled = true;
-            this.TbPosSearch.Size = new System.Drawing.Size(655, 48);
-            this.TbPosSearch.SkipLiterals = true;
-            this.TbPosSearch.TabIndex = 0;
-            this.TbPosSearch.TabStop = false;
-            this.TbPosSearch.Text = "Search";
-            this.TbPosSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.TbPosSearch.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludeLiterals;
-            this.TbPosSearch.TrailingIcon = null;
-            this.TbPosSearch.UnderlineColor = System.Drawing.Color.Black;
-            this.TbPosSearch.UseSystemPasswordChar = false;
-            this.TbPosSearch.ValidatingType = null;
-            this.TbPosSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbPosSearch_KeyPress);
-            // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -392,9 +346,9 @@ namespace StoreManager
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(923, 12);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 16);
+            this.label3.Size = new System.Drawing.Size(65, 16);
             this.label3.TabIndex = 8;
-            this.label3.Text = "SIZE:";
+            this.label3.Text = "ORDER:";
             // 
             // label2
             // 
@@ -418,35 +372,154 @@ namespace StoreManager
             this.label1.TabIndex = 8;
             this.label1.Text = "SIZE:";
             // 
-            // crownComboBox2
+            // CmbType
             // 
-            this.crownComboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.crownComboBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.crownComboBox2.FormattingEnabled = true;
-            this.crownComboBox2.Location = new System.Drawing.Point(799, 31);
-            this.crownComboBox2.Name = "crownComboBox2";
-            this.crownComboBox2.Size = new System.Drawing.Size(121, 21);
-            this.crownComboBox2.TabIndex = 5;
+            this.CmbType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CmbType.BackColor = System.Drawing.Color.Transparent;
+            this.CmbType.BackgroundColor = System.Drawing.Color.DimGray;
+            this.CmbType.BorderColor = System.Drawing.Color.Silver;
+            this.CmbType.BorderRadius = 1;
+            this.CmbType.Color = System.Drawing.Color.Silver;
+            this.CmbType.Direction = Bunifu.UI.WinForms.BunifuDropdown.Directions.Down;
+            this.CmbType.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.CmbType.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.CmbType.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.CmbType.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.CmbType.DisabledIndicatorColor = System.Drawing.Color.DarkGray;
+            this.CmbType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.CmbType.DropdownBorderThickness = Bunifu.UI.WinForms.BunifuDropdown.BorderThickness.Thin;
+            this.CmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbType.DropDownTextAlign = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
+            this.CmbType.FillDropDown = true;
+            this.CmbType.FillIndicator = false;
+            this.CmbType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CmbType.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbType.ForeColor = System.Drawing.Color.White;
+            this.CmbType.FormattingEnabled = true;
+            this.CmbType.Icon = null;
+            this.CmbType.IndicatorAlignment = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
+            this.CmbType.IndicatorColor = System.Drawing.Color.DarkGray;
+            this.CmbType.IndicatorLocation = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
+            this.CmbType.IndicatorThickness = 2;
+            this.CmbType.IntegralHeight = false;
+            this.CmbType.IsDropdownOpened = false;
+            this.CmbType.ItemBackColor = System.Drawing.Color.WhiteSmoke;
+            this.CmbType.ItemBorderColor = System.Drawing.Color.White;
+            this.CmbType.ItemForeColor = System.Drawing.Color.Black;
+            this.CmbType.ItemHeight = 26;
+            this.CmbType.ItemHighLightColor = System.Drawing.Color.DodgerBlue;
+            this.CmbType.ItemHighLightForeColor = System.Drawing.Color.White;
+            this.CmbType.Items.AddRange(new object[] {
+            ""});
+            this.CmbType.ItemTopMargin = 3;
+            this.CmbType.Location = new System.Drawing.Point(799, 31);
+            this.CmbType.Name = "CmbType";
+            this.CmbType.Size = new System.Drawing.Size(121, 32);
+            this.CmbType.TabIndex = 5;
+            this.CmbType.Text = null;
+            this.CmbType.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
+            this.CmbType.TextLeftMargin = 5;
+            this.CmbType.SelectedIndexChanged += new System.EventHandler(this.CmbType_SelectedIndexChanged);
             // 
-            // crownComboBox3
+            // CmbOrder
             // 
-            this.crownComboBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.crownComboBox3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.crownComboBox3.FormattingEnabled = true;
-            this.crownComboBox3.Location = new System.Drawing.Point(926, 31);
-            this.crownComboBox3.Name = "crownComboBox3";
-            this.crownComboBox3.Size = new System.Drawing.Size(121, 21);
-            this.crownComboBox3.TabIndex = 6;
+            this.CmbOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CmbOrder.BackColor = System.Drawing.Color.Transparent;
+            this.CmbOrder.BackgroundColor = System.Drawing.Color.DimGray;
+            this.CmbOrder.BorderColor = System.Drawing.Color.Silver;
+            this.CmbOrder.BorderRadius = 1;
+            this.CmbOrder.Color = System.Drawing.Color.Silver;
+            this.CmbOrder.Direction = Bunifu.UI.WinForms.BunifuDropdown.Directions.Down;
+            this.CmbOrder.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.CmbOrder.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.CmbOrder.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.CmbOrder.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.CmbOrder.DisabledIndicatorColor = System.Drawing.Color.DarkGray;
+            this.CmbOrder.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.CmbOrder.DropdownBorderThickness = Bunifu.UI.WinForms.BunifuDropdown.BorderThickness.Thin;
+            this.CmbOrder.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbOrder.DropDownTextAlign = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
+            this.CmbOrder.FillDropDown = true;
+            this.CmbOrder.FillIndicator = false;
+            this.CmbOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CmbOrder.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbOrder.ForeColor = System.Drawing.Color.White;
+            this.CmbOrder.FormattingEnabled = true;
+            this.CmbOrder.Icon = null;
+            this.CmbOrder.IndicatorAlignment = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
+            this.CmbOrder.IndicatorColor = System.Drawing.Color.DarkGray;
+            this.CmbOrder.IndicatorLocation = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
+            this.CmbOrder.IndicatorThickness = 2;
+            this.CmbOrder.IntegralHeight = false;
+            this.CmbOrder.IsDropdownOpened = false;
+            this.CmbOrder.ItemBackColor = System.Drawing.Color.WhiteSmoke;
+            this.CmbOrder.ItemBorderColor = System.Drawing.Color.White;
+            this.CmbOrder.ItemForeColor = System.Drawing.Color.Black;
+            this.CmbOrder.ItemHeight = 26;
+            this.CmbOrder.ItemHighLightColor = System.Drawing.Color.DodgerBlue;
+            this.CmbOrder.ItemHighLightForeColor = System.Drawing.Color.White;
+            this.CmbOrder.Items.AddRange(new object[] {
+            "Alphabetical",
+            "Low_to_High",
+            "High_to_Low"});
+            this.CmbOrder.ItemTopMargin = 3;
+            this.CmbOrder.Location = new System.Drawing.Point(926, 31);
+            this.CmbOrder.Name = "CmbOrder";
+            this.CmbOrder.Size = new System.Drawing.Size(121, 32);
+            this.CmbOrder.TabIndex = 6;
+            this.CmbOrder.Text = null;
+            this.CmbOrder.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
+            this.CmbOrder.TextLeftMargin = 5;
+            this.CmbOrder.SelectedIndexChanged += new System.EventHandler(this.CmbOrder_SelectedIndexChanged);
             // 
             // CmbSizes
             // 
             this.CmbSizes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CmbSizes.BackColor = System.Drawing.Color.Transparent;
+            this.CmbSizes.BackgroundColor = System.Drawing.Color.DimGray;
+            this.CmbSizes.BorderColor = System.Drawing.Color.Silver;
+            this.CmbSizes.BorderRadius = 1;
+            this.CmbSizes.Color = System.Drawing.Color.Silver;
+            this.CmbSizes.Direction = Bunifu.UI.WinForms.BunifuDropdown.Directions.Down;
+            this.CmbSizes.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.CmbSizes.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.CmbSizes.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.CmbSizes.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.CmbSizes.DisabledIndicatorColor = System.Drawing.Color.DarkGray;
             this.CmbSizes.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.CmbSizes.DropdownBorderThickness = Bunifu.UI.WinForms.BunifuDropdown.BorderThickness.Thin;
+            this.CmbSizes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbSizes.DropDownTextAlign = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
+            this.CmbSizes.FillDropDown = true;
+            this.CmbSizes.FillIndicator = false;
+            this.CmbSizes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CmbSizes.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbSizes.ForeColor = System.Drawing.Color.White;
             this.CmbSizes.FormattingEnabled = true;
+            this.CmbSizes.Icon = null;
+            this.CmbSizes.IndicatorAlignment = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
+            this.CmbSizes.IndicatorColor = System.Drawing.Color.DarkGray;
+            this.CmbSizes.IndicatorLocation = Bunifu.UI.WinForms.BunifuDropdown.Indicator.Right;
+            this.CmbSizes.IndicatorThickness = 2;
+            this.CmbSizes.IntegralHeight = false;
+            this.CmbSizes.IsDropdownOpened = false;
+            this.CmbSizes.ItemBackColor = System.Drawing.Color.WhiteSmoke;
+            this.CmbSizes.ItemBorderColor = System.Drawing.Color.White;
+            this.CmbSizes.ItemForeColor = System.Drawing.Color.Black;
+            this.CmbSizes.ItemHeight = 26;
+            this.CmbSizes.ItemHighLightColor = System.Drawing.Color.DodgerBlue;
+            this.CmbSizes.ItemHighLightForeColor = System.Drawing.Color.White;
+            this.CmbSizes.Items.AddRange(new object[] {
+            ""});
+            this.CmbSizes.ItemTopMargin = 3;
             this.CmbSizes.Location = new System.Drawing.Point(672, 31);
             this.CmbSizes.Name = "CmbSizes";
-            this.CmbSizes.Size = new System.Drawing.Size(121, 21);
+            this.CmbSizes.Size = new System.Drawing.Size(121, 32);
             this.CmbSizes.TabIndex = 5;
+            this.CmbSizes.Text = null;
+            this.CmbSizes.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
+            this.CmbSizes.TextLeftMargin = 5;
+            this.CmbSizes.SelectedIndexChanged += new System.EventHandler(this.CmbSizes_SelectedIndexChanged);
             // 
             // PnlCheckout
             // 
@@ -542,7 +615,7 @@ namespace StoreManager
             this.LblTax.ForeColor = System.Drawing.Color.White;
             this.LblTax.Location = new System.Drawing.Point(14, 71);
             this.LblTax.Name = "LblTax";
-            this.LblTax.Size = new System.Drawing.Size(39, 22);
+            this.LblTax.Size = new System.Drawing.Size(46, 22);
             this.LblTax.TabIndex = 0;
             this.LblTax.Text = "VAT";
             // 
@@ -557,6 +630,55 @@ namespace StoreManager
             this.LblTotal.Size = new System.Drawing.Size(78, 24);
             this.LblTotal.TabIndex = 0;
             this.LblTotal.Text = "TOTAL";
+            // 
+            // TbPosSearch
+            // 
+            this.TbPosSearch.AllowPromptAsInput = true;
+            this.TbPosSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.TbPosSearch.AnimateReadOnly = false;
+            this.TbPosSearch.AsciiOnly = false;
+            this.TbPosSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.TbPosSearch.BeepOnError = false;
+            this.TbPosSearch.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludeLiterals;
+            this.TbPosSearch.Depth = 0;
+            this.TbPosSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.TbPosSearch.HidePromptOnLeave = false;
+            this.TbPosSearch.HideSelection = true;
+            this.TbPosSearch.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
+            this.TbPosSearch.LeadingIcon = global::StoreManager.Properties.Resources.search_icon;
+            this.TbPosSearch.Location = new System.Drawing.Point(0, -1);
+            this.TbPosSearch.Margin = new System.Windows.Forms.Padding(0);
+            this.TbPosSearch.Mask = "";
+            this.TbPosSearch.MaxLength = 32767;
+            this.TbPosSearch.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.OUT;
+            this.TbPosSearch.Name = "TbPosSearch";
+            this.TbPosSearch.PasswordChar = '\0';
+            this.TbPosSearch.PrefixSuffixText = null;
+            this.TbPosSearch.PromptChar = '_';
+            this.TbPosSearch.ReadOnly = false;
+            this.TbPosSearch.RejectInputOnFirstFailure = false;
+            this.TbPosSearch.ResetOnPrompt = true;
+            this.TbPosSearch.ResetOnSpace = true;
+            this.TbPosSearch.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.TbPosSearch.SelectedText = "";
+            this.TbPosSearch.SelectionLength = 0;
+            this.TbPosSearch.SelectionStart = 0;
+            this.TbPosSearch.ShortcutsEnabled = true;
+            this.TbPosSearch.Size = new System.Drawing.Size(655, 48);
+            this.TbPosSearch.SkipLiterals = true;
+            this.TbPosSearch.TabIndex = 0;
+            this.TbPosSearch.TabStop = false;
+            this.TbPosSearch.Text = "Search";
+            this.TbPosSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.TbPosSearch.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludeLiterals;
+            this.TbPosSearch.TrailingIcon = null;
+            this.TbPosSearch.UnderlineColor = System.Drawing.Color.Black;
+            this.TbPosSearch.UseSystemPasswordChar = false;
+            this.TbPosSearch.ValidatingType = null;
+            this.TbPosSearch.Enter += new System.EventHandler(this.TbPosSearch_Enter);
+            this.TbPosSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbPosSearch_KeyPress);
+            this.TbPosSearch.Leave += new System.EventHandler(this.TbPosSearch_Leave);
+            this.TbPosSearch.TextChanged += new System.EventHandler(this.TbPosSearch_TextChanged);
             // 
             // PnlProductsPanel
             // 
@@ -575,10 +697,12 @@ namespace StoreManager
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PnlOrdersPanel.AutoScroll = true;
             this.PnlOrdersPanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.PnlOrdersPanel.DeletedOrder = null;
             this.PnlOrdersPanel.Location = new System.Drawing.Point(672, 68);
             this.PnlOrdersPanel.Name = "PnlOrdersPanel";
             this.PnlOrdersPanel.Size = new System.Drawing.Size(392, 353);
             this.PnlOrdersPanel.TabIndex = 0;
+            this.PnlOrdersPanel.TaxRate = 0D;
             // 
             // UsrCtrlCashiering
             // 
@@ -607,9 +731,9 @@ namespace StoreManager
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private ReaLTaiizor.Controls.CrownComboBox crownComboBox2;
-        private ReaLTaiizor.Controls.CrownComboBox crownComboBox3;
-        private ReaLTaiizor.Controls.CrownComboBox CmbSizes;
+        private Bunifu.UI.WinForms.BunifuDropdown CmbType;
+        private Bunifu.UI.WinForms.BunifuDropdown CmbOrder;
+        private Bunifu.UI.WinForms.BunifuDropdown CmbSizes;
         private System.Windows.Forms.Panel PnlCheckout;
         private ReaLTaiizor.Controls.Button BtnCheckout;
         private ReaLTaiizor.Controls.HeaderLabel LblTaxOutput;

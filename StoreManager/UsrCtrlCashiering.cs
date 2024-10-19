@@ -16,7 +16,10 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
+using System.Windows;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace StoreManager
 {
@@ -26,6 +29,11 @@ namespace StoreManager
         private int currentPage = 1;
         private DBConnect dbConnection;
         private GlobalProcedure gProc;
+
+        private string itemName = string.Empty;
+        private string itemSize = string.Empty;
+        private string itemType = string.Empty;
+        private string order = "Alphabetical";
 
         ProductsAndOrdersLinker productsAndOrdersLinker;
 
@@ -37,11 +45,12 @@ namespace StoreManager
             this.gProc = gProc;
             this.PnlOrdersPanel.TaxRate = gProc.FncGetLatestTaxRate();
             this.LblTax.Text = "VAT (" + (int)(this.PnlOrdersPanel.TaxRate * 100) + "%)";
+            this.CmbType.Items.AddRange(gProc.FncGetProductTypes());
         }
 
         public void InitializeCardView()
         {
-            Debug.WriteLine(this.PanelPOS.Size);
+            //Debug.WriteLine(this.PanelPOS.Size);
             this.PnlProductsPanel.InitializeItems(gProc.FncGetProducts(), this.BtnPdpClicked);
             this.PnlProductsPanel.InitializeCards();
             this.PnlProductsPanel.ArrangeProductPanels(currentPage);
@@ -92,11 +101,20 @@ namespace StoreManager
             {
                 e.Handled = true;
             }
+
+        }
+
+        public void SearchAndFilter(string name, string size, string type, string order)
+        {
+            this.PnlProductsPanel.InitializeItems(gProc.FncGetFilteredProducts(name, size, type, order), this.BtnPdpClicked);
+            this.PnlProductsPanel.InitializeCards();
+            this.PnlProductsPanel.ArrangeProductPanels(currentPage);
         }
 
         private void TbPosSearch_Enter(object sender, EventArgs e)
         {
-            this.TbPosSearch.SelectAll();
+            if(this.TbPosSearch.Text == "Search")
+                this.TbPosSearch.Text = "";
         }
 
         public void CenterPagination()
@@ -104,7 +122,7 @@ namespace StoreManager
             int paginationWidth = this.PanelPagination.Width;
             int paginationContainerWidth = this.PanelPaginationContainer.Width;
 
-            this.PanelPagination.Location = new Point(paginationContainerWidth/2 - paginationWidth/2, this.PanelPagination.Location.Y);
+            this.PanelPagination.Location = new System.Drawing.Point(paginationContainerWidth/2 - paginationWidth/2, this.PanelPagination.Location.Y);
         }
 
         public void UpdatePaginationText()
@@ -129,6 +147,7 @@ namespace StoreManager
         private void OnOrderDeleted(object sender, EventArgs e)
         {
             int deletedItemId = this.PnlOrdersPanel.DeletedOrder.CartItem.Id;
+            ClearFilters();
             ProductDisplayPanel pdpPanel = this.productsAndOrdersLinker.ProductsPanelId[deletedItemId];
 
             this.PnlOrdersPanel.DeletedOrder = null;
@@ -155,5 +174,40 @@ namespace StoreManager
             }
         }
 
+        private void TbPosSearch_Leave(object sender, EventArgs e)
+        {
+            this.TbPosSearch.Text = (TbPosSearch.Text == "") ? "Search" : TbPosSearch.Text;
+        }
+
+        private void TbPosSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (TbPosSearch.Text != "Search") this.itemName = TbPosSearch.Text;
+            SearchAndFilter(itemName, itemSize, itemType, order);
+        }
+
+        private void CmbOrder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.order = CmbOrder.Text;
+            SearchAndFilter(itemName, itemSize, itemType, order);
+        }
+
+        private void CmbSizes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.itemSize = CmbSizes.Text;
+            SearchAndFilter(itemName, itemSize, itemType, order);
+        }
+
+        private void ClearFilters()
+        {
+            this.TbPosSearch.Text = "";
+            this.CmbSizes.SelectedIndex = 0;
+            this.CmbOrder.SelectedIndex = 0;
+        }
+
+        private void CmbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.itemType = CmbType.Text;
+            SearchAndFilter(itemName, itemSize, itemType, order);
+        }
     }
 }

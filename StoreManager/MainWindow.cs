@@ -30,6 +30,8 @@ namespace StoreManager
         private UsrCtrlCashiering buyView;
         private UsrCtrlInventory2 inventoryView;
         private UsrCtrlAnalytics analyticsView;
+        private UsrCtrlInventory2Resize inventoryView;
+        private UsrCtrlAnalytics2 analyticsView2;
 
         public MainWindow()
         {
@@ -42,8 +44,9 @@ namespace StoreManager
             //this.PnlProductsPanel.PanelSizeUpdated();
             this.globalProcedure.FncConnectToDatabase();
             this.buyView = new UsrCtrlCashiering(this.dbConnection, globalProcedure);
-            this.inventoryView = new UsrCtrlInventory2(this.dbConnection);
             this.analyticsView = new UsrCtrlAnalytics(this.dbConnection, globalProcedure);
+            this.inventoryView = new UsrCtrlInventory2Resize(this.dbConnection);
+            this.analyticsView2 = new UsrCtrlAnalytics2(this.dbConnection, globalProcedure);
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
