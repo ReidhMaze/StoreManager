@@ -151,22 +151,53 @@ namespace LaundrySystem
 
         }
 
-        public void ProcRestock(string p_itemName, double p_price, double p_cost_per_item, string p_size, string p_type, string p_supplier_name, int p_qty)
+        public void ProcRestock(string p_item_name, double p_price, double p_cost_per_item, string p_size, string p_type, string p_supplier_name, int p_qty)
         {
-            int v_item_id = FncGetItemId(p_itemName, p_price, p_cost_per_item, p_size, p_type, p_supplier_name);
+            int v_item_id = FncGetItemId(p_item_name, p_price, p_cost_per_item, p_size, p_type, p_supplier_name);
             int v_supplier_id = FncGetSupplierId(p_supplier_name);
 
             if(v_item_id == -1)
             {
-                MessageBox.Show("Item does not exist");
-                return;
-            }
+                string v_img_name = FncGetItemImageByItemName(p_item_name);
 
-            if (EnableDebugging) MessageBox.Show("Item restocked successfuly");
+                MessageBox.Show("Item description does not exist.\nAdding new Item");
+                ProcAddItem(p_item_name, p_size, p_type, p_price, p_cost_per_item, v_img_name, p_supplier_name, 5);
+                v_item_id = FncGetItemId(p_item_name, p_price, p_cost_per_item, p_size, p_type, p_supplier_name);
+                //return;
+            }
 
             ProcRestockItem(v_item_id, p_qty);
             ProcAddInventoryAdded(v_item_id, p_qty, p_cost_per_item, v_supplier_id, this.v_logged_staff_id);
+
+            if (EnableDebugging) MessageBox.Show("Item restocked successfuly");
         }
+
+        public string FncGetItemImageByItemName(string p_item_name)
+        {
+            string imgName = null;
+
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_item_image_by_item_name"; // Name of the stored procedure
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Add parameters
+                gProcCmd.Parameters.AddWithValue("@p_item_name", p_item_name);
+
+                // Execute and get result
+                imgName = Convert.ToString(gProcCmd.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error retrieving item image: " + ex.Message);
+            }
+
+            return imgName;
+        }
+
 
         public void ProcAddInventoryAdded(int p_item_id, int p_qty_added, double p_cost_per_item, int p_supplier_id, int p_staff_id)
         {

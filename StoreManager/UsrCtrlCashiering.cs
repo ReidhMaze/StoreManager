@@ -123,7 +123,7 @@ namespace StoreManager
             ////this.PnlProductsPanel.InitializeCards();
             //this.PnlProductsPanel.ArrangeProductPanels(currentPage);
 
-            gProc.ProcDeleteItemById(10);
+            gProc.ProcEditItemById(11, "Converse", "32", "Shoe", "newImg.png", 30, 9999);
         }
 
         private void OnOrderDeleted(object sender, EventArgs e)
