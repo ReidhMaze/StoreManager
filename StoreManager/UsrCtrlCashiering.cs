@@ -123,17 +123,7 @@ namespace StoreManager
             ////this.PnlProductsPanel.InitializeCards();
             //this.PnlProductsPanel.ArrangeProductPanels(currentPage);
 
-            // Sample item details
-            string itemName = "Jordan 69";
-            double price = 3999;
-            double costPerItem = 1500;
-            string size = "31";
-            string type = "Shoe";
-            string supplierName = "Razer";
-            int restockQuantity = 10;
-
-            // Call the Restock method
-            gProc.ProcRestock(itemName, price, costPerItem, size, type, supplierName, restockQuantity);
+            gProc.ProcDeleteItemById(10);
         }
 
         private void OnOrderDeleted(object sender, EventArgs e)

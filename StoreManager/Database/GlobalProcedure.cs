@@ -810,6 +810,119 @@ namespace LaundrySystem
             //TODO add init order proc
         }
 
+        public void ProcDeleteItemById(int p_item_id)
+        {
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_delete_item_by_id"; // Name of the stored procedure
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Add parameters
+                gProcCmd.Parameters.AddWithValue("@p_item_id", p_item_id);
+
+                // Execute the stored procedure
+                gProcCmd.ExecuteNonQuery();
+
+                MessageBox.Show("Item deleted successfully.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deleting item: " + ex.Message);
+            }
+        }
+
+
+        public void ProcEditItemById(int p_item_id, string p_item_name, string p_size, string p_type, string p_img_name, int p_restock_threshold, double p_new_price)
+        {
+
+            int v_type_id = FncGetTypeId(p_type);
+
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_edit_item_by_id"; // Name of the stored procedure
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Add parameters
+                gProcCmd.Parameters.AddWithValue("@p_item_id", p_item_id);
+                gProcCmd.Parameters.AddWithValue("@p_item_name", p_item_name);
+                gProcCmd.Parameters.AddWithValue("@p_size", p_size);
+                gProcCmd.Parameters.AddWithValue("@p_type_id", v_type_id);
+                gProcCmd.Parameters.AddWithValue("@p_img_name", p_img_name);
+                gProcCmd.Parameters.AddWithValue("@p_restock_threshold", p_restock_threshold);
+
+                // Execute the stored procedure
+                gProcCmd.ExecuteNonQuery();
+
+                MessageBox.Show("Item updated successfully.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating item: " + ex.Message);
+            }
+
+            ProcEditProductPriceById(p_item_id, p_new_price);
+
+        }
+
+
+        private void ProcEditProductPriceById(int p_item_id, double p_new_price)
+        {
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_edit_product_price_by_id"; // Name of the stored procedure
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Add parameters
+                gProcCmd.Parameters.AddWithValue("@p_item_id", p_item_id);
+                gProcCmd.Parameters.AddWithValue("@p_new_price", p_new_price);
+
+                // Execute the stored procedure
+                gProcCmd.ExecuteNonQuery();
+
+                if(EnableDebugging)
+                    MessageBox.Show("Product price updated successfully.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating product price: " + ex.Message);
+            }
+        }
+
+
+        public void ProcDecreaseItemStock(int p_item_code, int p_qty_removed)
+        {
+            MySqlCommand gProcCmd = this.sqlCommand;
+
+            try
+            {
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_add_inventory_removed";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                gProcCmd.Parameters.AddWithValue("@p_item_code", p_item_code);
+                gProcCmd.Parameters.AddWithValue("@p_order_id", null);
+                gProcCmd.Parameters.AddWithValue("@p_qty_removed", p_qty_removed);
+                gProcCmd.Parameters.AddWithValue("@p_staff_id", this.v_logged_staff_id);
+
+                gProcCmd.ExecuteNonQuery();
+
+                if (EnableDebugging) MessageBox.Show("Item removed successfully");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void ProcDecreaseItemStock(int p_item_code, int p_order_id, int p_qty_removed, int staff_id)
         {
             MySqlCommand gProcCmd = this.sqlCommand;
