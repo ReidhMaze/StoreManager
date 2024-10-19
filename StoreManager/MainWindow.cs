@@ -28,8 +28,6 @@ namespace StoreManager
 
         private ProductsAndOrdersLinker productsAndOrdersLinker;
         private UsrCtrlCashiering buyView;
-        private UsrCtrlInventory2 inventoryView;
-        private UsrCtrlAnalytics analyticsView;
         private UsrCtrlInventory2Resize inventoryView;
         private UsrCtrlAnalytics2 analyticsView2;
 
@@ -44,7 +42,6 @@ namespace StoreManager
             //this.PnlProductsPanel.PanelSizeUpdated();
             this.globalProcedure.FncConnectToDatabase();
             this.buyView = new UsrCtrlCashiering(this.dbConnection, globalProcedure);
-            this.analyticsView = new UsrCtrlAnalytics(this.dbConnection, globalProcedure);
             this.inventoryView = new UsrCtrlInventory2Resize(this.dbConnection);
             this.analyticsView2 = new UsrCtrlAnalytics2(this.dbConnection, globalProcedure);
         }
@@ -54,7 +51,7 @@ namespace StoreManager
 
             buyView.Size = this.PnlContent.Size;
             inventoryView.Size = this.PnlContent.Size;
-            analyticsView.Size = this.PnlContent.Size;
+            analyticsView2.Size = this.PnlContent.Size;
             buyView.InitializeCardView();
             buyView.CenterPagination();
         }
