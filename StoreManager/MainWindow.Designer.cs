@@ -372,13 +372,13 @@ namespace StoreManager
             this.PnlContent.Location = new System.Drawing.Point(203, 0);
             this.PnlContent.Margin = new System.Windows.Forms.Padding(0);
             this.PnlContent.Name = "PnlContent";
-            this.PnlContent.Size = new System.Drawing.Size(1082, 682);
+            this.PnlContent.Size = new System.Drawing.Size(1168, 682);
             this.PnlContent.TabIndex = 1;
             // 
             // MainWindow
             // 
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(1284, 681);
+            this.ClientSize = new System.Drawing.Size(1370, 681);
             this.Controls.Add(this.PnlContent);
             this.Controls.Add(this.PnlNavigation);
             this.Name = "MainWindow";
