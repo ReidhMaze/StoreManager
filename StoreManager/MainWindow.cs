@@ -69,6 +69,8 @@ namespace StoreManager
             buyView.InitializeCardView();
             buyView.CenterPagination();
 
+            this.BtnSettings.Visible = false;
+
             if (loggedStaffRole == "Cashier")
             {
                 this.BtnInventory.Enabled = false;
@@ -84,6 +86,7 @@ namespace StoreManager
             else
             {
                 ShowUserCtrl(buyView);
+                this.BtnSettings.Visible = true;
             }
         }
 

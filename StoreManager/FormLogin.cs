@@ -47,6 +47,7 @@ namespace StoreManager
             }
             else if (e.KeyChar == (char)Keys.Enter)
             {
+                this.BtnLogin.Text = "LOGGING IN";
                 LogIn();
             }
         }
@@ -64,6 +65,7 @@ namespace StoreManager
             }
             else if (e.KeyChar == (char)Keys.Enter)
             {
+                this.BtnLogin.Text = "LOGGING IN";
                 LogIn();
             }
         }
@@ -71,6 +73,7 @@ namespace StoreManager
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
+            this.BtnLogin.Text = "LOGGING IN";
             LogIn();
         }
 

@@ -227,6 +227,7 @@
             // 
             this.bunifuLabel1.AllowParentOverrides = false;
             this.bunifuLabel1.AutoEllipsis = false;
+            this.bunifuLabel1.Cursor = System.Windows.Forms.Cursors.Default;
             this.bunifuLabel1.CursorType = System.Windows.Forms.Cursors.Default;
             this.bunifuLabel1.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuLabel1.ForeColor = System.Drawing.Color.White;
@@ -341,6 +342,7 @@
             this.BtnLogin.OnPressedState.IconRightImage = null;
             this.BtnLogin.Size = new System.Drawing.Size(376, 39);
             this.BtnLogin.TabIndex = 5;
+            this.BtnLogin.TabStop = false;
             this.BtnLogin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.BtnLogin.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
             this.BtnLogin.TextMarginLeft = 0;
