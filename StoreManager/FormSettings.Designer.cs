@@ -272,7 +272,7 @@
             this.BtnSave.ButtonTextMarginLeft = 0;
             this.BtnSave.ColorContrastOnClick = 45;
             this.BtnSave.ColorContrastOnHover = 45;
-            this.BtnSave.Cursor = System.Windows.Forms.Cursors.Default;
+            this.BtnSave.Cursor = System.Windows.Forms.Cursors.Hand;
             borderEdges1.BottomLeft = true;
             borderEdges1.BottomRight = true;
             borderEdges1.TopLeft = true;
@@ -363,7 +363,7 @@
             this.BtnExit.ButtonTextMarginLeft = 0;
             this.BtnExit.ColorContrastOnClick = 45;
             this.BtnExit.ColorContrastOnHover = 45;
-            this.BtnExit.Cursor = System.Windows.Forms.Cursors.Default;
+            this.BtnExit.Cursor = System.Windows.Forms.Cursors.Hand;
             borderEdges2.BottomLeft = true;
             borderEdges2.BottomRight = true;
             borderEdges2.TopLeft = true;

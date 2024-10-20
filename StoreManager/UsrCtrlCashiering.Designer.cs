@@ -177,7 +177,7 @@ namespace StoreManager
             this.BtnNextPage.IconPadding = 10;
             this.BtnNextPage.IconRight = ((System.Drawing.Image)(resources.GetObject("BtnNextPage.IconRight")));
             this.BtnNextPage.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnNextPage.IconRightCursor = System.Windows.Forms.Cursors.Default;
+            this.BtnNextPage.IconRightCursor = System.Windows.Forms.Cursors.Hand;
             this.BtnNextPage.IconRightPadding = new System.Windows.Forms.Padding(0);
             this.BtnNextPage.IconSize = 25;
             this.BtnNextPage.IdleBorderColor = System.Drawing.Color.Empty;
