@@ -24,7 +24,7 @@ namespace StoreManager
         private GlobalProcedure gProc;
 
         string imgLocation;
-        Boolean needImage, addProduct, editProduct, removeProduct, restock, disposeStock;
+        Boolean addProduct, editProduct, removeProduct, restock, disposeStock;
 
         public UsrCtrlInventory2Resize(DBConnect dbConnection)
         {
@@ -63,29 +63,91 @@ namespace StoreManager
             string imgLocation = this.imgLocation;
             string imgName = Path.GetFileName(imgLocation);
             string supplier = TxtSupplier.Text;
-            int restockThreshold = int.Parse(TxtRestockThreshold.Text);
-            int remainingStocks = int.Parse(TxtRemainingStocks.Text);
-            double price = double.Parse(TxtPrice.Text);
-            double costPerItem = double.Parse(TxtCostPerItem.Text);
+            int restockThreshold, remainingStocks, quantity;
+            double price, costPerItem;
 
-            try 
+            try
             {
-                if (needImage == true)
-                {
-                    File.Copy(this.imgLocation, Path.Combine(imageFolderDir, imgName), true);
-                }
-                
-
                 if (addProduct == true)
                 {
-                    gProc.ProcAddItem(itemName, size, type, price, costPerItem, imgName, supplier, restockThreshold);
-                    StandardView();
+                    File.Copy(this.imgLocation, Path.Combine(imageFolderDir, imgName), true);
+                    restockThreshold = int.Parse(TxtRestockThreshold.Text);
+                    price = double.Parse(TxtPrice.Text);
+                    costPerItem = double.Parse(TxtCostPerItem.Text);
+
+                    if (string.IsNullOrEmpty(size) || string.IsNullOrEmpty(type)) 
+                    {
+                        MessageBox.Show("Missing Inputs", "Error");
+                    }
+                    else
+                    {
+                        var confirmAdd = MessageBox.Show("Are you sure you want to add this product?", "Confirm Add", MessageBoxButtons.YesNo);
+
+                        if (confirmAdd == DialogResult.Yes)
+                        {
+                            gProc.ProcAddItem(itemName, size, type, price, costPerItem, imgName, supplier, restockThreshold);
+                            StandardView();
+                        }
+                        else
+                        {
+                        }
+                    }
                 }
-               
+                
+                if (editProduct == true) 
+                {
+                    int itemId = 1;
+                    File.Copy(this.imgLocation, Path.Combine(imageFolderDir, imgName), true);
+                    restockThreshold = int.Parse(TxtRestockThreshold.Text);
+                    price = double.Parse(TxtPrice.Text);
+
+                    if (string.IsNullOrEmpty(size) || string.IsNullOrEmpty(type))
+                    {
+                        MessageBox.Show("Missing Inputs", "Error");
+                    }
+                    else
+                    {
+                        var confirmEdit = MessageBox.Show("Are you sure you want to edit this product?", "Confirm Edit", MessageBoxButtons.YesNo);
+
+                        if (confirmEdit == DialogResult.Yes)
+                        {
+                            gProc.ProcEditItemById(itemId, itemName, size, type, imgName, restockThreshold, price);
+                            StandardView();
+                        }
+                        else
+                        {
+                        }
+                    }
+                }
+
+                if (restock == true)
+                {
+                    price = double.Parse(TxtPrice.Text);
+                    costPerItem = double.Parse(TxtCostPerItem.Text);
+                    quantity = int.Parse(TxtQuantity.Text);
+
+                    if (string.IsNullOrEmpty(size) || string.IsNullOrEmpty(type))
+                    {
+                        MessageBox.Show("Missing Inputs", "Error");
+                    }
+                    else
+                    {
+                        var confirmRestock = MessageBox.Show("Are you sure you want to restock this product?", "Confirm Restock", MessageBoxButtons.YesNo);
+
+                        if (confirmRestock == DialogResult.Yes)
+                        {
+                            gProc.ProcRestock(itemName, price, costPerItem, size, type, supplier, quantity);
+                            StandardView();
+                        }
+                        else
+                        {
+                        }
+                    }
+                }
             }
-            catch (Exception err)
+            catch (Exception)
             {
-                MessageBox.Show("Error Message" + err.Message);
+                MessageBox.Show("Missing Inputs", "Error");
             }
         }
 
@@ -93,7 +155,6 @@ namespace StoreManager
         {
             EnabledAll();
             TxtRemainingStocks.Enabled = false;
-            needImage = true;
             addProduct = true;
         }
 
@@ -103,7 +164,7 @@ namespace StoreManager
             TxtSupplier.Enabled = false;
             TxtCostPerItem.Enabled = false;
             TxtRemainingStocks.Enabled = false;
-            needImage = true;
+            editProduct = true;
         }
 
         private void BtnRemoveProduct_Click(object sender, EventArgs e)
@@ -120,6 +181,7 @@ namespace StoreManager
             BtnUploadImg.Enabled = false;
             TxtQuantity.Visible = true;
             LblQuantity.Visible = true;
+            restock = true;
         }
 
         private void BtnDisposeStock_Click(object sender, EventArgs e)
@@ -231,7 +293,6 @@ namespace StoreManager
             TxtQuantity.Clear();
             ImgItem.Image = null;
             imgLocation = null;
-            needImage = false;
             addProduct = false;
             editProduct = false;
             removeProduct = false;
