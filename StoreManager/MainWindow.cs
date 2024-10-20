@@ -14,6 +14,9 @@ using CustomComponents;
 using System.Data.Common;
 using System.Text.RegularExpressions;
 using LaundrySystem;
+using System.Configuration;
+using System.Diagnostics;
+using System.IO;
 
 namespace StoreManager
 {
@@ -30,9 +33,13 @@ namespace StoreManager
         private UsrCtrlCashiering buyView;
         private UsrCtrlInventory2Resize inventoryView;
         private UsrCtrlAnalytics analyticsView;
+        private int windowWidth = int.Parse(ConfigurationManager.AppSettings["width"].ToString());
+        private int windowHeight = int.Parse(ConfigurationManager.AppSettings["height"].ToString());
+        private bool openInFullScreen = bool.Parse(ConfigurationManager.AppSettings["open_in_fullscreen"].ToString());
 
         public MainWindow()
         {
+
             //DBConnect dbConnection = new DBConnect();
             InitializeComponent();
             //this.BtnCashier.Togg;
@@ -44,6 +51,9 @@ namespace StoreManager
             this.buyView = new UsrCtrlCashiering(this.dbConnection, globalProcedure);
             this.inventoryView = new UsrCtrlInventory2Resize(this.dbConnection);
             this.analyticsView = new UsrCtrlAnalytics(this.dbConnection, globalProcedure);
+
+            this.Size = new Size(windowWidth, windowHeight);
+            this.WindowState = (openInFullScreen) ? FormWindowState.Maximized : FormWindowState.Normal;
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
