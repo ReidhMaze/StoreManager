@@ -35,18 +35,18 @@ namespace StoreManager
         /// </summary>
         private void InitializeComponent()
         {
-            Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges borderEdges13 = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges14 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges15 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges16 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             this.PnlNavigation = new System.Windows.Forms.Panel();
-            this.PnlContent = new System.Windows.Forms.Panel();
             this.BtnSettings = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton();
             this.BtnAnalytics = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.BtnInventory = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.BtnCashier = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.picBoxLogo = new System.Windows.Forms.PictureBox();
+            this.PnlContent = new System.Windows.Forms.Panel();
             this.PnlNavigation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLogo)).BeginInit();
             this.SuspendLayout();
@@ -67,17 +67,6 @@ namespace StoreManager
             this.PnlNavigation.Size = new System.Drawing.Size(203, 682);
             this.PnlNavigation.TabIndex = 0;
             // 
-            // PnlContent
-            // 
-            this.PnlContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PnlContent.Location = new System.Drawing.Point(203, 0);
-            this.PnlContent.Margin = new System.Windows.Forms.Padding(0);
-            this.PnlContent.Name = "PnlContent";
-            this.PnlContent.Size = new System.Drawing.Size(1168, 682);
-            this.PnlContent.TabIndex = 1;
-            // 
             // BtnSettings
             // 
             this.BtnSettings.AllowAnimations = true;
@@ -94,11 +83,11 @@ namespace StoreManager
             this.BtnSettings.ColorContrastOnClick = 30;
             this.BtnSettings.ColorContrastOnHover = 30;
             this.BtnSettings.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges1.BottomLeft = true;
-            borderEdges1.BottomRight = true;
-            borderEdges1.TopLeft = true;
-            borderEdges1.TopRight = true;
-            this.BtnSettings.CustomizableEdges = borderEdges1;
+            borderEdges13.BottomLeft = true;
+            borderEdges13.BottomRight = true;
+            borderEdges13.TopLeft = true;
+            borderEdges13.TopRight = true;
+            this.BtnSettings.CustomizableEdges = borderEdges13;
             this.BtnSettings.DialogResult = System.Windows.Forms.DialogResult.None;
             this.BtnSettings.Image = ((System.Drawing.Image)(resources.GetObject("BtnSettings.Image")));
             this.BtnSettings.ImageMargin = new System.Windows.Forms.Padding(0);
@@ -130,11 +119,11 @@ namespace StoreManager
             this.BtnAnalytics.ColorContrastOnClick = 45;
             this.BtnAnalytics.ColorContrastOnHover = 45;
             this.BtnAnalytics.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges2.BottomLeft = true;
-            borderEdges2.BottomRight = true;
-            borderEdges2.TopLeft = true;
-            borderEdges2.TopRight = true;
-            this.BtnAnalytics.CustomizableEdges = borderEdges2;
+            borderEdges14.BottomLeft = true;
+            borderEdges14.BottomRight = true;
+            borderEdges14.TopLeft = true;
+            borderEdges14.TopRight = true;
+            this.BtnAnalytics.CustomizableEdges = borderEdges14;
             this.BtnAnalytics.DialogResult = System.Windows.Forms.DialogResult.None;
             this.BtnAnalytics.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.BtnAnalytics.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -221,11 +210,11 @@ namespace StoreManager
             this.BtnInventory.ColorContrastOnClick = 45;
             this.BtnInventory.ColorContrastOnHover = 45;
             this.BtnInventory.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges3.BottomLeft = true;
-            borderEdges3.BottomRight = true;
-            borderEdges3.TopLeft = true;
-            borderEdges3.TopRight = true;
-            this.BtnInventory.CustomizableEdges = borderEdges3;
+            borderEdges15.BottomLeft = true;
+            borderEdges15.BottomRight = true;
+            borderEdges15.TopLeft = true;
+            borderEdges15.TopRight = true;
+            this.BtnInventory.CustomizableEdges = borderEdges15;
             this.BtnInventory.DialogResult = System.Windows.Forms.DialogResult.None;
             this.BtnInventory.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.BtnInventory.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -312,11 +301,11 @@ namespace StoreManager
             this.BtnCashier.ColorContrastOnClick = 45;
             this.BtnCashier.ColorContrastOnHover = 45;
             this.BtnCashier.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges4.BottomLeft = true;
-            borderEdges4.BottomRight = true;
-            borderEdges4.TopLeft = true;
-            borderEdges4.TopRight = true;
-            this.BtnCashier.CustomizableEdges = borderEdges4;
+            borderEdges16.BottomLeft = true;
+            borderEdges16.BottomRight = true;
+            borderEdges16.TopLeft = true;
+            borderEdges16.TopRight = true;
+            this.BtnCashier.CustomizableEdges = borderEdges16;
             this.BtnCashier.DialogResult = System.Windows.Forms.DialogResult.None;
             this.BtnCashier.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.BtnCashier.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -396,6 +385,17 @@ namespace StoreManager
             this.picBoxLogo.TabIndex = 0;
             this.picBoxLogo.TabStop = false;
             // 
+            // PnlContent
+            // 
+            this.PnlContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PnlContent.Location = new System.Drawing.Point(203, 0);
+            this.PnlContent.Margin = new System.Windows.Forms.Padding(0);
+            this.PnlContent.Name = "PnlContent";
+            this.PnlContent.Size = new System.Drawing.Size(1168, 682);
+            this.PnlContent.TabIndex = 1;
+            // 
             // MainWindow
             // 
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -403,6 +403,7 @@ namespace StoreManager
             this.Controls.Add(this.PnlContent);
             this.Controls.Add(this.PnlNavigation);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CLC Store Manager";
