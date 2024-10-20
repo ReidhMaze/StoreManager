@@ -272,7 +272,7 @@
             this.BtnSave.ButtonTextMarginLeft = 0;
             this.BtnSave.ColorContrastOnClick = 45;
             this.BtnSave.ColorContrastOnHover = 45;
-            this.BtnSave.Cursor = System.Windows.Forms.Cursors.Default;
+            this.BtnSave.Cursor = System.Windows.Forms.Cursors.Hand;
             borderEdges1.BottomLeft = true;
             borderEdges1.BottomRight = true;
             borderEdges1.TopLeft = true;
@@ -326,7 +326,7 @@
             this.BtnSave.OnIdleState.BorderThickness = 1;
             this.BtnSave.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.BtnSave.OnIdleState.ForeColor = System.Drawing.Color.Black;
-            this.BtnSave.OnIdleState.IconLeftImage = ((System.Drawing.Image)(resources.GetObject("bunifuButton21.OnIdleState.IconLeftImage")));
+            this.BtnSave.OnIdleState.IconLeftImage = ((System.Drawing.Image)(resources.GetObject("BtnSave.OnIdleState.IconLeftImage")));
             this.BtnSave.OnIdleState.IconRightImage = null;
             this.BtnSave.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
             this.BtnSave.OnPressedState.BorderRadius = 1;
@@ -363,7 +363,7 @@
             this.BtnExit.ButtonTextMarginLeft = 0;
             this.BtnExit.ColorContrastOnClick = 45;
             this.BtnExit.ColorContrastOnHover = 45;
-            this.BtnExit.Cursor = System.Windows.Forms.Cursors.Default;
+            this.BtnExit.Cursor = System.Windows.Forms.Cursors.Hand;
             borderEdges2.BottomLeft = true;
             borderEdges2.BottomRight = true;
             borderEdges2.TopLeft = true;
@@ -417,7 +417,7 @@
             this.BtnExit.OnIdleState.BorderThickness = 1;
             this.BtnExit.OnIdleState.FillColor = System.Drawing.Color.Red;
             this.BtnExit.OnIdleState.ForeColor = System.Drawing.Color.Black;
-            this.BtnExit.OnIdleState.IconLeftImage = ((System.Drawing.Image)(resources.GetObject("bunifuButton22.OnIdleState.IconLeftImage")));
+            this.BtnExit.OnIdleState.IconLeftImage = ((System.Drawing.Image)(resources.GetObject("BtnExit.OnIdleState.IconLeftImage")));
             this.BtnExit.OnIdleState.IconRightImage = null;
             this.BtnExit.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
             this.BtnExit.OnPressedState.BorderRadius = 1;
@@ -450,7 +450,10 @@
             this.Controls.Add(this.LblCurrentTax);
             this.Controls.Add(this.TbTaxRateOut);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormSettings";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Settings";
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxLogo)).EndInit();
             this.ResumeLayout(false);

@@ -372,7 +372,7 @@
         3fVPjpub/8G2fQHlvyv4v+OCCwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="bunifuButton21.OnIdleState.IconLeftImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="BtnSave.OnIdleState.IconLeftImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAbZJREFUaEPt
         mdtNxTAQRFMKpVAKnVAKpVAKpYAHgWSNNzlZP26QyJHmazx7dxOTWGG7ubk55LXovehzgT5+9Fb0VDQV
@@ -405,7 +405,7 @@
         miI1R6SpJTQY/AfT9AaBJb8e3Po5JwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="bunifuButton22.OnIdleState.IconLeftImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="BtnExit.OnIdleState.IconLeftImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAUFJREFUaEPt
         mcsNwjAQRFMKpVAKVMKZHpAohVK4UwMS7DsgRaMotsjuYgs/aY47mUmc/zQYDFY5mK6mu+lV0M20NzXB

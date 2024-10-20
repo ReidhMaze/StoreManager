@@ -136,20 +136,38 @@ namespace StoreManager
 
         private void BtnCheckout_Click(object sender, EventArgs e)
         {
-            //List<CartItem> cartItems = PnlOrdersPanel.Cart;
-            //gProc.ProcCheckout(cartItems);
-            //PnlOrdersPanel.ClearOrders();
-            //this.PnlProductsPanel.InitializeItems(gProc.FncGetProducts(), this.BtnPdpClicked);
-            ////this.PnlProductsPanel.InitializeCards();
-            //this.PnlProductsPanel.ArrangeProductPanels(currentPage);
 
-            gProc.ProcEditItemById(11, "Converse", "32", "Shoe", "newImg.png", 30, 9999);
+            FormCheckoutDialog checkoutDialog;
+
+            List<CartItem> cartItems = PnlOrdersPanel.Cart;
+
+            if(cartItems.Count == 0) 
+            {
+                System.Windows.Forms.MessageBox.Show("Order is Empty");
+                return;
+            }
+
+            checkoutDialog = new FormCheckoutDialog(cartItems);
+
+            checkoutDialog.ShowDialog();
+
+            if(checkoutDialog.OrderConfirmed)
+            {
+                gProc.ProcCheckout(cartItems);
+                PnlOrdersPanel.ClearOrders();
+                this.PnlProductsPanel.InitializeItems(gProc.FncGetProducts(), this.BtnPdpClicked);
+                this.PnlProductsPanel.ArrangeProductPanels(currentPage);
+            }
+
+            checkoutDialog.Close();
+
         }
 
         private void OnOrderDeleted(object sender, EventArgs e)
         {
+
             int deletedItemId = this.PnlOrdersPanel.DeletedOrder.CartItem.Id;
-            //ClearFilters();
+            ClearFilters();
             ProductDisplayPanel pdpPanel = this.productsAndOrdersLinker.ProductsPanelId[deletedItemId];
             this.PnlProductsPanel.RemoveCartContentId(deletedItemId);
 
@@ -212,6 +230,19 @@ namespace StoreManager
         {
             this.itemType = CmbType.Text;
             SearchAndFilter(itemName, itemSize, itemType, order);
+        }
+
+        public OrdersPanel PanelOrdersPanel
+        {
+            get { return this.PnlOrdersPanel; }
+        }
+
+        public void UpdateTax()
+        {
+            double latestTaxRate = gProc.FncGetLatestTaxRate();
+            this.PnlOrdersPanel.TaxRate = latestTaxRate;
+            this.LblTax.Text = "VAT (" + (int)(latestTaxRate * 100) + "%)";
+            PnlOrdersPanel.ClearOrders();
         }
     }
 }
