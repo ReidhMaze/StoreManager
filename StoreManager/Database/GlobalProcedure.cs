@@ -56,7 +56,8 @@ namespace LaundrySystem
                 servername = "localhost";
                 databasename = "store_manager_db";
                 username = "root";
-                password = "umtagum";
+
+                password = "";
                 port = "3306";
 
                 strConnection = "Server=" + servername + ";" +
