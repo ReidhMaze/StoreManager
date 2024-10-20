@@ -104,5 +104,11 @@ namespace StoreManager
         {
             ShowUserCtrl(analyticsView);
         }
+
+        private void BtnSettings_Click(object sender, EventArgs e)
+        {
+            Form settings = new FormSettings();
+            settings.ShowDialog();
+        }
     }
 }

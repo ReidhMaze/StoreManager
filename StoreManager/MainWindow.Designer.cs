@@ -35,18 +35,18 @@ namespace StoreManager
         /// </summary>
         private void InitializeComponent()
         {
+            Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.PnlNavigation = new System.Windows.Forms.Panel();
+            this.PnlContent = new System.Windows.Forms.Panel();
+            this.BtnSettings = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton();
             this.BtnAnalytics = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.BtnInventory = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.BtnCashier = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.picBoxLogo = new System.Windows.Forms.PictureBox();
-            this.PnlContent = new System.Windows.Forms.Panel();
-            this.BtnSettings = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton();
             this.PnlNavigation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLogo)).BeginInit();
             this.SuspendLayout();
@@ -66,6 +66,50 @@ namespace StoreManager
             this.PnlNavigation.Name = "PnlNavigation";
             this.PnlNavigation.Size = new System.Drawing.Size(203, 682);
             this.PnlNavigation.TabIndex = 0;
+            // 
+            // PnlContent
+            // 
+            this.PnlContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PnlContent.Location = new System.Drawing.Point(203, 0);
+            this.PnlContent.Margin = new System.Windows.Forms.Padding(0);
+            this.PnlContent.Name = "PnlContent";
+            this.PnlContent.Size = new System.Drawing.Size(1168, 682);
+            this.PnlContent.TabIndex = 1;
+            // 
+            // BtnSettings
+            // 
+            this.BtnSettings.AllowAnimations = true;
+            this.BtnSettings.AllowBorderColorChanges = true;
+            this.BtnSettings.AllowMouseEffects = true;
+            this.BtnSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.BtnSettings.AnimationSpeed = 200;
+            this.BtnSettings.BackColor = System.Drawing.Color.Transparent;
+            this.BtnSettings.BackgroundColor = System.Drawing.Color.White;
+            this.BtnSettings.BorderColor = System.Drawing.Color.Gray;
+            this.BtnSettings.BorderRadius = 1;
+            this.BtnSettings.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderStyles.Solid;
+            this.BtnSettings.BorderThickness = 1;
+            this.BtnSettings.ColorContrastOnClick = 30;
+            this.BtnSettings.ColorContrastOnHover = 30;
+            this.BtnSettings.Cursor = System.Windows.Forms.Cursors.Hand;
+            borderEdges1.BottomLeft = true;
+            borderEdges1.BottomRight = true;
+            borderEdges1.TopLeft = true;
+            borderEdges1.TopRight = true;
+            this.BtnSettings.CustomizableEdges = borderEdges1;
+            this.BtnSettings.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.BtnSettings.Image = ((System.Drawing.Image)(resources.GetObject("BtnSettings.Image")));
+            this.BtnSettings.ImageMargin = new System.Windows.Forms.Padding(0);
+            this.BtnSettings.Location = new System.Drawing.Point(3, 644);
+            this.BtnSettings.Name = "BtnSettings";
+            this.BtnSettings.RoundBorders = true;
+            this.BtnSettings.ShowBorders = true;
+            this.BtnSettings.Size = new System.Drawing.Size(35, 35);
+            this.BtnSettings.Style = Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.ButtonStyles.Round;
+            this.BtnSettings.TabIndex = 4;
+            this.BtnSettings.Click += new System.EventHandler(this.BtnSettings_Click);
             // 
             // BtnAnalytics
             // 
@@ -351,49 +395,6 @@ namespace StoreManager
             this.picBoxLogo.Size = new System.Drawing.Size(178, 80);
             this.picBoxLogo.TabIndex = 0;
             this.picBoxLogo.TabStop = false;
-            // 
-            // PnlContent
-            // 
-            this.PnlContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PnlContent.Location = new System.Drawing.Point(203, 0);
-            this.PnlContent.Margin = new System.Windows.Forms.Padding(0);
-            this.PnlContent.Name = "PnlContent";
-            this.PnlContent.Size = new System.Drawing.Size(1168, 682);
-            this.PnlContent.TabIndex = 1;
-            // 
-            // BtnSettings
-            // 
-            this.BtnSettings.AllowAnimations = true;
-            this.BtnSettings.AllowBorderColorChanges = true;
-            this.BtnSettings.AllowMouseEffects = true;
-            this.BtnSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.BtnSettings.AnimationSpeed = 200;
-            this.BtnSettings.BackColor = System.Drawing.Color.Transparent;
-            this.BtnSettings.BackgroundColor = System.Drawing.Color.White;
-            this.BtnSettings.BorderColor = System.Drawing.Color.Gray;
-            this.BtnSettings.BorderRadius = 1;
-            this.BtnSettings.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderStyles.Solid;
-            this.BtnSettings.BorderThickness = 1;
-            this.BtnSettings.ColorContrastOnClick = 30;
-            this.BtnSettings.ColorContrastOnHover = 30;
-            this.BtnSettings.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges1.BottomLeft = true;
-            borderEdges1.BottomRight = true;
-            borderEdges1.TopLeft = true;
-            borderEdges1.TopRight = true;
-            this.BtnSettings.CustomizableEdges = borderEdges1;
-            this.BtnSettings.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.BtnSettings.Image = ((System.Drawing.Image)(resources.GetObject("BtnSettings.Image")));
-            this.BtnSettings.ImageMargin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.BtnSettings.Location = new System.Drawing.Point(3, 644);
-            this.BtnSettings.Name = "BtnSettings";
-            this.BtnSettings.RoundBorders = true;
-            this.BtnSettings.ShowBorders = true;
-            this.BtnSettings.Size = new System.Drawing.Size(35, 35);
-            this.BtnSettings.Style = Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.ButtonStyles.Round;
-            this.BtnSettings.TabIndex = 4;
             // 
             // MainWindow
             // 

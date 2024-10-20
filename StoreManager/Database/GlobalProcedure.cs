@@ -24,7 +24,7 @@ namespace LaundrySystem
         public string password;
         public string port;
 
-        public MySqlConnection conLaundry;
+        public MySqlConnection conStoreManager;
         public MySqlCommand sqlCommand;
         public string strConnection;
 
@@ -57,18 +57,18 @@ namespace LaundrySystem
                     "Port=" + port + ";" +
                     "Convert Zero Datetime=true";
 
-                conLaundry = new MySqlConnection(strConnection);
-                sqlCommand = new MySqlCommand(strConnection, conLaundry);
+                conStoreManager = new MySqlConnection(strConnection);
+                sqlCommand = new MySqlCommand(strConnection, conStoreManager);
                 //Debug.WriteLine("db connected");
-                if (conLaundry.State == ConnectionState.Closed)
+                if (conStoreManager.State == ConnectionState.Closed)
                 {
-                    sqlCommand.Connection = conLaundry;
-                    conLaundry.Open();
+                    sqlCommand.Connection = conStoreManager;
+                    conStoreManager.Open();
                     return true;
                 }
                 else
                 {
-                    conLaundry.Close();
+                    conStoreManager.Close();
                     return false;
                 }
             }catch (Exception err)
@@ -215,6 +215,34 @@ namespace LaundrySystem
             return list;
         }
 
+        public void ProcAddTaxRate(double p_rate)
+        {
+            try
+            {
+                if (this.FncConnectToDatabase())
+                {
+                    MySqlCommand gProcCmd = this.sqlCommand;
+
+                    // Set up the stored procedure
+                    gProcCmd.Parameters.Clear();
+                    gProcCmd.CommandText = "proc_add_tax_rate";
+                    gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                    // Add the parameter for the tax rate
+                    gProcCmd.Parameters.AddWithValue("@p_rate", p_rate);
+
+                    // Execute the stored procedure
+                    gProcCmd.ExecuteNonQuery();
+
+                    // Optionally, you can close the connection here if you don't need it open
+                    conStoreManager.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
 
         public void ProcRestock(string p_item_name, double p_price, double p_cost_per_item, string p_size, string p_type, string p_supplier_name, int p_qty)
         {
@@ -1400,6 +1428,8 @@ namespace LaundrySystem
 
             }
         }
+
+
 
     }
 }
