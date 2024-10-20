@@ -343,10 +343,9 @@
             this.CmbTypeInfo.ItemHeight = 15;
             this.CmbTypeInfo.ItemHighLightColor = System.Drawing.Color.LightGray;
             this.CmbTypeInfo.ItemHighLightForeColor = System.Drawing.Color.Black;
-            this.CmbTypeInfo.Items.AddRange(new object[] {
-            "Shoe"});
             this.CmbTypeInfo.ItemTopMargin = 3;
             this.CmbTypeInfo.Location = new System.Drawing.Point(196, 119);
+            this.CmbTypeInfo.MaxDropDownItems = 99;
             this.CmbTypeInfo.Name = "CmbTypeInfo";
             this.CmbTypeInfo.Size = new System.Drawing.Size(154, 21);
             this.CmbTypeInfo.TabIndex = 71;
@@ -652,11 +651,9 @@
             this.CmbSizeInfo.ItemHeight = 15;
             this.CmbSizeInfo.ItemHighLightColor = System.Drawing.Color.LightGray;
             this.CmbSizeInfo.ItemHighLightForeColor = System.Drawing.Color.Black;
-            this.CmbSizeInfo.Items.AddRange(new object[] {
-            "31",
-            "20"});
             this.CmbSizeInfo.ItemTopMargin = 3;
             this.CmbSizeInfo.Location = new System.Drawing.Point(196, 73);
+            this.CmbSizeInfo.MaxDropDownItems = 99;
             this.CmbSizeInfo.Name = "CmbSizeInfo";
             this.CmbSizeInfo.Size = new System.Drawing.Size(154, 21);
             this.CmbSizeInfo.TabIndex = 65;
@@ -1305,6 +1302,7 @@
             this.CmbViewType.ItemHighLightForeColor = System.Drawing.Color.White;
             this.CmbViewType.ItemTopMargin = 3;
             this.CmbViewType.Location = new System.Drawing.Point(896, 242);
+            this.CmbViewType.MaxDropDownItems = 99;
             this.CmbViewType.Name = "CmbViewType";
             this.CmbViewType.Size = new System.Drawing.Size(150, 21);
             this.CmbViewType.TabIndex = 35;
@@ -1353,6 +1351,7 @@
             this.CmbSortBy.ItemHighLightForeColor = System.Drawing.Color.White;
             this.CmbSortBy.ItemTopMargin = 3;
             this.CmbSortBy.Location = new System.Drawing.Point(721, 242);
+            this.CmbSortBy.MaxDropDownItems = 99;
             this.CmbSortBy.Name = "CmbSortBy";
             this.CmbSortBy.Size = new System.Drawing.Size(150, 21);
             this.CmbSortBy.TabIndex = 33;
@@ -1398,6 +1397,7 @@
             this.CmbSize.ItemHighLightForeColor = System.Drawing.Color.White;
             this.CmbSize.ItemTopMargin = 3;
             this.CmbSize.Location = new System.Drawing.Point(551, 242);
+            this.CmbSize.MaxDropDownItems = 99;
             this.CmbSize.Name = "CmbSize";
             this.CmbSize.Size = new System.Drawing.Size(150, 21);
             this.CmbSize.TabIndex = 32;
@@ -1443,6 +1443,7 @@
             this.CmbType.ItemHighLightForeColor = System.Drawing.Color.White;
             this.CmbType.ItemTopMargin = 3;
             this.CmbType.Location = new System.Drawing.Point(382, 242);
+            this.CmbType.MaxDropDownItems = 99;
             this.CmbType.Name = "CmbType";
             this.CmbType.Size = new System.Drawing.Size(150, 21);
             this.CmbType.TabIndex = 31;

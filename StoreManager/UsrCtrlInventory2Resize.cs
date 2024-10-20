@@ -37,6 +37,7 @@ namespace StoreManager
             this.CmbSize.Items.AddRange(gProc.FncGetDistinctSizes());
             this.CmbType.Items.AddRange(gProc.FncGetProductTypes());
             this.CmbTypeInfo.Items.AddRange(gProc.FncGetProductTypes());
+            this.CmbSizeInfo.Items.AddRange(gProc.FncGetDistinctSizes());
         }
 
         private void BtnUploadImg_Click(object sender, EventArgs e)
