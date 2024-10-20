@@ -420,7 +420,7 @@
             this.TxtRestockThreshold.SelectionLength = 0;
             this.TxtRestockThreshold.SelectionStart = 0;
             this.TxtRestockThreshold.ShortcutsEnabled = true;
-            this.TxtRestockThreshold.Size = new System.Drawing.Size(154, 26);
+            this.TxtRestockThreshold.Size = new System.Drawing.Size(154, 24);
             this.TxtRestockThreshold.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtRestockThreshold.TabIndex = 68;
             this.TxtRestockThreshold.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -498,7 +498,7 @@
             this.TxtQuantity.SelectionLength = 0;
             this.TxtQuantity.SelectionStart = 0;
             this.TxtQuantity.ShortcutsEnabled = true;
-            this.TxtQuantity.Size = new System.Drawing.Size(56, 26);
+            this.TxtQuantity.Size = new System.Drawing.Size(56, 37);
             this.TxtQuantity.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtQuantity.TabIndex = 70;
             this.TxtQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -604,7 +604,7 @@
             this.TxtRemainingStocks.SelectionLength = 0;
             this.TxtRemainingStocks.SelectionStart = 0;
             this.TxtRemainingStocks.ShortcutsEnabled = true;
-            this.TxtRemainingStocks.Size = new System.Drawing.Size(154, 26);
+            this.TxtRemainingStocks.Size = new System.Drawing.Size(154, 24);
             this.TxtRemainingStocks.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtRemainingStocks.TabIndex = 68;
             this.TxtRemainingStocks.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -730,7 +730,7 @@
             this.TxtPrice.SelectionLength = 0;
             this.TxtPrice.SelectionStart = 0;
             this.TxtPrice.ShortcutsEnabled = true;
-            this.TxtPrice.Size = new System.Drawing.Size(154, 26);
+            this.TxtPrice.Size = new System.Drawing.Size(154, 24);
             this.TxtPrice.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtPrice.TabIndex = 64;
             this.TxtPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -834,7 +834,7 @@
             this.TxtCostPerItem.SelectionLength = 0;
             this.TxtCostPerItem.SelectionStart = 0;
             this.TxtCostPerItem.ShortcutsEnabled = true;
-            this.TxtCostPerItem.Size = new System.Drawing.Size(154, 26);
+            this.TxtCostPerItem.Size = new System.Drawing.Size(154, 24);
             this.TxtCostPerItem.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtCostPerItem.TabIndex = 62;
             this.TxtCostPerItem.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -925,7 +925,7 @@
             this.TxtSupplier.SelectionLength = 0;
             this.TxtSupplier.SelectionStart = 0;
             this.TxtSupplier.ShortcutsEnabled = true;
-            this.TxtSupplier.Size = new System.Drawing.Size(154, 26);
+            this.TxtSupplier.Size = new System.Drawing.Size(154, 24);
             this.TxtSupplier.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtSupplier.TabIndex = 60;
             this.TxtSupplier.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1256,7 +1256,7 @@
             this.TxtName.SelectionLength = 0;
             this.TxtName.SelectionStart = 0;
             this.TxtName.ShortcutsEnabled = true;
-            this.TxtName.Size = new System.Drawing.Size(154, 26);
+            this.TxtName.Size = new System.Drawing.Size(154, 24);
             this.TxtName.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtName.TabIndex = 48;
             this.TxtName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1315,6 +1315,9 @@
             // CmbSortBy
             // 
             this.CmbSortBy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CmbSortBy.AutoCompleteCustomSource.AddRange(new string[] {
+            "A-Z",
+            "Z-A"});
             this.CmbSortBy.BackColor = System.Drawing.Color.Transparent;
             this.CmbSortBy.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
             this.CmbSortBy.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));

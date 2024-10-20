@@ -34,6 +34,9 @@ namespace StoreManager
             this.gProc.FncConnectToDatabase();
             StandardView();
             InitializeItemsGrid();
+            this.CmbSize.Items.AddRange(gProc.FncGetDistinctSizes());
+            this.CmbType.Items.AddRange(gProc.FncGetProductTypes());
+            this.CmbTypeInfo.Items.AddRange(gProc.FncGetProductTypes());
         }
 
         private void BtnUploadImg_Click(object sender, EventArgs e)
