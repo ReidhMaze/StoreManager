@@ -94,6 +94,7 @@ namespace StoreManager
             this.Hide();
             mainWindow.ShowDialog();
             this.Show();
+            this.TbUsername.Focus();
         }
 
         private void ClearFields()

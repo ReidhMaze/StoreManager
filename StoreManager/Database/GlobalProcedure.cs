@@ -33,8 +33,10 @@ namespace LaundrySystem
         public DataTable datStoreMgr;
 
         private static int V_Logged_Staff_Id = 1;
+        private static string loggedStaffRole = "Admin";
 
         public int LoggedStaffId { get { return V_Logged_Staff_Id; }  }
+        public string LoggedStaffRole { get { return loggedStaffRole; } }
         public bool EnableDebugging {  get; set; }
 
         public bool FncConnectToDatabase()
@@ -472,7 +474,7 @@ namespace LaundrySystem
                 MessageBox.Show("Error retrieving staff ID: " + ex.Message);
             }
 
-            V_Logged_Staff_Id = v_staff_id;
+            loggedStaffRole = FncGetStaffRoleById(v_staff_id);
 
             return v_staff_id; // Returns the staff ID or -1 if not found
         }
@@ -1465,6 +1467,34 @@ namespace LaundrySystem
             }
         }
 
+        public string FncGetStaffRoleById(int p_id)
+        {
+            string roleType = null;
+
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_staff_role_by_id";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                gProcCmd.Parameters.AddWithValue("@p_id", p_id);
+
+                var result = gProcCmd.ExecuteScalar();
+
+                if (result != null)
+                {
+                    roleType = result.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error retrieving staff role: " + ex.Message);
+            }
+
+            return roleType;
+        }
 
 
     }

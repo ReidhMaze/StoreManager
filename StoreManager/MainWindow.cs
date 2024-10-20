@@ -36,6 +36,7 @@ namespace StoreManager
         private int windowWidth = int.Parse(ConfigurationManager.AppSettings["width"].ToString());
         private int windowHeight = int.Parse(ConfigurationManager.AppSettings["height"].ToString());
         private bool openInFullScreen = bool.Parse(ConfigurationManager.AppSettings["open_in_fullscreen"].ToString());
+        private string loggedStaffRole = "Admin";
 
         public MainWindow()
         {
@@ -54,6 +55,9 @@ namespace StoreManager
 
             this.Size = new Size(windowWidth, windowHeight);
             this.WindowState = (openInFullScreen) ? FormWindowState.Maximized : FormWindowState.Normal;
+            this.loggedStaffRole = globalProcedure.LoggedStaffRole;
+
+            
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
@@ -64,6 +68,23 @@ namespace StoreManager
             analyticsView.Size = this.PnlContent.Size;
             buyView.InitializeCardView();
             buyView.CenterPagination();
+
+            if (loggedStaffRole == "Cashier")
+            {
+                this.BtnInventory.Enabled = false;
+                this.BtnAnalytics.Enabled = false;
+                ShowUserCtrl(buyView);
+            }
+            else if (loggedStaffRole == "Inventory Manager")
+            {
+                this.BtnCashier.Enabled = false;
+                this.BtnAnalytics.Enabled = false;
+                ShowUserCtrl(inventoryView);
+            }
+            else
+            {
+                ShowUserCtrl(buyView);
+            }
         }
 
 

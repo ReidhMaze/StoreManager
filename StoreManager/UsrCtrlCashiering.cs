@@ -148,8 +148,9 @@ namespace StoreManager
 
         private void OnOrderDeleted(object sender, EventArgs e)
         {
+
             int deletedItemId = this.PnlOrdersPanel.DeletedOrder.CartItem.Id;
-            //ClearFilters();
+            ClearFilters();
             ProductDisplayPanel pdpPanel = this.productsAndOrdersLinker.ProductsPanelId[deletedItemId];
             this.PnlProductsPanel.RemoveCartContentId(deletedItemId);
 
