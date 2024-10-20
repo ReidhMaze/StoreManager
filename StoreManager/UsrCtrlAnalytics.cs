@@ -17,6 +17,7 @@ using System.Windows.Forms;
 using LiveCharts.WinForms;
 using LiveCharts.Definitions.Charts;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace StoreManager
 {
@@ -93,8 +94,6 @@ namespace StoreManager
             List<string> convert = list;
 
             List<double> sales = convert.Select(Convert.ToDouble).ToList();
-          
-
 
             LiveCharts.WinForms.CartesianChart cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
             cartesianChart1.Width = pnl.Width;
