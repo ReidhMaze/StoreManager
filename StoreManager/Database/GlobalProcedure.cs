@@ -47,7 +47,7 @@ namespace LaundrySystem
                 servername = "localhost";
                 databasename = "store_manager_db";
                 username = "root";
-                password = "bajed";
+                password = "umtagum";
                 port = "3306";
 
                 strConnection = "Server=" + servername + ";" +
@@ -1196,5 +1196,108 @@ namespace LaundrySystem
                 
             }
         }
+
+        public void ProcGetProductSales(string itemName, BunifuLabel lbl)
+        {
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                this.sqlAdapter = new MySqlDataAdapter();
+                this.datStoreMgr = new DataTable();
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_product_order_count";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+                this.sqlAdapter.SelectCommand = this.sqlCommand;
+                gProcCmd.Parameters.AddWithValue("@p_name", itemName);
+                this.datStoreMgr.Clear();
+                this.sqlAdapter.Fill(this.datStoreMgr);
+
+                DataTable dataTable = this.datStoreMgr;
+                if (dataTable.Rows.Count <= 0)
+                {
+                    lbl.Text = "0";
+                }
+                else
+                {
+                    lbl.Text = dataTable.Rows[0]["product_sales"].ToString();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public void ProcGetTotalCustomers(BunifuLabel lbl)
+        {
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                this.sqlAdapter = new MySqlDataAdapter();
+                this.datStoreMgr = new DataTable();
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_total_customers";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+                this.sqlAdapter.SelectCommand = this.sqlCommand;
+               
+                this.datStoreMgr.Clear();
+                this.sqlAdapter.Fill(this.datStoreMgr);
+
+                DataTable dataTable = this.datStoreMgr;
+                if (dataTable.Rows.Count <= 0)
+                {
+                    lbl.Text = "0";
+                }
+                else
+                {
+                    lbl.Text = dataTable.Rows[0]["id"].ToString();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public void ProcGetTopProducts(BunifuLabel lbl, int row)
+        {
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                this.sqlAdapter = new MySqlDataAdapter();
+                this.datStoreMgr = new DataTable();
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_top_products";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+                this.sqlAdapter.SelectCommand = this.sqlCommand;
+
+                this.datStoreMgr.Clear();
+                this.sqlAdapter.Fill(this.datStoreMgr);
+
+                DataTable dataTable = this.datStoreMgr;
+                
+                
+                lbl.Text = dataTable.Rows[row]["item_name"].ToString();
+                
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+
     }
 }
