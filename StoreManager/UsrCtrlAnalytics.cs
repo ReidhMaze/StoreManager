@@ -14,6 +14,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LiveCharts.WinForms;
+using LiveCharts.Definitions.Charts;
+using System.Globalization;
 
 namespace StoreManager
 {
@@ -34,7 +37,8 @@ namespace StoreManager
             gProc.ProcAddCmbProductSoldItems(cmbProductSold);
             gProc.ProcAddCmbProductSoldItems(cmbProductSales);
             gProc.ProcGetTotalCustomers(lblTotalCustomer);
-            //displayTotalSales();
+            defaultProductSoldSalesValue();
+            defaultGraphValue();
             getTopProducts();
             
 
@@ -84,66 +88,120 @@ namespace StoreManager
         {
 
         }
-        public void addChart(BunifuPanel pnl)
+        public void addChartSales(BunifuPanel pnl, List<String> list, List<string> days, string month)
         {
+            List<string> convert = list;
+
+            List<double> sales = convert.Select(Convert.ToDouble).ToList();
+          
+
 
             LiveCharts.WinForms.CartesianChart cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
             cartesianChart1.Width = pnl.Width;
             cartesianChart1.Height = pnl.Height;
+            cartesianChart1.Dock = DockStyle.Fill;
             cartesianChart1.Visible = false;
             cartesianChart1.BackColor = Color.Transparent;
 
-            cartesianChart1.Anchor.Equals(Left);
-            cartesianChart1.Anchor.Equals(Right);
+          
 
-            cartesianChart1.Series = new SeriesCollection
+            if (sales != null && sales.Count > 0)
             {
-                new LineSeries
+                cartesianChart1.Series = new SeriesCollection
                 {
-                    Title = "Shoes",
-                    Values = new ChartValues<double> {4, 6, 5, 2, 7}
-                },
-                new LineSeries
-                {
-                    Title = "T-Shirt",
-                    Values = new ChartValues<double> {6, 7, 3, 4, 6},
-                    PointGeometry = null
-                },
-                new LineSeries
-                {
-                    Title = "Shorts",
-                    Values = new ChartValues<double> {5, 2, 8, 3},
-                    PointGeometry = DefaultGeometries.Square,
-                    PointGeometrySize = 5
-                 }
-            };
+                   
+                    new LineSeries { 
+                        Title = "Sales",
+                        Values = new ChartValues<double>(sales) }
+                };
+            }
+            else
+            {
+                // Optional: Handle the case where sales data is empty
+                MessageBox.Show("No sales data available for the last 30 days.");
+                return; // Exit the method if there's no data
+            }
+
 
             cartesianChart1.AxisX.Add(new Axis
             {
-                Title = "Month",
-                Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" }
+                Title = month,
+                Labels = days
+
             });
 
             cartesianChart1.AxisY.Add(new Axis
             {
                 Title = "Sales",
-                LabelFormatter = value => value.ToString("C")
+                LabelFormatter = value => value.ToString("C", new CultureInfo("en-PH"))
             });
+
+
 
             cartesianChart1.LegendLocation = LegendLocation.Right;
 
-            //modifying the series collection will animate and update the chart
-            /*    cartesianChart1.Series.Add(new LineSeries
-                {
-                  Values = new ChartValues<double> { 5, 3, 2, 4, 5 },
-                  LineSmoothness = 0, //straight lines, 1 really smooth lines
-                  PointGeometry = System.Windows.Media.Geometry.Parse("m 25 70.36218 20 -28 -20 22 -8 -6 z"),
-                  PointGeometrySize = 50,
-                  PointForeground = System.Windows.Media.Brushes.Gray
-                });*/
+           
 
-            //modifying any series values will also animate and update the chart
-            //cartesianChart1.Series[2].Values.Add(5d);
+            cartesianChart1.DataClick += CartesianChart1OnDataClick;
+
+            pnl.Controls.Clear();
+            pnl.Controls.Add(cartesianChart1);
+            cartesianChart1.Visible = true;
+        }
+
+        public void addChartCustomers(BunifuPanel pnl, List<String> list, List<string> days, string month)
+        {
+            List<string> convert = list;
+
+            List<double> customers = convert.Select(Convert.ToDouble).ToList();
+
+
+
+            LiveCharts.WinForms.CartesianChart cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
+            cartesianChart1.Width = pnl.Width;
+            cartesianChart1.Height = pnl.Height;
+            cartesianChart1.Visible = false;
+            cartesianChart1.Dock = DockStyle.Fill;
+            cartesianChart1.BackColor = Color.Transparent;
+
+
+
+            if (customers != null && customers.Count > 0)
+            {
+                cartesianChart1.Series = new SeriesCollection
+                {
+
+                    new LineSeries {
+                        Title = "Customers",
+                        Values = new ChartValues<double>(customers) }
+                };
+            }
+            else
+            {
+                // Optional: Handle the case where sales data is empty
+                MessageBox.Show("No customers data available for the last 30 days.");
+                return; // Exit the method if there's no data
+            }
+
+
+            cartesianChart1.AxisX.Add(new Axis
+            {
+                Title = month,
+                Labels = days
+
+            });
+
+            cartesianChart1.AxisY.Add(new Axis
+            {
+                Title = "Customers",
+                LabelFormatter = value => value.ToString("N0")
+            });
+
+
+
+            cartesianChart1.LegendLocation = LegendLocation.Right;
+
+
 
             cartesianChart1.DataClick += CartesianChart1OnDataClick;
 
@@ -186,12 +244,7 @@ namespace StoreManager
 
 
 
-        private void btnLoad_Click_1(object sender, EventArgs e)
-        {
-
-            addChart(pnlBottom);
-            addChart(pnlMiddle);
-        }
+      
 
         private void cmbProductSales_SelectedValueChanged_1(object sender, EventArgs e)
         {
@@ -199,10 +252,51 @@ namespace StoreManager
             gProc.ProcGetProductSales(itemName, lblProductSales);
         }
 
+        public void defaultProductSoldSalesValue()
+        {
+            string itemName = gProc.addDefaultProductToProductSoldSales();
+            cmbProductSales.Text = itemName;
+            cmbProductSold.Text = itemName;
+            gProc.ProcGetProductSales(itemName, lblProductSales);
+            gProc.ProcGetProductSoldCount(itemName, lblProductSold);
+        }
         private void cmbProductSold_SelectedValueChanged_1(object sender, EventArgs e)
         {
             string itemName = cmbProductSold.Text;
             gProc.ProcGetProductSoldCount(itemName, lblProductSold);
+        }
+
+        private void cmbDays_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if(cmbDays.SelectedIndex == 0)
+            {
+                addChartSales(pnlMiddle,gProc.FncGetLast30DaysSales(), gProc.FncGetLast30Days(), gProc.FncGetMonth());
+                addChartCustomers(pnlBottom,gProc.FncGetLast30DaysCustomers(), gProc.FncGetLast30Days(), gProc.FncGetMonth());
+              
+                //addChartCustomers(pnlMiddle);
+            }
+            else if(cmbDays.SelectedIndex == 1)
+            {
+                addChartSales(pnlMiddle, gProc.FncGetLast15DaysSales(), gProc.FncGetLast15Days(), gProc.FncGetMonth());
+                addChartCustomers(pnlBottom, gProc.FncGetLast15DaysCustomers(), gProc.FncGetLast15Days(), gProc.FncGetMonth());
+
+            }
+            else
+            {
+                addChartSales(pnlMiddle, gProc.FncGetLast7DaysSales(), gProc.FncGetLast7Days(), gProc.FncGetMonth());
+                addChartCustomers(pnlBottom, gProc.FncGetLast7DaysCustomers(), gProc.FncGetLast7Days(), gProc.FncGetMonth());
+            }
+        }
+
+        public void defaultGraphValue()
+        {
+            cmbDays.Text = "30 days";
+            addChartSales(pnlMiddle, gProc.FncGetLast30DaysSales(), gProc.FncGetLast30Days(), gProc.FncGetMonth());
+            addChartCustomers(pnlBottom, gProc.FncGetLast30DaysCustomers(), gProc.FncGetLast30Days(), gProc.FncGetMonth());
+        }
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

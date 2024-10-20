@@ -133,6 +133,7 @@ namespace StoreManager
         {
             Form settings = new FormSettings();
             settings.ShowDialog();
+            this.buyView.UpdateTax();
         }
     }
 }

@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+using System.Windows.Media.Media3D;
 using Bunifu.UI.WinForms;
 using CustomComponents;
+using LiveCharts.WinForms;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.Mozilla;
 using ReaLTaiizor.Util;
 using StoreObjects;
+using LiveCharts.Wpf;
+using LiveCharts;
 
 namespace LaundrySystem
 {
@@ -38,6 +44,7 @@ namespace LaundrySystem
         public int LoggedStaffId { get { return V_Logged_Staff_Id; }  }
         public string LoggedStaffRole { get { return loggedStaffRole; } }
         public bool EnableDebugging {  get; set; }
+       
 
         public bool FncConnectToDatabase()
         {
@@ -49,6 +56,7 @@ namespace LaundrySystem
                 servername = "localhost";
                 databasename = "store_manager_db";
                 username = "root";
+
                 password = "";
                 port = "3306";
 
@@ -1467,6 +1475,419 @@ namespace LaundrySystem
             }
         }
 
+
+        public string addDefaultProductToProductSoldSales()
+        {
+            MySqlCommand gProcCmd = this.sqlCommand;
+
+            this.sqlAdapter = new MySqlDataAdapter();
+            this.datStoreMgr = new DataTable();
+
+            gProcCmd.Parameters.Clear();
+            gProcCmd.CommandText = "proc_get_top_products";
+            gProcCmd.CommandType = CommandType.StoredProcedure;
+            this.sqlAdapter.SelectCommand = this.sqlCommand;
+
+            this.datStoreMgr.Clear();
+            this.sqlAdapter.Fill(this.datStoreMgr);
+
+            DataTable dataTable = this.datStoreMgr;
+
+
+            return dataTable.Rows[0]["item_name"].ToString();
+
+        }
+
+        public List<String> FncGetLast30DaysSales()
+        {
+            int rowCount = 0;
+            int row = 0;
+            
+            List<string> sales = new List<string>();
+
+
+            MySqlCommand gProcCmd = this.sqlCommand;
+
+            this.sqlAdapter = new MySqlDataAdapter();
+            this.datStoreMgr = new DataTable();
+
+            gProcCmd.Parameters.Clear();
+            gProcCmd.CommandText = "proc_get_last_30_days_sales";
+            gProcCmd.CommandType = CommandType.StoredProcedure;
+            this.sqlAdapter.SelectCommand = this.sqlCommand;
+
+            this.datStoreMgr.Clear();
+            this.sqlAdapter.Fill(this.datStoreMgr);
+
+            DataTable dataTable = this.datStoreMgr;
+
+
+
+            try
+            {
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    rowCount = dataTable.Rows.Count;
+                   
+                    while (row < rowCount )
+                    {
+
+
+                        sales.Add(dataTable.Rows[row]["sales"].ToString());
+
+                        row++;
+                    }
+                }
+                return sales;
+            }
+
+            catch
+            {
+                
+                return sales;
+            }
+
+
+            
+
+        }
+
+        public List<String> FncGetLast15DaysSales()
+        {
+            int rowCount = 0;
+            int row = 0;
+
+            List<string> sales = new List<string>();
+
+
+            MySqlCommand gProcCmd = this.sqlCommand;
+
+            this.sqlAdapter = new MySqlDataAdapter();
+            this.datStoreMgr = new DataTable();
+
+            gProcCmd.Parameters.Clear();
+            gProcCmd.CommandText = "proc_get_last_15_days_sales";
+            gProcCmd.CommandType = CommandType.StoredProcedure;
+            this.sqlAdapter.SelectCommand = this.sqlCommand;
+
+            this.datStoreMgr.Clear();
+            this.sqlAdapter.Fill(this.datStoreMgr);
+
+            DataTable dataTable = this.datStoreMgr;
+
+
+
+            try
+            {
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    rowCount = dataTable.Rows.Count;
+                   
+                    while (row < rowCount)
+                    {
+
+
+                        sales.Add(dataTable.Rows[row]["sales"].ToString());
+
+                        row++;
+                    }
+                }
+                return sales;
+            }
+
+            catch
+            {
+
+                return sales;
+            }
+
+
+
+
+        }
+
+        public List<String> FncGetLast7DaysSales()
+        {
+            int rowCount = 0;
+            int row = 0;
+
+            List<string> sales = new List<string>();
+
+
+            MySqlCommand gProcCmd = this.sqlCommand;
+
+            this.sqlAdapter = new MySqlDataAdapter();
+            this.datStoreMgr = new DataTable();
+
+            gProcCmd.Parameters.Clear();
+            gProcCmd.CommandText = "proc_get_last_7_days_sales";
+            gProcCmd.CommandType = CommandType.StoredProcedure;
+            this.sqlAdapter.SelectCommand = this.sqlCommand;
+
+            this.datStoreMgr.Clear();
+            this.sqlAdapter.Fill(this.datStoreMgr);
+
+            DataTable dataTable = this.datStoreMgr;
+
+
+
+            try
+            {
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    rowCount = dataTable.Rows.Count;
+                   
+                    while (row < rowCount)
+                    {
+
+
+                        sales.Add(dataTable.Rows[row]["sales"].ToString());
+
+                        row++;
+                    }
+                }
+                return sales;
+            }
+
+            catch
+            {
+
+                return sales;
+            }
+
+
+
+
+        }
+
+
+
+        public List<String> FncGetLast30Days()
+        {
+            int rowCount = 0;
+            int row = 0;
+
+            List<string> date = new List<string>();
+
+
+            MySqlCommand gProcCmd = this.sqlCommand;
+
+            this.sqlAdapter = new MySqlDataAdapter();
+            this.datStoreMgr = new DataTable();
+
+            gProcCmd.Parameters.Clear();
+            gProcCmd.CommandText = "proc_get_last_30_days_sales";
+            gProcCmd.CommandType = CommandType.StoredProcedure;
+            this.sqlAdapter.SelectCommand = this.sqlCommand;
+
+            this.datStoreMgr.Clear();
+            this.sqlAdapter.Fill(this.datStoreMgr);
+
+            DataTable dataTable = this.datStoreMgr;
+
+            try
+            {
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    rowCount = dataTable.Rows.Count;
+                   
+                    while (row < rowCount)
+                    {
+
+
+                        date.Add(dataTable.Rows[row]["formatDate"].ToString());
+
+                        row++;
+                    }
+                }
+                return date;
+            }
+
+            catch
+            {
+
+                return date;
+            }
+
+        }
+        public List<String> FncGetLast15Days()
+        {
+            int rowCount = 0;
+            int row = 0;
+
+            List<string> date = new List<string>();
+
+
+            MySqlCommand gProcCmd = this.sqlCommand;
+
+            this.sqlAdapter = new MySqlDataAdapter();
+            this.datStoreMgr = new DataTable();
+
+            gProcCmd.Parameters.Clear();
+            gProcCmd.CommandText = "proc_get_last_15_days_sales";
+            gProcCmd.CommandType = CommandType.StoredProcedure;
+            this.sqlAdapter.SelectCommand = this.sqlCommand;
+
+            this.datStoreMgr.Clear();
+            this.sqlAdapter.Fill(this.datStoreMgr);
+
+            DataTable dataTable = this.datStoreMgr;
+
+            try
+            {
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    rowCount = dataTable.Rows.Count;
+                   
+                    while (row < rowCount)
+                    {
+
+
+                        date.Add(dataTable.Rows[row]["formatDate"].ToString());
+
+                        row++;
+                    }
+                }
+                return date;
+            }
+
+            catch
+            {
+
+                return date;
+            }
+
+        }
+
+        public List<String> FncGetLast7Days()
+        {
+            int rowCount = 0;
+            int row = 0;
+
+            List<string> date = new List<string>();
+
+
+            MySqlCommand gProcCmd = this.sqlCommand;
+
+            this.sqlAdapter = new MySqlDataAdapter();
+            this.datStoreMgr = new DataTable();
+
+            gProcCmd.Parameters.Clear();
+            gProcCmd.CommandText = "proc_get_last_7_days_sales";
+            gProcCmd.CommandType = CommandType.StoredProcedure;
+            this.sqlAdapter.SelectCommand = this.sqlCommand;
+
+            this.datStoreMgr.Clear();
+            this.sqlAdapter.Fill(this.datStoreMgr);
+
+            DataTable dataTable = this.datStoreMgr;
+
+            try
+            {
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    rowCount = dataTable.Rows.Count;
+                   
+                    while (row < rowCount)
+                    {
+
+
+                        date.Add(dataTable.Rows[row]["formatDate"].ToString());
+
+                        row++;
+                    }
+                }
+                return date;
+            }
+
+            catch
+            {
+
+                return date;
+            }
+
+        }
+
+        public string FncGetMonth()
+        {
+            MySqlCommand gProcCmd = this.sqlCommand;
+
+            this.sqlAdapter = new MySqlDataAdapter();
+            this.datStoreMgr = new DataTable();
+
+            gProcCmd.Parameters.Clear();
+            gProcCmd.CommandText = "proc_get_current_month";
+            gProcCmd.CommandType = CommandType.StoredProcedure;
+            this.sqlAdapter.SelectCommand = this.sqlCommand;
+
+            this.datStoreMgr.Clear();
+            this.sqlAdapter.Fill(this.datStoreMgr);
+
+            DataTable dataTable = this.datStoreMgr;
+
+           return dataTable.Rows[0]["CurrentMonth"].ToString();
+
+        }
+
+        public List<String> FncGetLast30DaysCustomers()
+        {
+            int rowCount = 0;
+            int row = 0;
+
+            List<string> customers = new List<string>();
+
+
+            MySqlCommand gProcCmd = this.sqlCommand;
+
+            this.sqlAdapter = new MySqlDataAdapter();
+            this.datStoreMgr = new DataTable();
+
+            gProcCmd.Parameters.Clear();
+            gProcCmd.CommandText = "proc_get_last_30_days_sales";
+            gProcCmd.CommandType = CommandType.StoredProcedure;
+            this.sqlAdapter.SelectCommand = this.sqlCommand;
+
+            this.datStoreMgr.Clear();
+            this.sqlAdapter.Fill(this.datStoreMgr);
+
+            DataTable dataTable = this.datStoreMgr;
+
+
+
+            try
+            {
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    rowCount = dataTable.Rows.Count;
+                    
+                    while (row < rowCount)
+                    {
+
+
+                        customers.Add(dataTable.Rows[row]["customers"].ToString());
+
+                        row++;
+                    }
+                }
+                return customers;
+            }catch
+            {
+
+                return customers;
+            }
+
+
+
+
+        }
+
         public string FncGetStaffRoleById(int p_id)
         {
             string roleType = null;
@@ -1496,6 +1917,119 @@ namespace LaundrySystem
             return roleType;
         }
 
+
+            
+
+
+        public List<String> FncGetLast15DaysCustomers()
+        {
+            int rowCount = 0;
+            int row = 0;
+
+            List<string> customers = new List<string>();
+
+
+            MySqlCommand gProcCmd = this.sqlCommand;
+
+            this.sqlAdapter = new MySqlDataAdapter();
+            this.datStoreMgr = new DataTable();
+
+            gProcCmd.Parameters.Clear();
+            gProcCmd.CommandText = "proc_get_last_15_days_sales";
+            gProcCmd.CommandType = CommandType.StoredProcedure;
+            this.sqlAdapter.SelectCommand = this.sqlCommand;
+
+            this.datStoreMgr.Clear();
+            this.sqlAdapter.Fill(this.datStoreMgr);
+
+            DataTable dataTable = this.datStoreMgr;
+
+
+
+            try
+            {
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    rowCount = dataTable.Rows.Count;
+                    
+                    while (row < rowCount)
+                    {
+
+
+                        customers.Add(dataTable.Rows[row]["customers"].ToString());
+
+                        row++;
+                    }
+                }
+                return customers;
+            }
+
+            catch
+            {
+
+                return customers;
+            }
+
+
+
+
+        }
+
+        public List<String> FncGetLast7DaysCustomers()
+        {
+            int rowCount = 0;
+            int row = 0;
+
+            List<string> customers = new List<string>();
+
+
+            MySqlCommand gProcCmd = this.sqlCommand;
+
+            this.sqlAdapter = new MySqlDataAdapter();
+            this.datStoreMgr = new DataTable();
+
+            gProcCmd.Parameters.Clear();
+            gProcCmd.CommandText = "proc_get_last_7_days_sales";
+            gProcCmd.CommandType = CommandType.StoredProcedure;
+            this.sqlAdapter.SelectCommand = this.sqlCommand;
+
+            this.datStoreMgr.Clear();
+            this.sqlAdapter.Fill(this.datStoreMgr);
+
+            DataTable dataTable = this.datStoreMgr;
+
+
+
+            try
+            {
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    rowCount = dataTable.Rows.Count;
+                    
+                    while (row < rowCount)
+                    {
+
+
+                        customers.Add(dataTable.Rows[row]["customers"].ToString());
+
+                        row++;
+                    }
+                }
+                return customers;
+            }
+
+            catch
+            {
+
+                return customers;
+            }
+
+
+
+
+        }
 
     }
 }
