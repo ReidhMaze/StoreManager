@@ -32,9 +32,9 @@ namespace LaundrySystem
         public MySqlDataAdapter sqlAdapter;
         public DataTable datStoreMgr;
 
-        private int v_logged_staff_id = 1;
+        private static int V_Logged_Staff_Id = 1;
 
-        public int LoggedStaffId { get { return v_logged_staff_id; }  }
+        public int LoggedStaffId { get { return V_Logged_Staff_Id; }  }
         public bool EnableDebugging {  get; set; }
 
         public bool FncConnectToDatabase()
@@ -260,7 +260,7 @@ namespace LaundrySystem
             }
 
             ProcRestockItem(v_item_id, p_qty);
-            ProcAddInventoryAdded(v_item_id, p_qty, p_cost_per_item, v_supplier_id, this.v_logged_staff_id);
+            ProcAddInventoryAdded(v_item_id, p_qty, p_cost_per_item, v_supplier_id, V_Logged_Staff_Id);
 
             if (EnableDebugging) MessageBox.Show("Item restocked successfuly");
         }
@@ -442,6 +442,42 @@ namespace LaundrySystem
             return list;
         }
 
+        public int FncGetStaffId(string p_username, string p_password)
+        {
+            int v_staff_id = -1; // Default value if not found
+
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_staff_id"; // Name of the stored procedure
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Add parameters
+                gProcCmd.Parameters.AddWithValue("@p_username", p_username);
+                gProcCmd.Parameters.AddWithValue("@p_password", p_password);
+
+                // Execute and get the result
+                var result = gProcCmd.ExecuteScalar();
+
+                // Check if result is not null and assign it to v_staff_id
+                if (result != null)
+                {
+                    v_staff_id = Convert.ToInt32(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error retrieving staff ID: " + ex.Message);
+            }
+
+            V_Logged_Staff_Id = v_staff_id;
+
+            return v_staff_id; // Returns the staff ID or -1 if not found
+        }
+
+
 
         public string[] FncGetDistinctSizes()
         {
@@ -542,7 +578,7 @@ namespace LaundrySystem
                 gProcCmd.CommandText = "proc_add_order";
                 gProcCmd.CommandType = CommandType.StoredProcedure;
                 gProcCmd.Parameters.AddWithValue("@p_tax_rate_id", v_tax_rate_id);
-                gProcCmd.Parameters.AddWithValue("@p_staff_id", this.v_logged_staff_id);
+                gProcCmd.Parameters.AddWithValue("@p_staff_id", V_Logged_Staff_Id);
                 gProcCmd.ExecuteNonQuery();
                 if (EnableDebugging) MessageBox.Show("Order saved successfully");
             }
@@ -926,7 +962,7 @@ namespace LaundrySystem
                 double v_price_per_item = cartItem.Price;
 
                 ProcAddOrderProduct(v_order_id, v_product_id, v_quantity, v_cost_per_item, v_price_per_item);
-                ProcDecreaseItemStock(v_item_code, v_order_id, v_quantity, v_logged_staff_id);
+                ProcDecreaseItemStock(v_item_code, v_order_id, v_quantity, V_Logged_Staff_Id);
             }
 
             ProcInitializeOrderTotal(v_order_id);
@@ -1035,7 +1071,7 @@ namespace LaundrySystem
                 gProcCmd.Parameters.AddWithValue("@p_item_code", p_item_code);
                 gProcCmd.Parameters.AddWithValue("@p_order_id", null);
                 gProcCmd.Parameters.AddWithValue("@p_qty_removed", p_qty_removed);
-                gProcCmd.Parameters.AddWithValue("@p_staff_id", this.v_logged_staff_id);
+                gProcCmd.Parameters.AddWithValue("@p_staff_id", V_Logged_Staff_Id);
 
                 gProcCmd.ExecuteNonQuery();
 
