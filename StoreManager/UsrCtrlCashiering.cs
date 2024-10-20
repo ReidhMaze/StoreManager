@@ -144,7 +144,7 @@ namespace StoreManager
             if(cartItems.Count == 0) 
             {
                 System.Windows.Forms.MessageBox.Show("Order is Empty");
-                return; 
+                return;
             }
 
             checkoutDialog = new FormCheckoutDialog(cartItems);
@@ -230,6 +230,19 @@ namespace StoreManager
         {
             this.itemType = CmbType.Text;
             SearchAndFilter(itemName, itemSize, itemType, order);
+        }
+
+        public OrdersPanel PanelOrdersPanel
+        {
+            get { return this.PnlOrdersPanel; }
+        }
+
+        public void UpdateTax()
+        {
+            double latestTaxRate = gProc.FncGetLatestTaxRate();
+            this.PnlOrdersPanel.TaxRate = latestTaxRate;
+            this.LblTax.Text = "VAT (" + (int)(latestTaxRate * 100) + "%)";
+            PnlOrdersPanel.ClearOrders();
         }
     }
 }

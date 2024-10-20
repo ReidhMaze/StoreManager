@@ -1,4 +1,5 @@
-﻿using LaundrySystem;
+﻿using CustomComponents;
+using LaundrySystem;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -66,6 +67,7 @@ namespace StoreManager
 
             this.TbTaxRateIn.Text = "";
             this.taxInput = 0;
+
 
         }
     }
