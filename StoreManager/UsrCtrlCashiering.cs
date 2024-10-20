@@ -59,12 +59,14 @@ namespace StoreManager
 
             this.PnlOrdersPanel.InitializeCheckoutLabels(this.LblTotalOutput, this.LblTaxOutput, this.LblSubtotalOutput);
             this.CmbSizes.Items.AddRange(gProc.FncGetDistinctSizes());
+            this.CmbOrder.SelectedIndex = 0;
             UpdatePaginationText();
         }
 
         public void BtnPdpClicked(object sender, EventArgs e)
         {
             ProductDisplayPanel pdpPressed = productsAndOrdersLinker.GetProdDisplayPanel(sender.GetHashCode());
+            this.PnlProductsPanel.AddCartContentId(pdpPressed.Item.Id);
             this.PnlOrdersPanel.AddOrder(pdpPressed.Item.ToCartItem());
             this.PnlOrdersPanel.UpdateCheckoutLabels();
             pdpPressed.DisableButton();
@@ -147,8 +149,10 @@ namespace StoreManager
         private void OnOrderDeleted(object sender, EventArgs e)
         {
             int deletedItemId = this.PnlOrdersPanel.DeletedOrder.CartItem.Id;
-            ClearFilters();
+            //ClearFilters();
             ProductDisplayPanel pdpPanel = this.productsAndOrdersLinker.ProductsPanelId[deletedItemId];
+            this.PnlProductsPanel.RemoveCartContentId(deletedItemId);
+
 
             this.PnlOrdersPanel.DeletedOrder = null;
 

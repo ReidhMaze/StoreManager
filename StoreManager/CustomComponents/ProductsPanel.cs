@@ -11,6 +11,7 @@ using StoreObjects;
 using StoreManager;
 using StoreManager.Icons;
 using System.IO;
+using Org.BouncyCastle.Pqc.Crypto.Lms;
 //using ReaLTaiizor.Controls;
 
 namespace CustomComponents
@@ -183,6 +184,7 @@ namespace CustomComponents
         private List<ProductDisplayPanel> pdpDisplays = new List<ProductDisplayPanel>();
         private List<Item> items;
         private EventHandler pdpEventHandler = null;
+        private List<int> cartContententIds = new List<int>();
 
         int margin = 5;
         int xLoc = 0;
@@ -273,10 +275,12 @@ namespace CustomComponents
 
             for (int i = 0; i < cap && ((i + starting) < this.items.Count()); i++)
             {
-                
+                int itemId;   
                 this.pdpDisplays[i].Item = items[i + starting];
+                itemId = this.pdpDisplays[i].Item.Id;
                 this.pdpDisplays[i].InitializeImage();
-                if (this.pdpDisplays[i].Item.CurrentStocks == 0) 
+                this.pdpDisplays[i].EnableButton();
+                if (this.pdpDisplays[i].Item.CurrentStocks == 0 || this.cartContententIds.Contains(itemId)) 
                 {
                     this.pdpDisplays[i].DisableButton();
                 }
@@ -287,6 +291,16 @@ namespace CustomComponents
 
             this.Refresh();
             this.Visible = true;
+        }
+
+        public void AddCartContentId(int id)
+        {
+            this.cartContententIds.Add(id);
+        }
+
+        public void RemoveCartContentId(int id)
+        {
+            this.cartContententIds.Remove(id);
         }
 
         //public void ArrangePdpPanels()
