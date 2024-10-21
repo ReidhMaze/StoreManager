@@ -101,6 +101,7 @@ namespace StoreManager
                         }
                         else
                         {
+                            return;
                         }
                     }
                 }
@@ -127,6 +128,7 @@ namespace StoreManager
                         }
                         else
                         {
+                            return;
                         }
                     }
                 }
@@ -153,6 +155,7 @@ namespace StoreManager
                         }
                         else
                         {
+                            return;
                         }
                     }
                 }
@@ -168,6 +171,16 @@ namespace StoreManager
 
                     int qtyRemoved = int.Parse(this.TxtQuantity.Text);
 
+                    if (qtyRemoved > this.selectedItem.CurrentStocks)
+                    {
+                        qtyRemoved = this.selectedItem.CurrentStocks;
+                    }
+
+                    if (qtyRemoved == 0)
+                    {
+                        MessageBox.Show("No stock to remove");
+                    }
+
                     var confirmDispose = MessageBox.Show("Are you sure you want to dispose " + qtyRemoved + " stock/s of this product?", "Confirm Restock", MessageBoxButtons.YesNo);
 
 
@@ -176,6 +189,10 @@ namespace StoreManager
                         this.gProc.ProcDecreaseItemStock(this.selectedItem.ItemCode, qtyRemoved);
                         StandardView(true);
                         disposeStock = false;
+                    }
+                    else
+                    {
+                        return;
                     }
 
                     
@@ -197,6 +214,10 @@ namespace StoreManager
                         this.gProc.ProcDeleteItemById(this.selectedItem.Id);
                         StandardView(true);
                         removeProduct = false;
+                    }
+                    else
+                    {
+                        return;
                     }
 
                 }
@@ -314,6 +335,7 @@ namespace StoreManager
 
             for (int i = 0; i < items.Count; i++)
             {
+                //this.DataGridItems.Rows[i]
                 this.rowId.Add(i, items[i]);
                 this.DataGridItems.Rows[i].Cells[0].Value = items[i].Name;              // Name
                 this.DataGridItems.Rows[i].Cells[1].Value = items[i].ItemCode;          // Item Code
