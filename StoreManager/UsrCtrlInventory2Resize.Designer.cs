@@ -1817,7 +1817,8 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DataGridItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.DataGridItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridItems.ColumnHeadersHeight = 45;
+            this.DataGridItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DataGridItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.item_name,
             this.item_code,
