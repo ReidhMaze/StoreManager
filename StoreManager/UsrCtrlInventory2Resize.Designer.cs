@@ -890,7 +890,7 @@
             this.TxtRestockThreshold.AnimationSpeed = 1;
             this.TxtRestockThreshold.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.TxtRestockThreshold.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.TxtRestockThreshold.AutoSizeHeight = true;
+            this.TxtRestockThreshold.AutoSizeHeight = false;
             this.TxtRestockThreshold.BackColor = System.Drawing.Color.Transparent;
             this.TxtRestockThreshold.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TxtRestockThreshold.BackgroundImage")));
             this.TxtRestockThreshold.BorderColorActive = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
@@ -948,7 +948,7 @@
             this.TxtRestockThreshold.SelectionLength = 0;
             this.TxtRestockThreshold.SelectionStart = 0;
             this.TxtRestockThreshold.ShortcutsEnabled = true;
-            this.TxtRestockThreshold.Size = new System.Drawing.Size(154, 37);
+            this.TxtRestockThreshold.Size = new System.Drawing.Size(154, 26);
             this.TxtRestockThreshold.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtRestockThreshold.TabIndex = 12;
             this.TxtRestockThreshold.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1074,7 +1074,7 @@
             this.TxtRemainingStocks.AnimationSpeed = 1;
             this.TxtRemainingStocks.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.TxtRemainingStocks.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.TxtRemainingStocks.AutoSizeHeight = true;
+            this.TxtRemainingStocks.AutoSizeHeight = false;
             this.TxtRemainingStocks.BackColor = System.Drawing.Color.Transparent;
             this.TxtRemainingStocks.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TxtRemainingStocks.BackgroundImage")));
             this.TxtRemainingStocks.BorderColorActive = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
@@ -1132,7 +1132,7 @@
             this.TxtRemainingStocks.SelectionLength = 0;
             this.TxtRemainingStocks.SelectionStart = 0;
             this.TxtRemainingStocks.ShortcutsEnabled = true;
-            this.TxtRemainingStocks.Size = new System.Drawing.Size(154, 37);
+            this.TxtRemainingStocks.Size = new System.Drawing.Size(154, 26);
             this.TxtRemainingStocks.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtRemainingStocks.TabIndex = 13;
             this.TxtRemainingStocks.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1198,7 +1198,7 @@
             this.TxtPrice.AnimationSpeed = 1;
             this.TxtPrice.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.TxtPrice.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.TxtPrice.AutoSizeHeight = true;
+            this.TxtPrice.AutoSizeHeight = false;
             this.TxtPrice.BackColor = System.Drawing.Color.Transparent;
             this.TxtPrice.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TxtPrice.BackgroundImage")));
             this.TxtPrice.BorderColorActive = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
@@ -1256,7 +1256,7 @@
             this.TxtPrice.SelectionLength = 0;
             this.TxtPrice.SelectionStart = 0;
             this.TxtPrice.ShortcutsEnabled = true;
-            this.TxtPrice.Size = new System.Drawing.Size(154, 37);
+            this.TxtPrice.Size = new System.Drawing.Size(154, 26);
             this.TxtPrice.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtPrice.TabIndex = 10;
             this.TxtPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1302,7 +1302,7 @@
             this.TxtCostPerItem.AnimationSpeed = 1;
             this.TxtCostPerItem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.TxtCostPerItem.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.TxtCostPerItem.AutoSizeHeight = true;
+            this.TxtCostPerItem.AutoSizeHeight = false;
             this.TxtCostPerItem.BackColor = System.Drawing.Color.Transparent;
             this.TxtCostPerItem.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TxtCostPerItem.BackgroundImage")));
             this.TxtCostPerItem.BorderColorActive = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
@@ -1360,7 +1360,7 @@
             this.TxtCostPerItem.SelectionLength = 0;
             this.TxtCostPerItem.SelectionStart = 0;
             this.TxtCostPerItem.ShortcutsEnabled = true;
-            this.TxtCostPerItem.Size = new System.Drawing.Size(154, 37);
+            this.TxtCostPerItem.Size = new System.Drawing.Size(154, 26);
             this.TxtCostPerItem.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtCostPerItem.TabIndex = 11;
             this.TxtCostPerItem.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1393,7 +1393,7 @@
             this.TxtSupplier.AnimationSpeed = 1;
             this.TxtSupplier.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.TxtSupplier.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.TxtSupplier.AutoSizeHeight = true;
+            this.TxtSupplier.AutoSizeHeight = false;
             this.TxtSupplier.BackColor = System.Drawing.Color.Transparent;
             this.TxtSupplier.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TxtSupplier.BackgroundImage")));
             this.TxtSupplier.BorderColorActive = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
@@ -1451,7 +1451,7 @@
             this.TxtSupplier.SelectionLength = 0;
             this.TxtSupplier.SelectionStart = 0;
             this.TxtSupplier.ShortcutsEnabled = true;
-            this.TxtSupplier.Size = new System.Drawing.Size(154, 37);
+            this.TxtSupplier.Size = new System.Drawing.Size(154, 26);
             this.TxtSupplier.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtSupplier.TabIndex = 9;
             this.TxtSupplier.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1724,7 +1724,7 @@
             this.TxtName.AnimationSpeed = 1;
             this.TxtName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.TxtName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.TxtName.AutoSizeHeight = true;
+            this.TxtName.AutoSizeHeight = false;
             this.TxtName.BackColor = System.Drawing.Color.Transparent;
             this.TxtName.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TxtName.BackgroundImage")));
             this.TxtName.BorderColorActive = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
@@ -1782,7 +1782,7 @@
             this.TxtName.SelectionLength = 0;
             this.TxtName.SelectionStart = 0;
             this.TxtName.ShortcutsEnabled = true;
-            this.TxtName.Size = new System.Drawing.Size(154, 37);
+            this.TxtName.Size = new System.Drawing.Size(154, 26);
             this.TxtName.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtName.TabIndex = 7;
             this.TxtName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
