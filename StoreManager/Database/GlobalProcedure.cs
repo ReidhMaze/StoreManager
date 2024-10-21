@@ -451,6 +451,66 @@ namespace LaundrySystem
             return list;
         }
 
+        public List<Item> FncGetFilteredItems(string pItemName)
+        {
+            List<Item> itemList = new List<Item>();
+
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                this.sqlAdapter = new MySqlDataAdapter();
+                this.datStoreMgr = new DataTable();
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_select_filtered_items"; // Updated procedure name
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Add the parameter for item_name
+                gProcCmd.Parameters.AddWithValue("p_item_name", pItemName);
+
+                this.sqlAdapter.SelectCommand = gProcCmd;
+                this.datStoreMgr.Clear();
+                this.sqlAdapter.Fill(this.datStoreMgr);
+
+                if (this.datStoreMgr.Rows.Count > 0)
+                {
+                    foreach (DataRow row in this.datStoreMgr.Rows)
+                    {
+                        int id = int.Parse(row["id"].ToString());
+                        int itemCode = int.Parse(row["item_code"].ToString());
+                        string itemName = row["item_name"].ToString();
+                        double price = double.Parse(row["price"].ToString());
+                        double costPerItem = double.Parse(row["cost_per_item"].ToString());
+                        string size = row["size"].ToString();
+                        string type = row["type"].ToString();
+                        int currentStocks = int.Parse(row["current_stocks"].ToString());
+                        int restockThreshold = int.Parse(row["restock_threshold"].ToString());
+                        string supplierName = row["supplier_name"].ToString();
+                        string imgLocation = row["img_name"].ToString();
+
+                        // Create a new Item object using the constructor
+                        Item item = new Item(id, itemCode, itemName, price, costPerItem, size, type, currentStocks, restockThreshold, supplierName, imgLocation);
+                        itemList.Add(item);
+                    }
+                }
+                else
+                {
+                    //MessageBox.Show("No data found.");
+                }
+
+                ClearData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return itemList;
+        }
+
+
+
         public int FncGetStaffId(string p_username, string p_password)
         {
             int v_staff_id = -1; // Default value if not found
@@ -1084,7 +1144,7 @@ namespace LaundrySystem
 
                 gProcCmd.ExecuteNonQuery();
 
-                if (EnableDebugging) MessageBox.Show("Item removed successfully");
+                if (EnableDebugging) MessageBox.Show("Item stock removed successfully");
             }
             catch (Exception ex)
             {
