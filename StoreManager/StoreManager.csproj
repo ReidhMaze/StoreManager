@@ -185,6 +185,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UsrCtrlAnalytics2.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -221,6 +226,12 @@
     <Compile Include="UsrCtrlInventory2.Designer.cs">
       <DependentUpon>UsrCtrlInventory2.cs</DependentUpon>
     </Compile>
+    <Compile Include="UsrCtrlStaff.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UsrCtrlStaff.Designer.cs">
+      <DependentUpon>UsrCtrlStaff.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CustomComponents\ProductsPanel.resx">
       <DependentUpon>ProductsPanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -238,14 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="UsrCtrlAnalytics2.resx">
       <DependentUpon>UsrCtrlAnalytics2.cs</DependentUpon>
     </EmbeddedResource>
@@ -263,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UsrCtrlInventory2.resx">
       <DependentUpon>UsrCtrlInventory2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsrCtrlStaff.resx">
+      <DependentUpon>UsrCtrlStaff.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Config\Tax.json" />
     <None Include="packages.config" />
@@ -292,8 +301,14 @@
     <None Include="Resources\stock_icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\user.png" />
     <None Include="Resources\no-image_placeholder.jpg" />
+    <None Include="Resources\barchart3.png" />
+    <None Include="Resources\customers.png" />
+    <None Include="Resources\report.png" />
     <Content Include="Resources\search_icon.png" />
+    <None Include="Resources\tag.png" />
+    <None Include="Resources\shoes.png" />
     <Content Include="Resources\upload_icon.png" />
   </ItemGroup>
   <ItemGroup>
