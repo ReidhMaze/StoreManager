@@ -117,8 +117,8 @@
             this.BtnAddProduct = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.BtnRestock = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.materialCard1 = new ReaLTaiizor.Controls.MaterialCard();
-            this.ofdPic = new System.Windows.Forms.OpenFileDialog();
             this.TbSearch = new CustomComponents.CustomMaterialMaskedTextBox();
+            this.ofdPic = new System.Windows.Forms.OpenFileDialog();
             this.PnlContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridItems)).BeginInit();
             this.PnlItemInfo.SuspendLayout();
@@ -154,8 +154,12 @@
             // DataGridItems
             // 
             this.DataGridItems.AllowCustomTheming = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(223)))), ((int)(((byte)(223)))));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            this.DataGridItems.AllowUserToAddRows = false;
+            this.DataGridItems.AllowUserToDeleteRows = false;
+            this.DataGridItems.AllowUserToResizeColumns = false;
+            this.DataGridItems.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             this.DataGridItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DataGridItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -165,14 +169,15 @@
             this.DataGridItems.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DataGridItems.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Teal;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DataGridItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DataGridItems.ColumnHeadersHeight = 40;
+            this.DataGridItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DataGridItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.item_name,
             this.item_code,
@@ -183,91 +188,104 @@
             this.current_stocks,
             this.supplier_name,
             this.restock_threshold});
-            this.DataGridItems.CurrentTheme.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(223)))), ((int)(((byte)(223)))));
+            this.DataGridItems.CurrentTheme.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.DataGridItems.CurrentTheme.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
-            this.DataGridItems.CurrentTheme.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.DataGridItems.CurrentTheme.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(178)))), ((int)(((byte)(178)))));
-            this.DataGridItems.CurrentTheme.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.White;
-            this.DataGridItems.CurrentTheme.BackColor = System.Drawing.Color.Teal;
-            this.DataGridItems.CurrentTheme.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(216)))), ((int)(((byte)(216)))));
-            this.DataGridItems.CurrentTheme.HeaderStyle.BackColor = System.Drawing.Color.Teal;
+            this.DataGridItems.CurrentTheme.AlternatingRowsStyle.ForeColor = System.Drawing.Color.White;
+            this.DataGridItems.CurrentTheme.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(117)))), ((int)(((byte)(119)))));
+            this.DataGridItems.CurrentTheme.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            this.DataGridItems.CurrentTheme.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
+            this.DataGridItems.CurrentTheme.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(56)))), ((int)(((byte)(62)))));
+            this.DataGridItems.CurrentTheme.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
             this.DataGridItems.CurrentTheme.HeaderStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 11.75F, System.Drawing.FontStyle.Bold);
             this.DataGridItems.CurrentTheme.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.DataGridItems.CurrentTheme.HeaderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.DataGridItems.CurrentTheme.HeaderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.DataGridItems.CurrentTheme.HeaderStyle.SelectionForeColor = System.Drawing.Color.White;
             this.DataGridItems.CurrentTheme.Name = null;
-            this.DataGridItems.CurrentTheme.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
+            this.DataGridItems.CurrentTheme.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
             this.DataGridItems.CurrentTheme.RowsStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
-            this.DataGridItems.CurrentTheme.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.DataGridItems.CurrentTheme.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(178)))), ((int)(((byte)(178)))));
-            this.DataGridItems.CurrentTheme.RowsStyle.SelectionForeColor = System.Drawing.Color.White;
+            this.DataGridItems.CurrentTheme.RowsStyle.ForeColor = System.Drawing.Color.White;
+            this.DataGridItems.CurrentTheme.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(117)))), ((int)(((byte)(119)))));
+            this.DataGridItems.CurrentTheme.RowsStyle.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            this.DataGridItems.Cursor = System.Windows.Forms.Cursors.Hand;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(41)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(178)))), ((int)(((byte)(178)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(117)))), ((int)(((byte)(119)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DataGridItems.DefaultCellStyle = dataGridViewCellStyle3;
             this.DataGridItems.EnableHeadersVisualStyles = false;
-            this.DataGridItems.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(216)))), ((int)(((byte)(216)))));
-            this.DataGridItems.HeaderBackColor = System.Drawing.Color.Teal;
+            this.DataGridItems.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(56)))), ((int)(((byte)(62)))));
+            this.DataGridItems.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(16)))), ((int)(((byte)(18)))));
             this.DataGridItems.HeaderBgColor = System.Drawing.Color.Empty;
             this.DataGridItems.HeaderForeColor = System.Drawing.Color.White;
             this.DataGridItems.Location = new System.Drawing.Point(20, 275);
+            this.DataGridItems.MultiSelect = false;
             this.DataGridItems.Name = "DataGridItems";
+            this.DataGridItems.ReadOnly = true;
             this.DataGridItems.RowHeadersVisible = false;
             this.DataGridItems.RowTemplate.Height = 40;
             this.DataGridItems.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.DataGridItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridItems.Size = new System.Drawing.Size(1026, 349);
             this.DataGridItems.TabIndex = 21;
-            this.DataGridItems.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Teal;
+            this.DataGridItems.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Dark;
+            this.DataGridItems.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridItems_CellClick);
             // 
             // item_name
             // 
             this.item_name.HeaderText = "Name";
             this.item_name.Name = "item_name";
+            this.item_name.ReadOnly = true;
             // 
             // item_code
             // 
             this.item_code.HeaderText = "Item Code";
             this.item_code.Name = "item_code";
+            this.item_code.ReadOnly = true;
             // 
             // price
             // 
             this.price.HeaderText = "Price";
             this.price.Name = "price";
+            this.price.ReadOnly = true;
             // 
             // cost_per_item
             // 
             this.cost_per_item.HeaderText = "Cost Per Item";
             this.cost_per_item.Name = "cost_per_item";
+            this.cost_per_item.ReadOnly = true;
             // 
             // size
             // 
             this.size.HeaderText = "Size";
             this.size.Name = "size";
+            this.size.ReadOnly = true;
             // 
             // type
             // 
             this.type.HeaderText = "Type";
             this.type.Name = "type";
+            this.type.ReadOnly = true;
             // 
             // current_stocks
             // 
             this.current_stocks.HeaderText = "Current Stocks";
             this.current_stocks.Name = "current_stocks";
+            this.current_stocks.ReadOnly = true;
             // 
             // supplier_name
             // 
             this.supplier_name.HeaderText = "Supplier Name";
             this.supplier_name.Name = "supplier_name";
+            this.supplier_name.ReadOnly = true;
             // 
             // restock_threshold
             // 
             this.restock_threshold.HeaderText = "Restock Threshold";
             this.restock_threshold.Name = "restock_threshold";
+            this.restock_threshold.ReadOnly = true;
             // 
             // PnlItemInfo
             // 
@@ -419,7 +437,7 @@
             this.TxtRestockThreshold.SelectionLength = 0;
             this.TxtRestockThreshold.SelectionStart = 0;
             this.TxtRestockThreshold.ShortcutsEnabled = true;
-            this.TxtRestockThreshold.Size = new System.Drawing.Size(154, 28);
+            this.TxtRestockThreshold.Size = new System.Drawing.Size(154, 26);
             this.TxtRestockThreshold.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtRestockThreshold.TabIndex = 12;
             this.TxtRestockThreshold.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -497,7 +515,7 @@
             this.TxtQuantity.SelectionLength = 0;
             this.TxtQuantity.SelectionStart = 0;
             this.TxtQuantity.ShortcutsEnabled = true;
-            this.TxtQuantity.Size = new System.Drawing.Size(56, 28);
+            this.TxtQuantity.Size = new System.Drawing.Size(56, 37);
             this.TxtQuantity.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtQuantity.TabIndex = 14;
             this.TxtQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -603,7 +621,7 @@
             this.TxtRemainingStocks.SelectionLength = 0;
             this.TxtRemainingStocks.SelectionStart = 0;
             this.TxtRemainingStocks.ShortcutsEnabled = true;
-            this.TxtRemainingStocks.Size = new System.Drawing.Size(154, 28);
+            this.TxtRemainingStocks.Size = new System.Drawing.Size(154, 26);
             this.TxtRemainingStocks.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtRemainingStocks.TabIndex = 13;
             this.TxtRemainingStocks.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -727,7 +745,7 @@
             this.TxtPrice.SelectionLength = 0;
             this.TxtPrice.SelectionStart = 0;
             this.TxtPrice.ShortcutsEnabled = true;
-            this.TxtPrice.Size = new System.Drawing.Size(154, 28);
+            this.TxtPrice.Size = new System.Drawing.Size(154, 26);
             this.TxtPrice.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtPrice.TabIndex = 10;
             this.TxtPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -831,7 +849,7 @@
             this.TxtCostPerItem.SelectionLength = 0;
             this.TxtCostPerItem.SelectionStart = 0;
             this.TxtCostPerItem.ShortcutsEnabled = true;
-            this.TxtCostPerItem.Size = new System.Drawing.Size(154, 28);
+            this.TxtCostPerItem.Size = new System.Drawing.Size(154, 26);
             this.TxtCostPerItem.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtCostPerItem.TabIndex = 11;
             this.TxtCostPerItem.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -922,7 +940,7 @@
             this.TxtSupplier.SelectionLength = 0;
             this.TxtSupplier.SelectionStart = 0;
             this.TxtSupplier.ShortcutsEnabled = true;
-            this.TxtSupplier.Size = new System.Drawing.Size(154, 28);
+            this.TxtSupplier.Size = new System.Drawing.Size(154, 26);
             this.TxtSupplier.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtSupplier.TabIndex = 9;
             this.TxtSupplier.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1253,7 +1271,7 @@
             this.TxtName.SelectionLength = 0;
             this.TxtName.SelectionStart = 0;
             this.TxtName.ShortcutsEnabled = true;
-            this.TxtName.Size = new System.Drawing.Size(154, 28);
+            this.TxtName.Size = new System.Drawing.Size(154, 26);
             this.TxtName.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtName.TabIndex = 7;
             this.TxtName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -2108,10 +2126,6 @@
             this.materialCard1.Size = new System.Drawing.Size(349, 47);
             this.materialCard1.TabIndex = 44;
             // 
-            // ofdPic
-            // 
-            this.ofdPic.FileName = "OpenFileDialog";
-            // 
             // TbSearch
             // 
             this.TbSearch.AllowPromptAsInput = true;
@@ -2157,6 +2171,10 @@
             this.TbSearch.UseSystemPasswordChar = false;
             this.TbSearch.ValidatingType = null;
             this.TbSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbInvSearch_KeyPress);
+            // 
+            // ofdPic
+            // 
+            this.ofdPic.FileName = "OpenFileDialog";
             // 
             // UsrCtrlInventory2Resize
             // 

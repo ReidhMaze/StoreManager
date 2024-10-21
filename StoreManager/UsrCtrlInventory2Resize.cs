@@ -25,6 +25,9 @@ namespace StoreManager
 
         string imgLocation;
         Boolean addProduct, editProduct, removeProduct, restock, disposeStock;
+        //private int selectedItemId = -1;
+        private Item selectedItem = null;
+        Dictionary<int, Item> rowId = new Dictionary<int, Item>();
 
         public UsrCtrlInventory2Resize(DBConnect dbConnection)
         {
@@ -66,6 +69,12 @@ namespace StoreManager
             int restockThreshold, remainingStocks, quantity;
             double price, costPerItem;
 
+            if(selectedItem == null && !addProduct)
+            {
+                MessageBox.Show("Please select an item");
+                return;
+            }
+
             try
             {
                 if (addProduct == true)
@@ -96,8 +105,7 @@ namespace StoreManager
                 
                 if (editProduct == true) 
                 {
-                    int itemId = 1;
-                    File.Copy(this.imgLocation, Path.Combine(imageFolderDir, imgName), true);
+                    if(this.selectedItem.ImgName != imgName) File.Copy(this.imgLocation, Path.Combine(imageFolderDir, imgName), true);
                     restockThreshold = int.Parse(TxtRestockThreshold.Text);
                     price = double.Parse(TxtPrice.Text);
 
@@ -111,7 +119,7 @@ namespace StoreManager
 
                         if (confirmEdit == DialogResult.Yes)
                         {
-                            gProc.ProcEditItemById(itemId, itemName, size, type, imgName, restockThreshold, price);
+                            gProc.ProcEditItemById(this.selectedItem.Id, itemName, size, type, imgName, restockThreshold, price);
                             StandardView();
                         }
                         else
@@ -144,18 +152,27 @@ namespace StoreManager
                         }
                     }
                 }
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Missing Inputs", "Error");
+                //MessageBox.Show("Missing Inputs", "Error");
+                MessageBox.Show(ex.Message);
             }
+
+            InitializeItemsGrid();
         }
 
         private void BtnAddProduct_Click(object sender, EventArgs e)
         {
             EnabledAll();
             TxtRemainingStocks.Enabled = false;
+
             addProduct = true;
+            editProduct = false;
+            removeProduct = false;
+            restock = false;
+            disposeStock = false;
         }
 
         private void BtnEditProduct_Click(object sender, EventArgs e)
@@ -164,13 +181,24 @@ namespace StoreManager
             TxtSupplier.Enabled = false;
             TxtCostPerItem.Enabled = false;
             TxtRemainingStocks.Enabled = false;
+
+            addProduct = false;
             editProduct = true;
+            removeProduct = false;
+            restock = false;
+            disposeStock = false;
         }
 
         private void BtnRemoveProduct_Click(object sender, EventArgs e)
         {
             StandardView();
             BtnSubmit.Enabled = true;
+
+            addProduct = false;
+            editProduct = false;
+            removeProduct = true;
+            restock = false;
+            disposeStock = false;
         }
 
         private void BtnRestock_Click(object sender, EventArgs e)
@@ -181,7 +209,12 @@ namespace StoreManager
             BtnUploadImg.Enabled = false;
             TxtQuantity.Visible = true;
             LblQuantity.Visible = true;
+
+            addProduct = false;
+            editProduct = false;
+            removeProduct = false;
             restock = true;
+            disposeStock = false;
         }
 
         private void BtnDisposeStock_Click(object sender, EventArgs e)
@@ -190,11 +223,23 @@ namespace StoreManager
             TxtQuantity.Visible = true;
             LblQuantity.Visible = true;
             BtnSubmit.Enabled = true;
+
+            addProduct = false;
+            editProduct = false;
+            removeProduct = false;
+            restock = false;
+            disposeStock = true;
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             StandardView();
+
+            addProduct = false;
+            editProduct = false;
+            removeProduct = false;
+            restock = false;
+            disposeStock = false;
         }
 
         private void TbNumOnly_KeyPress(object sender, KeyPressEventArgs e)
@@ -215,10 +260,13 @@ namespace StoreManager
         private void InitializeItemsGrid()
         {
             List<Item> items = gProc.FncGetItems();
+            this.rowId.Clear();
             this.DataGridItems.RowCount = items.Count;
+            this.selectedItem = null;
 
             for (int i = 0; i < items.Count; i++)
             {
+                this.rowId.Add(i, items[i]);
                 this.DataGridItems.Rows[i].Cells[0].Value = items[i].Name;              // Name
                 this.DataGridItems.Rows[i].Cells[1].Value = items[i].ItemCode;          // Item Code
                 this.DataGridItems.Rows[i].Cells[2].Value = items[i].Price;             // Price
@@ -228,6 +276,48 @@ namespace StoreManager
                 this.DataGridItems.Rows[i].Cells[6].Value = items[i].CurrentStocks;     // Current Stocks
                 this.DataGridItems.Rows[i].Cells[7].Value = items[i].SupplierName;      // Supplier Name
                 this.DataGridItems.Rows[i].Cells[8].Value = items[i].RestockThreshold;  // Restock Threshold
+            }
+        }
+
+        private void DataGridItems_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (addProduct) return;
+
+            int selectedIdx = e.RowIndex;
+            string size = this.DataGridItems.Rows[selectedIdx].Cells[4].Value.ToString();
+            string type = this.DataGridItems.Rows[selectedIdx].Cells[5].Value.ToString();
+
+            this.rowId.TryGetValue(selectedIdx, out this.selectedItem);
+
+            this.TxtName.Text = this.DataGridItems.Rows[selectedIdx].Cells[0].Value.ToString();
+            this.CmbSizeInfo.SelectedIndex = CmbSizeInfo.Items.IndexOf(size);
+            this.CmbTypeInfo.SelectedIndex = CmbTypeInfo.Items.IndexOf(type);
+            this.TxtSupplier.Text = this.DataGridItems.Rows[selectedIdx].Cells[7].Value.ToString();
+            this.TxtPrice.Text = this.DataGridItems.Rows[selectedIdx].Cells[2].Value.ToString();
+            this.TxtCostPerItem.Text = this.DataGridItems.Rows[selectedIdx].Cells[3].Value.ToString();
+            this.TxtRestockThreshold.Text = this.DataGridItems.Rows[selectedIdx].Cells[8].Value.ToString();
+            this.TxtRemainingStocks.Text = this.DataGridItems.Rows[selectedIdx].Cells[6].Value.ToString();
+            SetPicBoxImage(this.selectedItem.ImgName);
+        }
+
+        public void SetPicBoxImage(string imageName)
+        {
+            string currentDir = Environment.CurrentDirectory;
+            string imageFolderDir = Path.Combine(currentDir, "..\\..\\ProductImages");
+            string imageLocation = Path.Combine(imageFolderDir, imageName);
+
+            this.imgLocation = imageLocation;
+
+            try
+            {
+                //Debug.WriteLine(imageLocation);
+                this.ImgItem.ImageLocation = imageLocation;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
