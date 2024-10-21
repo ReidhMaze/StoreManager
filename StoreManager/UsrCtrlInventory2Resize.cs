@@ -31,7 +31,7 @@ namespace StoreManager
         private string itemNameSearch;
         private string[] inventoryCols = { "Name", "Item Code", "Price", "Cost Per Item", "Size", "Type", "Current  Stocks", "Supplier Name", "Restock Threshold"};
         private string[] orderCols = { "Invoice Number", "Total Price", "Subtotal", "Vat", "Tax Rate", "Date", "Staff Name" };
-
+        private bool onInventory = true;
 
         public UsrCtrlInventory2Resize(DBConnect dbConnection)
         {
@@ -417,6 +417,8 @@ namespace StoreManager
         private void DataGridItems_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
+            if (!onInventory) return;
+
             int selectedIdx = e.RowIndex;
 
             //if (addProduct) return;
@@ -482,19 +484,21 @@ namespace StoreManager
             if(mode == "Inventory Log")
             {
                 DisableInventoryOperations();
-                
+                this.onInventory = false;
             }
 
             if (mode == "Orders")
             {
                 DisableInventoryOperations();
                 InitializeOrderGrid();
+                this.onInventory = false;
             }
 
             if (mode == "Inventory")
             {
                 EnableInventoryOperations();
                 InitializeItemsGrid();
+                this.onInventory = true;
             }
         }
 
