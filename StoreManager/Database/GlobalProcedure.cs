@@ -270,6 +270,8 @@ namespace LaundrySystem
                 //return;
             }
 
+            v_supplier_id = FncGetSupplierId(p_supplier_name);
+
             ProcRestockItem(v_item_id, p_qty);
             ProcAddInventoryAdded(v_item_id, p_qty, p_cost_per_item, v_supplier_id, V_Logged_Staff_Id);
 

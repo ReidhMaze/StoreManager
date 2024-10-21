@@ -110,6 +110,11 @@ namespace StoreManager
         {
             //Panel contentPanel = this.Controls.Find("PnlContent", true)[0] as Panel;
             //this.PnlContent.Controls.Add(buyView);
+            if (inventoryView.Updated)
+            {
+                buyView.InitializeCardView();
+                inventoryView.Updated = false;
+            }
             ShowUserCtrl(buyView);
         }
 

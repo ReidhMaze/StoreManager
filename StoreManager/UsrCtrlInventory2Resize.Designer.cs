@@ -70,6 +70,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ofdPic = new System.Windows.Forms.OpenFileDialog();
             this.materialCard1 = new ReaLTaiizor.Controls.MaterialCard();
+            this.TbSearch = new CustomComponents.CustomMaterialMaskedTextBox();
             this.PnlButtons = new Bunifu.UI.WinForms.BunifuPanel();
             this.BtnRemoveProduct = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.BtnCancel = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -112,7 +113,6 @@
             this.supplier_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.restock_threshold = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PnlContainer = new System.Windows.Forms.Panel();
-            this.TbSearch = new CustomComponents.CustomMaterialMaskedTextBox();
             this.materialCard1.SuspendLayout();
             this.PnlButtons.SuspendLayout();
             this.PnlItemInfo.SuspendLayout();
@@ -140,6 +140,55 @@
             this.materialCard1.Padding = new System.Windows.Forms.Padding(14);
             this.materialCard1.Size = new System.Drawing.Size(862, 47);
             this.materialCard1.TabIndex = 44;
+            // 
+            // TbSearch
+            // 
+            this.TbSearch.AllowPromptAsInput = true;
+            this.TbSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.TbSearch.AnimateReadOnly = false;
+            this.TbSearch.AsciiOnly = false;
+            this.TbSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.TbSearch.BeepOnError = false;
+            this.TbSearch.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludeLiterals;
+            this.TbSearch.Depth = 0;
+            this.TbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.TbSearch.HidePromptOnLeave = false;
+            this.TbSearch.HideSelection = true;
+            this.TbSearch.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
+            this.TbSearch.LeadingIcon = global::StoreManager.Properties.Resources.search_icon;
+            this.TbSearch.Location = new System.Drawing.Point(0, -1);
+            this.TbSearch.Margin = new System.Windows.Forms.Padding(0);
+            this.TbSearch.Mask = "";
+            this.TbSearch.MaxLength = 32767;
+            this.TbSearch.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.OUT;
+            this.TbSearch.Name = "TbSearch";
+            this.TbSearch.PasswordChar = '\0';
+            this.TbSearch.PrefixSuffixText = null;
+            this.TbSearch.PromptChar = '_';
+            this.TbSearch.ReadOnly = false;
+            this.TbSearch.RejectInputOnFirstFailure = false;
+            this.TbSearch.ResetOnPrompt = true;
+            this.TbSearch.ResetOnSpace = true;
+            this.TbSearch.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.TbSearch.SelectedText = "";
+            this.TbSearch.SelectionLength = 0;
+            this.TbSearch.SelectionStart = 0;
+            this.TbSearch.ShortcutsEnabled = true;
+            this.TbSearch.Size = new System.Drawing.Size(862, 48);
+            this.TbSearch.SkipLiterals = true;
+            this.TbSearch.TabIndex = 16;
+            this.TbSearch.TabStop = false;
+            this.TbSearch.Text = "Search";
+            this.TbSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.TbSearch.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludeLiterals;
+            this.TbSearch.TrailingIcon = null;
+            this.TbSearch.UnderlineColor = System.Drawing.Color.Black;
+            this.TbSearch.UseSystemPasswordChar = false;
+            this.TbSearch.ValidatingType = null;
+            this.TbSearch.Enter += new System.EventHandler(this.TbSearch_Enter);
+            this.TbSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbInvSearch_KeyPress);
+            this.TbSearch.Leave += new System.EventHandler(this.TbSearch_Leave);
+            this.TbSearch.TextChanged += new System.EventHandler(this.TbSearch_TextChanged);
             // 
             // PnlButtons
             // 
@@ -1620,7 +1669,7 @@
             this.BtnSubmit.IdleFillColor = System.Drawing.Color.Empty;
             this.BtnSubmit.IdleIconLeftImage = null;
             this.BtnSubmit.IdleIconRightImage = null;
-            this.BtnSubmit.IndicateFocus = false;
+            this.BtnSubmit.IndicateFocus = true;
             this.BtnSubmit.Location = new System.Drawing.Point(540, 144);
             this.BtnSubmit.Name = "BtnSubmit";
             this.BtnSubmit.OnDisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -1945,55 +1994,6 @@
             this.PnlContainer.Name = "PnlContainer";
             this.PnlContainer.Size = new System.Drawing.Size(1067, 645);
             this.PnlContainer.TabIndex = 2;
-            // 
-            // TbSearch
-            // 
-            this.TbSearch.AllowPromptAsInput = true;
-            this.TbSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.TbSearch.AnimateReadOnly = false;
-            this.TbSearch.AsciiOnly = false;
-            this.TbSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.TbSearch.BeepOnError = false;
-            this.TbSearch.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.IncludeLiterals;
-            this.TbSearch.Depth = 0;
-            this.TbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.TbSearch.HidePromptOnLeave = false;
-            this.TbSearch.HideSelection = true;
-            this.TbSearch.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Default;
-            this.TbSearch.LeadingIcon = global::StoreManager.Properties.Resources.search_icon;
-            this.TbSearch.Location = new System.Drawing.Point(0, -1);
-            this.TbSearch.Margin = new System.Windows.Forms.Padding(0);
-            this.TbSearch.Mask = "";
-            this.TbSearch.MaxLength = 32767;
-            this.TbSearch.MouseState = ReaLTaiizor.Helper.MaterialDrawHelper.MaterialMouseState.OUT;
-            this.TbSearch.Name = "TbSearch";
-            this.TbSearch.PasswordChar = '\0';
-            this.TbSearch.PrefixSuffixText = null;
-            this.TbSearch.PromptChar = '_';
-            this.TbSearch.ReadOnly = false;
-            this.TbSearch.RejectInputOnFirstFailure = false;
-            this.TbSearch.ResetOnPrompt = true;
-            this.TbSearch.ResetOnSpace = true;
-            this.TbSearch.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.TbSearch.SelectedText = "";
-            this.TbSearch.SelectionLength = 0;
-            this.TbSearch.SelectionStart = 0;
-            this.TbSearch.ShortcutsEnabled = true;
-            this.TbSearch.Size = new System.Drawing.Size(862, 48);
-            this.TbSearch.SkipLiterals = true;
-            this.TbSearch.TabIndex = 16;
-            this.TbSearch.TabStop = false;
-            this.TbSearch.Text = "Search";
-            this.TbSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.TbSearch.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludeLiterals;
-            this.TbSearch.TrailingIcon = null;
-            this.TbSearch.UnderlineColor = System.Drawing.Color.Black;
-            this.TbSearch.UseSystemPasswordChar = false;
-            this.TbSearch.ValidatingType = null;
-            this.TbSearch.Enter += new System.EventHandler(this.TbSearch_Enter);
-            this.TbSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbInvSearch_KeyPress);
-            this.TbSearch.Leave += new System.EventHandler(this.TbSearch_Leave);
-            this.TbSearch.TextChanged += new System.EventHandler(this.TbSearch_TextChanged);
             // 
             // UsrCtrlInventory2Resize
             // 

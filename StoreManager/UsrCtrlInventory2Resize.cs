@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using StoreObjects;
 using Bunifu.UI.WinForms.Helpers.Transitions;
+using System.Windows.Media.Animation;
 
 namespace StoreManager
 {
@@ -34,6 +35,8 @@ namespace StoreManager
         private string[] orderCols = { "Invoice Number", "Total Price", "Subtotal", "Vat", "Tax Rate", "Date", "Staff Name" };
         private string[] inventoryLogCols = { "Item Name", "Quantity", "Date", "Supplier/Invoice", "Staff Name" };
         private bool onInventory = true;
+
+        public bool Updated = false;
 
         public UsrCtrlInventory2Resize(DBConnect dbConnection)
         {
@@ -86,7 +89,9 @@ namespace StoreManager
             {
                 if (addProduct)
                 {
-                    if (this.selectedItem.ImgName != imgName) File.Copy(this.imgLocation, Path.Combine(imageFolderDir, imgName), true);
+                    if (this.selectedItem == null || this.selectedItem.ImgName != imgName) 
+                        File.Copy(this.imgLocation, Path.Combine(imageFolderDir, imgName), true);
+
                     restockThreshold = int.Parse(TxtRestockThreshold.Text);
                     price = double.Parse(TxtPrice.Text);
                     costPerItem = double.Parse(TxtCostPerItem.Text);
@@ -102,8 +107,7 @@ namespace StoreManager
                         if (confirmAdd == DialogResult.Yes)
                         {
                             gProc.ProcAddItem(itemName, size, type, price, costPerItem, imgName, supplier, restockThreshold);
-                            StandardView(true);
-                            addProduct = false;
+                            ClearAll();
                         }
                         else
                         {
@@ -129,8 +133,7 @@ namespace StoreManager
                         if (confirmEdit == DialogResult.Yes)
                         {
                             gProc.ProcEditItemById(this.selectedItem.Id, itemName, size, type, imgName, restockThreshold, price);
-                            StandardView(true);
-                            editProduct = false;
+                            ClearAll();
                         }
                         else
                         {
@@ -141,6 +144,13 @@ namespace StoreManager
 
                 if (restock)
                 {
+
+                    if(TxtQuantity.Text == "")
+                    {
+                        MessageBox.Show("Enter Quantity");
+                        return;
+                    }
+
                     price = double.Parse(TxtPrice.Text);
                     costPerItem = double.Parse(TxtCostPerItem.Text);
                     quantity = int.Parse(TxtQuantity.Text);
@@ -156,8 +166,7 @@ namespace StoreManager
                         if (confirmRestock == DialogResult.Yes)
                         {
                             gProc.ProcRestock(itemName, price, costPerItem, size, type, supplier, quantity);
-                            StandardView(true);
-                            restock = false;
+                            ClearAll();
                         }
                         else
                         {
@@ -193,8 +202,7 @@ namespace StoreManager
                     if (confirmDispose == DialogResult.Yes)
                     {
                         this.gProc.ProcDecreaseItemStock(this.selectedItem.ItemCode, qtyRemoved);
-                        StandardView(true);
-                        disposeStock = false;
+                        ClearAll();
                     }
                     else
                     {
@@ -218,8 +226,7 @@ namespace StoreManager
                     if (confirmDelete == DialogResult.Yes)
                     {
                         this.gProc.ProcDeleteItemById(this.selectedItem.Id);
-                        StandardView(true);
-                        removeProduct = false;
+                        ClearAll();
                     }
                     else
                     {
@@ -235,10 +242,16 @@ namespace StoreManager
                 MessageBox.Show(ex.Message);
             }
 
+            Updated = true;
             InitializeItemsGrid();
         }
 
         private void BtnAddProduct_Click(object sender, EventArgs e)
+        {
+            AddProductMode();
+        }
+
+        private void AddProductMode()
         {
             EnabledAll(true);
             TxtRemainingStocks.Enabled = false;
@@ -251,6 +264,11 @@ namespace StoreManager
         }
 
         private void BtnEditProduct_Click(object sender, EventArgs e)
+        {
+            EditMode();
+        }
+
+        private void EditMode()
         {
             EnabledAll(false);
             TxtSupplier.Enabled = false;
@@ -266,6 +284,11 @@ namespace StoreManager
 
         private void BtnRemoveProduct_Click(object sender, EventArgs e)
         {
+            RemoveProductMode();
+        }
+
+        private void RemoveProductMode()
+        {
             StandardView(false);
             BtnSubmit.Enabled = true;
 
@@ -277,6 +300,11 @@ namespace StoreManager
         }
 
         private void BtnRestock_Click(object sender, EventArgs e)
+        {
+            RestockMode();
+        }
+
+        private void RestockMode()
         {
             EnabledAll(false);
             TxtName.Enabled = false;
@@ -294,6 +322,11 @@ namespace StoreManager
 
         private void BtnDisposeStock_Click(object sender, EventArgs e)
         {
+            DisposeStockMode();
+        }
+
+        private void DisposeStockMode()
+        {
             StandardView(false);
             TxtQuantity.Visible = true;
             LblQuantity.Visible = true;
@@ -307,6 +340,11 @@ namespace StoreManager
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            CancelModes();
+        }
+
+        public void CancelModes()
         {
             StandardView(true);
 
@@ -348,7 +386,10 @@ namespace StoreManager
 
             for (int i = 0; i < items.Count; i++)
             {
-                //this.DataGridItems.Rows[i]
+
+                if (items[i].CurrentStocks <= items[i].RestockThreshold) this.DataGridItems.Rows[i].DefaultCellStyle.ForeColor = Color.Yellow;
+                if (items[i].CurrentStocks == 0) this.DataGridItems.Rows[i].DefaultCellStyle.ForeColor = Color.Red;
+
                 this.rowId.Add(i, items[i]);
                 this.DataGridItems.Rows[i].Cells[0].Value = items[i].Name;              // Name
                 this.DataGridItems.Rows[i].Cells[1].Value = items[i].ItemCode;          // Item Code
@@ -520,9 +561,26 @@ namespace StoreManager
 
             if (mode == "Inventory")
             {
+
                 EnableInventoryOperations();
                 InitializeItemsGrid();
                 this.onInventory = true;
+
+                
+
+                if (addProduct)
+                    AddProductMode();
+                else if (removeProduct)
+                    RemoveProductMode();
+                else if (restock)
+                    RestockMode();
+                else if (editProduct)
+                    EditMode();
+                else if (disposeStock)
+                    DisposeStockMode();
+                else
+                    CancelModes();
+
             }
         }
 
@@ -614,11 +672,11 @@ namespace StoreManager
             TxtQuantity.Clear();
             ImgItem.Image = null;
             imgLocation = null;
-            addProduct = false;
-            editProduct = false;
-            removeProduct = false;
-            restock = false;
-            disposeStock = false;
+            //addProduct = false;
+            //editProduct = false;
+            //removeProduct = false;
+            //restock = false;
+            //disposeStock = false;
             this.selectedItem = null;
         }
 
