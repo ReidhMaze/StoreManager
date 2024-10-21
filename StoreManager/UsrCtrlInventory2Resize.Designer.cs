@@ -167,7 +167,7 @@
             // 
             this.BtnRemoveProduct.AllowAnimations = true;
             this.BtnRemoveProduct.AllowMouseEffects = true;
-            this.BtnRemoveProduct.AllowToggling = false;
+            this.BtnRemoveProduct.AllowToggling = true;
             this.BtnRemoveProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -214,7 +214,7 @@
             this.BtnRemoveProduct.IdleFillColor = System.Drawing.Color.Empty;
             this.BtnRemoveProduct.IdleIconLeftImage = ((System.Drawing.Image)(resources.GetObject("BtnRemoveProduct.IdleIconLeftImage")));
             this.BtnRemoveProduct.IdleIconRightImage = null;
-            this.BtnRemoveProduct.IndicateFocus = false;
+            this.BtnRemoveProduct.IndicateFocus = true;
             this.BtnRemoveProduct.Location = new System.Drawing.Point(16, 129);
             this.BtnRemoveProduct.Name = "BtnRemoveProduct";
             this.BtnRemoveProduct.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
@@ -262,7 +262,7 @@
             // 
             this.BtnCancel.AllowAnimations = true;
             this.BtnCancel.AllowMouseEffects = true;
-            this.BtnCancel.AllowToggling = false;
+            this.BtnCancel.AllowToggling = true;
             this.BtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -309,7 +309,7 @@
             this.BtnCancel.IdleFillColor = System.Drawing.Color.Empty;
             this.BtnCancel.IdleIconLeftImage = ((System.Drawing.Image)(resources.GetObject("BtnCancel.IdleIconLeftImage")));
             this.BtnCancel.IdleIconRightImage = null;
-            this.BtnCancel.IndicateFocus = false;
+            this.BtnCancel.IndicateFocus = true;
             this.BtnCancel.Location = new System.Drawing.Point(183, 129);
             this.BtnCancel.MinimumSize = new System.Drawing.Size(2, 3);
             this.BtnCancel.Name = "BtnCancel";
@@ -358,7 +358,7 @@
             // 
             this.BtnEditProduct.AllowAnimations = true;
             this.BtnEditProduct.AllowMouseEffects = true;
-            this.BtnEditProduct.AllowToggling = false;
+            this.BtnEditProduct.AllowToggling = true;
             this.BtnEditProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -405,7 +405,7 @@
             this.BtnEditProduct.IdleFillColor = System.Drawing.Color.Empty;
             this.BtnEditProduct.IdleIconLeftImage = ((System.Drawing.Image)(resources.GetObject("BtnEditProduct.IdleIconLeftImage")));
             this.BtnEditProduct.IdleIconRightImage = null;
-            this.BtnEditProduct.IndicateFocus = false;
+            this.BtnEditProduct.IndicateFocus = true;
             this.BtnEditProduct.Location = new System.Drawing.Point(16, 79);
             this.BtnEditProduct.Name = "BtnEditProduct";
             this.BtnEditProduct.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
@@ -453,7 +453,7 @@
             // 
             this.BtnDisposeStock.AllowAnimations = true;
             this.BtnDisposeStock.AllowMouseEffects = true;
-            this.BtnDisposeStock.AllowToggling = false;
+            this.BtnDisposeStock.AllowToggling = true;
             this.BtnDisposeStock.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -500,7 +500,7 @@
             this.BtnDisposeStock.IdleFillColor = System.Drawing.Color.Empty;
             this.BtnDisposeStock.IdleIconLeftImage = ((System.Drawing.Image)(resources.GetObject("BtnDisposeStock.IdleIconLeftImage")));
             this.BtnDisposeStock.IdleIconRightImage = null;
-            this.BtnDisposeStock.IndicateFocus = false;
+            this.BtnDisposeStock.IndicateFocus = true;
             this.BtnDisposeStock.Location = new System.Drawing.Point(183, 79);
             this.BtnDisposeStock.Name = "BtnDisposeStock";
             this.BtnDisposeStock.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
@@ -548,7 +548,7 @@
             // 
             this.BtnAddProduct.AllowAnimations = true;
             this.BtnAddProduct.AllowMouseEffects = true;
-            this.BtnAddProduct.AllowToggling = false;
+            this.BtnAddProduct.AllowToggling = true;
             this.BtnAddProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -595,7 +595,7 @@
             this.BtnAddProduct.IdleFillColor = System.Drawing.Color.Empty;
             this.BtnAddProduct.IdleIconLeftImage = ((System.Drawing.Image)(resources.GetObject("BtnAddProduct.IdleIconLeftImage")));
             this.BtnAddProduct.IdleIconRightImage = null;
-            this.BtnAddProduct.IndicateFocus = false;
+            this.BtnAddProduct.IndicateFocus = true;
             this.BtnAddProduct.Location = new System.Drawing.Point(16, 29);
             this.BtnAddProduct.Name = "BtnAddProduct";
             this.BtnAddProduct.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
@@ -643,7 +643,7 @@
             // 
             this.BtnRestock.AllowAnimations = true;
             this.BtnRestock.AllowMouseEffects = true;
-            this.BtnRestock.AllowToggling = false;
+            this.BtnRestock.AllowToggling = true;
             this.BtnRestock.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -690,7 +690,7 @@
             this.BtnRestock.IdleFillColor = System.Drawing.Color.Empty;
             this.BtnRestock.IdleIconLeftImage = ((System.Drawing.Image)(resources.GetObject("BtnRestock.IdleIconLeftImage")));
             this.BtnRestock.IdleIconRightImage = null;
-            this.BtnRestock.IndicateFocus = false;
+            this.BtnRestock.IndicateFocus = true;
             this.BtnRestock.Location = new System.Drawing.Point(183, 29);
             this.BtnRestock.Name = "BtnRestock";
             this.BtnRestock.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
@@ -796,6 +796,7 @@
             this.CmbViewType.Text = null;
             this.CmbViewType.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
             this.CmbViewType.TextLeftMargin = 5;
+            this.CmbViewType.SelectedIndexChanged += new System.EventHandler(this.CmbViewType_SelectedIndexChanged);
             // 
             // PnlItemInfo
             // 
@@ -947,7 +948,7 @@
             this.TxtRestockThreshold.SelectionLength = 0;
             this.TxtRestockThreshold.SelectionStart = 0;
             this.TxtRestockThreshold.ShortcutsEnabled = true;
-            this.TxtRestockThreshold.Size = new System.Drawing.Size(154, 26);
+            this.TxtRestockThreshold.Size = new System.Drawing.Size(154, 37);
             this.TxtRestockThreshold.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtRestockThreshold.TabIndex = 12;
             this.TxtRestockThreshold.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1025,7 +1026,7 @@
             this.TxtQuantity.SelectionLength = 0;
             this.TxtQuantity.SelectionStart = 0;
             this.TxtQuantity.ShortcutsEnabled = true;
-            this.TxtQuantity.Size = new System.Drawing.Size(56, 26);
+            this.TxtQuantity.Size = new System.Drawing.Size(56, 37);
             this.TxtQuantity.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtQuantity.TabIndex = 14;
             this.TxtQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1131,7 +1132,7 @@
             this.TxtRemainingStocks.SelectionLength = 0;
             this.TxtRemainingStocks.SelectionStart = 0;
             this.TxtRemainingStocks.ShortcutsEnabled = true;
-            this.TxtRemainingStocks.Size = new System.Drawing.Size(154, 26);
+            this.TxtRemainingStocks.Size = new System.Drawing.Size(154, 37);
             this.TxtRemainingStocks.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtRemainingStocks.TabIndex = 13;
             this.TxtRemainingStocks.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1255,7 +1256,7 @@
             this.TxtPrice.SelectionLength = 0;
             this.TxtPrice.SelectionStart = 0;
             this.TxtPrice.ShortcutsEnabled = true;
-            this.TxtPrice.Size = new System.Drawing.Size(154, 26);
+            this.TxtPrice.Size = new System.Drawing.Size(154, 37);
             this.TxtPrice.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtPrice.TabIndex = 10;
             this.TxtPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1359,7 +1360,7 @@
             this.TxtCostPerItem.SelectionLength = 0;
             this.TxtCostPerItem.SelectionStart = 0;
             this.TxtCostPerItem.ShortcutsEnabled = true;
-            this.TxtCostPerItem.Size = new System.Drawing.Size(154, 26);
+            this.TxtCostPerItem.Size = new System.Drawing.Size(154, 37);
             this.TxtCostPerItem.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtCostPerItem.TabIndex = 11;
             this.TxtCostPerItem.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1450,7 +1451,7 @@
             this.TxtSupplier.SelectionLength = 0;
             this.TxtSupplier.SelectionStart = 0;
             this.TxtSupplier.ShortcutsEnabled = true;
-            this.TxtSupplier.Size = new System.Drawing.Size(154, 26);
+            this.TxtSupplier.Size = new System.Drawing.Size(154, 37);
             this.TxtSupplier.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtSupplier.TabIndex = 9;
             this.TxtSupplier.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1781,7 +1782,7 @@
             this.TxtName.SelectionLength = 0;
             this.TxtName.SelectionStart = 0;
             this.TxtName.ShortcutsEnabled = true;
-            this.TxtName.Size = new System.Drawing.Size(154, 26);
+            this.TxtName.Size = new System.Drawing.Size(154, 37);
             this.TxtName.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.TxtName.TabIndex = 7;
             this.TxtName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1817,8 +1818,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DataGridItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.DataGridItems.ColumnHeadersHeight = 45;
-            this.DataGridItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.DataGridItems.ColumnHeadersHeight = 40;
             this.DataGridItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.item_name,
             this.item_code,

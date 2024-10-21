@@ -42,6 +42,7 @@ namespace StoreManager
             //this.CmbType.Items.AddRange(gProc.FncGetProductTypes());
             this.CmbTypeInfo.Items.AddRange(gProc.FncGetProductTypes());
             this.CmbSizeInfo.Items.AddRange(gProc.FncGetDistinctSizes());
+            this.CmbViewType.SelectedIndex = 0;
         }
 
         private void BtnUploadImg_Click(object sender, EventArgs e)
@@ -430,6 +431,51 @@ namespace StoreManager
         private void TbSearch_Leave(object sender, EventArgs e)
         {
             this.TbSearch.Text = (TbSearch.Text == "") ? "Search" : TbSearch.Text;
+        }
+
+        private void CmbViewType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string mode = CmbViewType.SelectedItem.ToString();
+
+            if(mode == "Inventory Log")
+            {
+                DisableInventoryOperations();
+            }
+
+            if (mode == "Orders")
+            {
+                DisableInventoryOperations();
+            }
+
+            if (mode == "Inventory")
+            {
+                EnableInventoryOperations();
+                InitializeItemsGrid();
+            }
+        }
+
+        private void DisableInventoryOperations()
+        {
+            StandardView(true);
+            this.BtnAddProduct.Enabled = false;
+            this.BtnEditProduct.Enabled = false;
+            this.BtnCancel.Enabled = false;
+            this.BtnRestock.Enabled = false;
+            this.BtnDisposeStock.Enabled = false;
+            this.BtnRemoveProduct.Enabled = false;
+            this.TbSearch.Enabled = false;
+        }
+
+        private void EnableInventoryOperations()
+        {
+            StandardView(true);
+            this.BtnAddProduct.Enabled = true;
+            this.BtnEditProduct.Enabled = true;
+            this.BtnCancel.Enabled = true;
+            this.BtnRestock.Enabled = true;
+            this.BtnDisposeStock.Enabled = true;
+            this.BtnRemoveProduct.Enabled = true;
+            this.TbSearch.Enabled = true;
         }
 
         private void TbInvSearch_KeyPress(object sender, KeyPressEventArgs e)
