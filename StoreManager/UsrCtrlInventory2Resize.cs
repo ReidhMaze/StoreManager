@@ -15,6 +15,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using StoreObjects;
+using Bunifu.UI.WinForms.Helpers.Transitions;
 
 namespace StoreManager
 {
@@ -31,6 +32,7 @@ namespace StoreManager
         private string itemNameSearch;
         private string[] inventoryCols = { "Name", "Item Code", "Price", "Cost Per Item", "Size", "Type", "Current  Stocks", "Supplier Name", "Restock Threshold"};
         private string[] orderCols = { "Invoice Number", "Total Price", "Subtotal", "Vat", "Tax Rate", "Date", "Staff Name" };
+        private string[] inventoryLogCols = { "Item Name", "Quantity", "Date", "Supplier/Invoice", "Staff Name" };
         private bool onInventory = true;
 
         public UsrCtrlInventory2Resize(DBConnect dbConnection)
@@ -397,8 +399,7 @@ namespace StoreManager
                 this.DataGridItems.Columns.Add("" + i, orderCols[i]);
             }
 
-            List<StoreOrder> orders = new List<StoreOrder>();
-            orders = gProc.FncGetOrders();
+            List<StoreOrder> orders = gProc.FncGetOrders();
             this.DataGridItems.RowCount = orders.Count();
 
             for(int i = 0; i < orders.Count; i++)
@@ -413,6 +414,28 @@ namespace StoreManager
             }
 
         }
+
+        private void InitializeInventoryLogGrid()
+        {
+            this.DataGridItems.Columns.Clear();
+            for (int i = 0; i < inventoryLogCols.Length; i++)
+            {
+                this.DataGridItems.Columns.Add("" + i, inventoryLogCols[i]);
+            }
+
+            List<InventoryLogEntry> log = gProc.FncGetInventoryLog();
+            this.DataGridItems.RowCount = log.Count();
+
+            for(int i = 0; i < log.Count; i++)
+            {
+                this.DataGridItems.Rows[i].Cells[0].Value = log[i].ItemName;
+                this.DataGridItems.Rows[i].Cells[1].Value = log[i].Quantity;
+                this.DataGridItems.Rows[i].Cells[2].Value = log[i].Date.ToShortDateString();
+                this.DataGridItems.Rows[i].Cells[3].Value = log[i].SupplierOrInvoice;
+                this.DataGridItems.Rows[i].Cells[4].Value = log[i].StaffName;
+            }
+        }
+
 
         private void DataGridItems_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -484,6 +507,7 @@ namespace StoreManager
             if(mode == "Inventory Log")
             {
                 DisableInventoryOperations();
+                InitializeInventoryLogGrid();
                 this.onInventory = false;
             }
 

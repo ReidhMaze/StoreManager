@@ -151,4 +151,24 @@ namespace StoreObjects
             StaffName = staffName;
         }
     }
+
+    public class InventoryLogEntry
+    {
+        public string ItemName { get; }
+        public int Quantity { get; }
+        public DateTime Date { get; }
+        public string SupplierOrInvoice { get; }
+        public string StaffName { get; }
+
+        public InventoryLogEntry(string itemName, int quantity, DateTime date, string supplierOrInvoice, string staffName)
+        {
+            ItemName = itemName;
+            Quantity = quantity;
+            Date = date;
+            SupplierOrInvoice = supplierOrInvoice;
+            StaffName = staffName;
+        }
+
+    }
+
 }
