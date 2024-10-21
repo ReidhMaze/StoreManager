@@ -29,6 +29,9 @@ namespace StoreManager
         private Item selectedItem = null;
         Dictionary<int, Item> rowId = new Dictionary<int, Item>();
         private string itemNameSearch;
+        private string[] inventoryCols = { "Name", "Item Code", "Price", "Cost Per Item", "Size", "Type", "Current  Stocks", "Supplier Name", "Restock Threshold"};
+        private string[] orderCols = { "Invoice Number", "Total Price", "Subtotal", "Vat", "Tax Rate", "Date", "Staff Name" };
+
 
         public UsrCtrlInventory2Resize(DBConnect dbConnection)
         {
@@ -329,6 +332,13 @@ namespace StoreManager
 
         private void InitializeItemsGrid()
         {
+
+            this.DataGridItems.Columns.Clear();
+            for (int i = 0; i < inventoryCols.Length; i++)
+            {
+                this.DataGridItems.Columns.Add("" + i, inventoryCols[i]);
+            }
+
             List<Item> items = gProc.FncGetItems();
             this.rowId.Clear();
             this.DataGridItems.RowCount = items.Count;
@@ -352,6 +362,13 @@ namespace StoreManager
 
         private void InitializeItemsGrid(string itemName)
         {
+
+            this.DataGridItems.Columns.Clear();
+            for(int i = 0; i < inventoryCols.Length; i++)
+            {
+                this.DataGridItems.Columns.Add("" + i, inventoryCols[i]);
+            }
+
             List<Item> items = gProc.FncGetFilteredItems(itemName);
             this.rowId.Clear();
             this.DataGridItems.RowCount = items.Count;
@@ -370,6 +387,31 @@ namespace StoreManager
                 this.DataGridItems.Rows[i].Cells[7].Value = items[i].SupplierName;      // Supplier Name
                 this.DataGridItems.Rows[i].Cells[8].Value = items[i].RestockThreshold;  // Restock Threshold
             }
+        }
+
+        private void InitializeOrderGrid()
+        {
+            this.DataGridItems.Columns.Clear();
+            for (int i = 0; i < orderCols.Length; i++)
+            {
+                this.DataGridItems.Columns.Add("" + i, orderCols[i]);
+            }
+
+            List<StoreOrder> orders = new List<StoreOrder>();
+            orders = gProc.FncGetOrders();
+            this.DataGridItems.RowCount = orders.Count();
+
+            for(int i = 0; i < orders.Count; i++)
+            {
+                this.DataGridItems.Rows[i].Cells[0].Value = orders[i].InvoiceNum;
+                this.DataGridItems.Rows[i].Cells[1].Value = "₱" + orders[i].TotalPrice.ToString("#,###.00");
+                this.DataGridItems.Rows[i].Cells[2].Value = "₱" + orders[i].Subtotal.ToString("#,###.00");
+                this.DataGridItems.Rows[i].Cells[3].Value = "₱" + orders[i].Vat.ToString("#,###.00");
+                this.DataGridItems.Rows[i].Cells[4].Value = (int)(double.Parse(orders[i].TaxRate.ToString()) * 100) + "%";
+                this.DataGridItems.Rows[i].Cells[5].Value = orders[i].Date.ToShortDateString();
+                this.DataGridItems.Rows[i].Cells[6].Value = orders[i].StaffName;
+            }
+
         }
 
         private void DataGridItems_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -440,11 +482,13 @@ namespace StoreManager
             if(mode == "Inventory Log")
             {
                 DisableInventoryOperations();
+                
             }
 
             if (mode == "Orders")
             {
                 DisableInventoryOperations();
+                InitializeOrderGrid();
             }
 
             if (mode == "Inventory")

@@ -509,6 +509,58 @@ namespace LaundrySystem
             return itemList;
         }
 
+        public List<StoreOrder> FncGetOrders()
+        {
+            List<StoreOrder> orders = new List<StoreOrder>();
+
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                this.sqlAdapter = new MySqlDataAdapter();
+                this.datStoreMgr = new DataTable();
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_select_order";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                this.sqlAdapter.SelectCommand = gProcCmd;
+                this.datStoreMgr.Clear();
+                this.sqlAdapter.Fill(this.datStoreMgr);
+
+                if (this.datStoreMgr.Rows.Count > 0)
+                {
+                    foreach (DataRow row in this.datStoreMgr.Rows)
+                    {
+                        int id = int.Parse(row["id"].ToString());
+                        string invoiceNumber = row["invoice_number"].ToString();
+                        double totalPrice = double.Parse(row["total_price"].ToString());
+                        double subtotal = double.Parse(row["subtotal"].ToString());
+                        double vat = double.Parse(row["vat"].ToString());
+                        double taxRate = double.Parse(row["tax_rate"].ToString());
+                        DateTime date = DateTime.Parse(row["date"].ToString());
+                        string staffName = row["staff_name"].ToString();
+
+                        // Create a new StoreOrder object using the constructor
+                        StoreOrder order = new StoreOrder(id, invoiceNumber, totalPrice, subtotal, vat, taxRate, date, staffName);
+                        orders.Add(order);
+                    }
+                }
+                else
+                {
+                    // No data found
+                    MessageBox.Show("No orders found.");
+                }
+
+                ClearData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return orders;
+        }
 
 
         public int FncGetStaffId(string p_username, string p_password)

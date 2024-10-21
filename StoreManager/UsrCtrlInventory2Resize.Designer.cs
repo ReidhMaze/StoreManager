@@ -890,7 +890,7 @@
             this.TxtRestockThreshold.AnimationSpeed = 1;
             this.TxtRestockThreshold.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.TxtRestockThreshold.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.TxtRestockThreshold.AutoSizeHeight = false;
+            this.TxtRestockThreshold.AutoSizeHeight = true;
             this.TxtRestockThreshold.BackColor = System.Drawing.Color.Transparent;
             this.TxtRestockThreshold.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TxtRestockThreshold.BackgroundImage")));
             this.TxtRestockThreshold.BorderColorActive = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
@@ -1074,7 +1074,7 @@
             this.TxtRemainingStocks.AnimationSpeed = 1;
             this.TxtRemainingStocks.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.TxtRemainingStocks.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.TxtRemainingStocks.AutoSizeHeight = false;
+            this.TxtRemainingStocks.AutoSizeHeight = true;
             this.TxtRemainingStocks.BackColor = System.Drawing.Color.Transparent;
             this.TxtRemainingStocks.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TxtRemainingStocks.BackgroundImage")));
             this.TxtRemainingStocks.BorderColorActive = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
@@ -1198,7 +1198,7 @@
             this.TxtPrice.AnimationSpeed = 1;
             this.TxtPrice.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.TxtPrice.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.TxtPrice.AutoSizeHeight = false;
+            this.TxtPrice.AutoSizeHeight = true;
             this.TxtPrice.BackColor = System.Drawing.Color.Transparent;
             this.TxtPrice.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TxtPrice.BackgroundImage")));
             this.TxtPrice.BorderColorActive = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
@@ -1302,7 +1302,7 @@
             this.TxtCostPerItem.AnimationSpeed = 1;
             this.TxtCostPerItem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.TxtCostPerItem.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.TxtCostPerItem.AutoSizeHeight = false;
+            this.TxtCostPerItem.AutoSizeHeight = true;
             this.TxtCostPerItem.BackColor = System.Drawing.Color.Transparent;
             this.TxtCostPerItem.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TxtCostPerItem.BackgroundImage")));
             this.TxtCostPerItem.BorderColorActive = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
@@ -1393,7 +1393,7 @@
             this.TxtSupplier.AnimationSpeed = 1;
             this.TxtSupplier.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.TxtSupplier.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.TxtSupplier.AutoSizeHeight = false;
+            this.TxtSupplier.AutoSizeHeight = true;
             this.TxtSupplier.BackColor = System.Drawing.Color.Transparent;
             this.TxtSupplier.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TxtSupplier.BackgroundImage")));
             this.TxtSupplier.BorderColorActive = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
@@ -1724,7 +1724,7 @@
             this.TxtName.AnimationSpeed = 1;
             this.TxtName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.TxtName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.TxtName.AutoSizeHeight = false;
+            this.TxtName.AutoSizeHeight = true;
             this.TxtName.BackColor = System.Drawing.Color.Transparent;
             this.TxtName.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("TxtName.BackgroundImage")));
             this.TxtName.BorderColorActive = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
