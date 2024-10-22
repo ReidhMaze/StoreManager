@@ -58,7 +58,7 @@ namespace LaundrySystem
                 servername = "localhost";
                 databasename = "store_manager_db";
                 username = "root";
-                password = "";
+                password = "bajed";
                 port = "3306";
 
                 strConnection = "Server=" + servername + ";" +
@@ -88,6 +88,152 @@ namespace LaundrySystem
             }
             return false;
         }
+
+        public void ProcAddStaff(string p_first_name, string p_last_name, DateTime p_birth_date, string p_gender, string p_email_address, string p_mobile_no, string p_username, string p_password, string p_role_type)
+        {
+
+            int v_role_id = FncGetRoleId(p_role_type);
+
+            if(FncGetStaffIdByUsername(p_username) == 0)
+            {
+                MessageBox.Show("Username is already in use");
+                return;
+            }
+
+            if(FncStaffExists(p_first_name, p_last_name))
+            {
+                MessageBox.Show("Staff already exists");
+                return;
+            }
+
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_add_staff"; // Stored procedure name
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Adding the parameters with SQL naming convention
+                gProcCmd.Parameters.AddWithValue("p_first_name", p_first_name);
+                gProcCmd.Parameters.AddWithValue("p_last_name", p_last_name);
+                gProcCmd.Parameters.AddWithValue("p_birth_date", p_birth_date);
+                gProcCmd.Parameters.AddWithValue("p_gender", p_gender);
+                gProcCmd.Parameters.AddWithValue("p_email_address", p_email_address);
+                gProcCmd.Parameters.AddWithValue("p_mobile_no", p_mobile_no);
+                gProcCmd.Parameters.AddWithValue("p_username", p_username);
+                gProcCmd.Parameters.AddWithValue("p_password", p_password);
+                gProcCmd.Parameters.AddWithValue("p_role_id", v_role_id);
+
+                // Execute the stored procedure
+                gProcCmd.ExecuteNonQuery();
+                
+                if(EnableDebugging)
+                    MessageBox.Show("Staff member added successfully.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+
+            ClearData(); // Cleans up data after execution
+        }
+
+        public bool FncStaffExists(string p_first_name, string p_last_name)
+        {
+            bool staffExists = false;
+
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_staff_exists"; // Stored procedure name
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Adding input parameters
+                gProcCmd.Parameters.AddWithValue("p_first_name", p_first_name);
+                gProcCmd.Parameters.AddWithValue("p_last_name", p_last_name);
+
+                // Execute the stored procedure and retrieve the result
+                using (MySqlDataReader reader = gProcCmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        staffExists = reader.GetInt32("staff_exists") == 1; // Check if staff exists
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+
+            return staffExists;
+        }
+
+
+        public int FncGetRoleId(string p_role)
+        {
+            int roleId = -1;
+
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_role_id"; // Stored procedure name
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Adding input parameter
+                gProcCmd.Parameters.AddWithValue("p_role", p_role);
+
+                // Execute the stored procedure and retrieve the result
+                using (MySqlDataReader reader = gProcCmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        roleId = reader.GetInt32("id"); // Get the id column from the result
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+
+            return roleId;
+        }
+
+
+        private int FncGetStaffIdByUsername(string p_username)
+        {
+            int staffId = -1;
+
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_staff_id_by_username"; // Stored procedure name
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Adding input parameter
+                gProcCmd.Parameters.AddWithValue("p_username", p_username);
+
+                // Execute the stored procedure and retrieve the result
+                using (MySqlDataReader reader = gProcCmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        staffId = reader.GetInt32("staff_id");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+
+            return staffId;
+        }
+
 
         private int FncGetTotalRecords()
         {

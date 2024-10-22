@@ -71,6 +71,9 @@ namespace StoreManager
                     }
                     else
                     {
+
+                        gProc.ProcAddStaff(firstName, lastName, birthDate, gender, emailAddress, mobileNumber, username, password, role);
+
                         var confirmAdd = MessageBox.Show("Are you sure you want to add this Staff?", "Confirm Add", MessageBoxButtons.YesNo);
 
                         if (confirmAdd == DialogResult.Yes)
