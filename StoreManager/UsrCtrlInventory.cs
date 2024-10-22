@@ -89,8 +89,17 @@ namespace StoreManager
             {
                 if (addProduct)
                 {
-                    if (this.selectedItem == null || this.selectedItem.ImgName != imgName) 
+                    //if (this.selectedItem != null || this.selectedItem.ImgName != imgName)
+                    //if (this.selectedItem != null)
+                    try
+                    {
                         File.Copy(this.imgLocation, Path.Combine(imageFolderDir, imgName), true);
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                    
 
                     restockThreshold = int.Parse(TxtRestockThreshold.Text);
                     price = double.Parse(TxtPrice.Text);
