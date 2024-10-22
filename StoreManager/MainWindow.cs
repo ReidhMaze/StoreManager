@@ -31,8 +31,9 @@ namespace StoreManager
 
         private ProductsAndOrdersLinker productsAndOrdersLinker;
         private UsrCtrlCashiering buyView;
-        private UsrCtrlInventory2Resize inventoryView;
+        private UsrCtrlInventory inventoryView;
         private UsrCtrlAnalytics analyticsView;
+        private UsrCtrlStaff staffView;
         private int windowWidth = int.Parse(ConfigurationManager.AppSettings["width"].ToString());
         private int windowHeight = int.Parse(ConfigurationManager.AppSettings["height"].ToString());
         private bool openInFullScreen = bool.Parse(ConfigurationManager.AppSettings["open_in_fullscreen"].ToString());
@@ -50,8 +51,9 @@ namespace StoreManager
             //this.PnlProductsPanel.PanelSizeUpdated();
             this.globalProcedure.FncConnectToDatabase();
             this.buyView = new UsrCtrlCashiering(this.dbConnection, globalProcedure);
-            this.inventoryView = new UsrCtrlInventory2Resize(this.dbConnection);
+            this.inventoryView = new UsrCtrlInventory(this.dbConnection, globalProcedure);
             this.analyticsView = new UsrCtrlAnalytics(this.dbConnection, globalProcedure);
+            this.staffView = new UsrCtrlStaff(this.dbConnection, globalProcedure);
 
             this.Size = new Size(windowWidth, windowHeight);
             this.WindowState = (openInFullScreen) ? FormWindowState.Maximized : FormWindowState.Normal;
@@ -66,6 +68,7 @@ namespace StoreManager
             buyView.Size = this.PnlContent.Size;
             inventoryView.Size = this.PnlContent.Size;
             analyticsView.Size = this.PnlContent.Size;
+            staffView.Size = this.PnlContent.Size;
             buyView.InitializeCardView();
             buyView.CenterPagination();
 
@@ -132,6 +135,11 @@ namespace StoreManager
         private void BtnAnalytics_Click(object sender, EventArgs e)
         {
             ShowUserCtrl(analyticsView);
+        }
+
+        private void BtnStaff_Click(object sender, EventArgs e)
+        {
+            ShowUserCtrl(staffView);
         }
 
         private void BtnSettings_Click(object sender, EventArgs e)

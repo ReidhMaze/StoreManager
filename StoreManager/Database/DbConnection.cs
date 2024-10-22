@@ -25,7 +25,7 @@ namespace StoreManager.Database
             server = "localhost";
             database = "store_manager_db";
             username = "root";
-            password = "umtagum"; //your server password
+            password = ""; //your server password
             port = "3306";
 
             //implement connection
