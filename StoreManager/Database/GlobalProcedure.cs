@@ -58,7 +58,7 @@ namespace LaundrySystem
                 servername = "localhost";
                 databasename = "store_manager_db";
                 username = "root";
-                password = "bajed";
+                password = "umtagum";
                 port = "3306";
 
                 strConnection = "Server=" + servername + ";" +
@@ -1568,7 +1568,8 @@ namespace LaundrySystem
                 }
                 else
                 {
-                    lbl.Text = dataTable.Rows[0]["product_sales"].ToString();
+                    string formatted = String.Format("{0:###,###.00}", dataTable.Rows[0]["product_sales"]);
+                    lbl.Text = "₱" + formatted;
                 }
 
 
