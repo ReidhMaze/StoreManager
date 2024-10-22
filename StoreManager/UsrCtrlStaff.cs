@@ -26,7 +26,9 @@ namespace StoreManager
         private DBConnect dbConnection;
         private GlobalProcedure gProc;
 
-        Boolean addStaff, updateStaff, deleteStaff;
+        private Boolean addStaff, updateStaff, deleteStaff;
+        private Staff selectedStaff = null;
+        private Dictionary<int, Staff> staffDict = new Dictionary<int, Staff>();
 
         public UsrCtrlStaff(DBConnect dbConnection, GlobalProcedure gproc)
         {
@@ -35,6 +37,7 @@ namespace StoreManager
             this.dbConnection = dbConnection;
             this.gProc = gproc;
             this.gProc.FncConnectToDatabase();
+            InitializeDataGrid();
         }
 
         private void BtnSubmit_Click(object sender, EventArgs e)
@@ -49,6 +52,8 @@ namespace StoreManager
             string password = TxtPassword.Text;
             string confirmPassword = TxtConfirmPassword.Text;
             string role = CmbRole.Text;
+
+            if (selectedStaff == null && !addStaff) return;
 
             try
             {
@@ -72,13 +77,12 @@ namespace StoreManager
                     else
                     {
 
-                        gProc.ProcAddStaff(firstName, lastName, birthDate, gender, emailAddress, mobileNumber, username, password, role);
-
                         var confirmAdd = MessageBox.Show("Are you sure you want to add this Staff?", "Confirm Add", MessageBoxButtons.YesNo);
 
                         if (confirmAdd == DialogResult.Yes)
                         {
                             //insert gproc for adding staff
+                            gProc.ProcAddStaff(firstName, lastName, birthDate, gender, emailAddress, mobileNumber, username, password, role);
                             MessageBox.Show("Staff Successfully Added");
                             ClearAll();
                         }
@@ -130,6 +134,7 @@ namespace StoreManager
                     if (confirmDelete == DialogResult.Yes)
                     {
                         //insert gproc for deleting staff
+                        this.gProc.ProcDeleteStaffById(selectedStaff.Id);
                         MessageBox.Show("Staff Successfully Deleted");
                         ClearAll();
                     }
@@ -139,11 +144,31 @@ namespace StoreManager
                     }
                 }
 
-            }
-
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+
+            InitializeDataGrid();
+        }
+
+        private void InitializeDataGrid()
+        {
+            List<Staff> staffList = gProc.ProcSelectStaff();
+            this.staffDict.Clear();
+            this.DataGridStaff.RowCount = staffList.Count();
+
+            for(int i = 0; i < staffList.Count; i++)
+            {
+                this.staffDict.Add(i, staffList[i]);
+                this.DataGridStaff.Rows[i].Cells[0].Value = staffList[i].FirstName;
+                this.DataGridStaff.Rows[i].Cells[1].Value = staffList[i].LastName;
+                this.DataGridStaff.Rows[i].Cells[2].Value = staffList[i].BirthDate.ToShortDateString();
+                this.DataGridStaff.Rows[i].Cells[3].Value = staffList[i].Gender;
+                this.DataGridStaff.Rows[i].Cells[4].Value = staffList[i].EmailAddress;
+                this.DataGridStaff.Rows[i].Cells[5].Value = staffList[i].MobileNum;
+                this.DataGridStaff.Rows[i].Cells[6].Value = staffList[i].Username;
+                this.DataGridStaff.Rows[i].Cells[7].Value = staffList[i].RoleType;
             }
         }
 
@@ -183,6 +208,7 @@ namespace StoreManager
         private void DeleteStaffMode()
         {
             StandardView(false);
+            this.BtnSubmit.Enabled = true;
 
             addStaff = false;
             updateStaff = false;
@@ -218,6 +244,23 @@ namespace StoreManager
             CmbRole.Enabled = false;
             BtnSubmit.Enabled = false;
             if (clear) ClearAll();
+        }
+
+        private void DataGridStaff_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //if (e.ColumnIndex < 0) return;
+
+            staffDict.TryGetValue(e.RowIndex, out selectedStaff);
+
+            this.TxtFirstName.Text = selectedStaff.FirstName;
+            this.TxtLastName.Text = selectedStaff.LastName;
+            this.TxtEmailAddress.Text = selectedStaff.EmailAddress;
+            this.TxtMobileNumber.Text = selectedStaff.MobileNum;
+            this.TxtUsername.Text = selectedStaff.Username;
+            this.TxtPassword.Text = selectedStaff.Password;
+            this.TxtConfirmPassword.Text = selectedStaff.Password;
+            this.CmbGender.SelectedIndex = this.CmbGender.Items.IndexOf(selectedStaff.Gender);
+            this.CmbRole.SelectedIndex = this.CmbRole.Items.IndexOf(selectedStaff.RoleType);
         }
 
         public void EnabledAll(bool clear)

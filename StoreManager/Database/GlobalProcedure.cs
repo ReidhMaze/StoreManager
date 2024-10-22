@@ -22,6 +22,7 @@ using LiveCharts;
 using Mysqlx.Crud;
 using System.Xml.Linq;
 using System.IO;
+using Org.BouncyCastle.Asn1.X509;
 
 namespace LaundrySystem
 {
@@ -95,7 +96,7 @@ namespace LaundrySystem
 
             int v_role_id = FncGetRoleId(p_role_type);
 
-            if(FncGetStaffIdByUsername(p_username) == 0)
+            if(FncGetStaffIdByUsername(p_username) > 0)
             {
                 MessageBox.Show("Username is already in use");
                 return;
@@ -138,6 +139,113 @@ namespace LaundrySystem
 
             ClearData(); // Cleans up data after execution
         }
+
+        public List<Staff> ProcSelectStaff()
+        {
+            List<Staff> staffList = new List<Staff>();
+
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_select_staff"; // Stored procedure name
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                using (MySqlDataReader reader = gProcCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        // Assuming the view_staff returns the columns in the expected order
+                        int id = reader.GetInt32("id");
+                        string firstName = reader.GetString("first_name");
+                        string lastName = reader.GetString("last_name");
+                        DateTime birthDate = reader.GetDateTime("birth_date");
+                        string gender = reader.GetString("gender");
+                        string emailAddress = reader.IsDBNull(reader.GetOrdinal("email_address")) ? null : reader.GetString("email_address");
+                        string mobileNum = reader.IsDBNull(reader.GetOrdinal("mobile_no")) ? null : reader.GetString("mobile_no");
+                        string username = reader.GetString("username");
+                        string password = reader.GetString("password");
+                        string roleType = reader.GetString("role_type");
+
+                        // Create a new Staff object and add it to the list
+                        Staff staffMember = new Staff(id, firstName, lastName, birthDate,
+                                                      gender, emailAddress, mobileNum,
+                                                      username, password, roleType);
+                        staffList.Add(staffMember);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+
+            return staffList;
+        }
+
+
+        public void ProcUpdateStaffById(int p_id, string p_first_name, string p_last_name, DateTime p_birth_date,
+                                  string p_gender, string p_email_address, string p_mobile_no,
+                                  string p_username, string p_password, string p_role_type)
+        {
+
+            if(p_id != FncGetStaffIdByUsername(p_username))
+            {
+                MessageBox.Show("Username is already in use");
+                return;
+            }
+
+            int v_role_id = FncGetRoleId(p_role_type);
+
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_update_staff_by_id"; // Stored procedure name
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Adding input parameters
+                gProcCmd.Parameters.AddWithValue("p_id", p_id);
+                gProcCmd.Parameters.AddWithValue("p_first_name", p_first_name);
+                gProcCmd.Parameters.AddWithValue("p_last_name", p_last_name);
+                gProcCmd.Parameters.AddWithValue("p_birth_date", p_birth_date);
+                gProcCmd.Parameters.AddWithValue("p_gender", p_gender);
+                gProcCmd.Parameters.AddWithValue("p_email_address", p_email_address);
+                gProcCmd.Parameters.AddWithValue("p_mobile_no", p_mobile_no);
+                gProcCmd.Parameters.AddWithValue("p_username", p_username);
+                gProcCmd.Parameters.AddWithValue("p_password", p_password);
+                gProcCmd.Parameters.AddWithValue("p_role_id", v_role_id);
+
+                // Execute the stored procedure
+                gProcCmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+
+        public void ProcDeleteStaffById(int p_id)
+        {
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_delete_staff_by_id"; // Stored procedure name
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                // Adding input parameter
+                gProcCmd.Parameters.AddWithValue("p_id", p_id);
+
+                // Execute the stored procedure
+                gProcCmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+
 
         public bool FncStaffExists(string p_first_name, string p_last_name)
         {

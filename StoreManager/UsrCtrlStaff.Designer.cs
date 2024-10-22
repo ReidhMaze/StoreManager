@@ -101,7 +101,6 @@
             this.email_address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mobile_number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.username = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.password = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.role = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.bunifuPanel3.SuspendLayout();
@@ -1402,7 +1401,6 @@
             this.email_address,
             this.mobile_number,
             this.username,
-            this.password,
             this.role});
             this.DataGridStaff.CurrentTheme.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(48)))), ((int)(((byte)(52)))));
             this.DataGridStaff.CurrentTheme.AlternatingRowsStyle.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
@@ -1447,6 +1445,7 @@
             this.DataGridStaff.Size = new System.Drawing.Size(1042, 350);
             this.DataGridStaff.TabIndex = 72;
             this.DataGridStaff.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Dark;
+            this.DataGridStaff.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridStaff_CellClick);
             // 
             // first_name
             // 
@@ -1489,12 +1488,6 @@
             this.username.HeaderText = "Username";
             this.username.Name = "username";
             this.username.ReadOnly = true;
-            // 
-            // password
-            // 
-            this.password.HeaderText = "Password";
-            this.password.Name = "password";
-            this.password.ReadOnly = true;
             // 
             // role
             // 
@@ -1548,6 +1541,10 @@
         private Bunifu.UI.WinForms.BunifuTextBox TxtLastName;
         private Bunifu.UI.WinForms.BunifuTextBox TxtFirstName;
         private System.Windows.Forms.Label label4;
+        private Bunifu.UI.WinForms.BunifuButton.BunifuButton BtnSubmit;
+        private Bunifu.UI.WinForms.BunifuButton.BunifuButton BtnAdd;
+        private Bunifu.UI.WinForms.BunifuButton.BunifuButton BtnDelete;
+        private Bunifu.UI.WinForms.BunifuButton.BunifuButton BtnUpdate;
         private System.Windows.Forms.DataGridViewTextBoxColumn first_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn last_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn birthdate;
@@ -1555,11 +1552,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn email_address;
         private System.Windows.Forms.DataGridViewTextBoxColumn mobile_number;
         private System.Windows.Forms.DataGridViewTextBoxColumn username;
-        private System.Windows.Forms.DataGridViewTextBoxColumn password;
         private System.Windows.Forms.DataGridViewTextBoxColumn role;
-        private Bunifu.UI.WinForms.BunifuButton.BunifuButton BtnSubmit;
-        private Bunifu.UI.WinForms.BunifuButton.BunifuButton BtnAdd;
-        private Bunifu.UI.WinForms.BunifuButton.BunifuButton BtnDelete;
-        private Bunifu.UI.WinForms.BunifuButton.BunifuButton BtnUpdate;
     }
 }

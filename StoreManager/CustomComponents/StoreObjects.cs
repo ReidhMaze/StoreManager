@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Asn1.Mozilla;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Diagnostics;
@@ -167,6 +168,37 @@ namespace StoreObjects
             Date = date;
             SupplierOrInvoice = supplierOrInvoice;
             StaffName = staffName;
+        }
+
+    }
+
+    public class Staff
+    {
+        public int Id { get; }
+        public string FirstName { get; }
+        public string LastName { get; }
+        public DateTime BirthDate { get; }
+        public string Gender { get; }
+        public string EmailAddress { get; }
+        public string MobileNum { get; }
+        public string Username { get; }
+        public string Password { get; }
+        public string RoleType { get; }
+
+        public Staff(int id, string firstName, string lastName, DateTime birthDate,
+                string gender, string emailAddress, string mobileNum,
+                string username, string password, string roleType)
+        {
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            BirthDate = birthDate;
+            Gender = gender;
+            EmailAddress = emailAddress;
+            MobileNum = mobileNum;
+            Username = username;
+            Password = password;
+            RoleType = roleType;
         }
 
     }
