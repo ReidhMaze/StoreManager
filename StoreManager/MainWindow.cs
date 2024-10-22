@@ -148,5 +148,10 @@ namespace StoreManager
             settings.ShowDialog();
             this.buyView.UpdateTax();
         }
+
+        private void BtnLogout_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

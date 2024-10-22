@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,8 @@ namespace StoreManager
         string customers;
         private DBConnect dbConnection = new DBConnect();
         private GlobalProcedure gProc = new GlobalProcedure();
+        string analyticsReportLocation = Path.Combine(Environment.CurrentDirectory, "..\\..\\AnalyticsReport.rpt");
+
         public FormReport(DBConnect dbConnection, GlobalProcedure gProc)
         {
 
@@ -34,6 +37,9 @@ namespace StoreManager
 
 
             AnalyticsReport report = new AnalyticsReport();
+
+
+
             report.SetParameterValue(0, convert);
             report.SetParameterValue(1, gProc.FncGetTotalCustomers());
             report.SetParameterValue(2, gProc.FncTotalOrder().ToString());
@@ -44,9 +50,9 @@ namespace StoreManager
             report.SetParameterValue(7, gProc.FncGetTopProducts(2).ToString());
             report.SetParameterValue(8, gProc.FncGetTopProducts(3).ToString());
             report.SetParameterValue(9, gProc.FncGetTopProducts(4).ToString());
-            
-            
-           crystalReportViewer1.ReportSource = report;
+
+
+            crystalReportViewer1.ReportSource = report;
            crystalReportViewer1.Refresh();
 
 

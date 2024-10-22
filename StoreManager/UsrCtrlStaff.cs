@@ -53,7 +53,11 @@ namespace StoreManager
             string confirmPassword = TxtConfirmPassword.Text;
             string role = CmbRole.Text;
 
-            if (selectedStaff == null && !addStaff) return;
+            if (selectedStaff == null && !addStaff)
+            {
+                MessageBox.Show("Please select a staff");
+                return;
+            };
 
             try
             {
@@ -69,13 +73,16 @@ namespace StoreManager
                         MessageBox.Show("Password does not match", "Error");
                         return;
                     }
-                    else if (mobileNumber.Length < 11)
+                    else if (mobileNumber.Length > 11)
                     {
                         MessageBox.Show("Invalid Mobile Number", "Error");
                         return;
                     }
                     else
                     {
+
+                        mobileNumber = (mobileNumber == "") ? null : mobileNumber;
+                        emailAddress = (emailAddress == "") ? null : emailAddress;
 
                         var confirmAdd = MessageBox.Show("Are you sure you want to add this Staff?", "Confirm Add", MessageBoxButtons.YesNo);
 
@@ -105,18 +112,23 @@ namespace StoreManager
                         MessageBox.Show("Password does not match", "Error");
                         return;
                     }
-                    else if (mobileNumber.Length < 11)
+                    else if (mobileNumber.Length > 11)
                     {
                         MessageBox.Show("Invalid Mobile Number", "Error");
                         return;
                     }
                     else
                     {
+
+                        mobileNumber = (mobileNumber == "") ? null : mobileNumber;
+                        emailAddress = (emailAddress == "") ? null : emailAddress;
+
                         var confirmUpdate = MessageBox.Show("Are you sure you want to change the information for this Staff?", "Confirm Update", MessageBoxButtons.YesNo);
 
                         if (confirmUpdate == DialogResult.Yes)
                         {
-                            //insert gproc for updating staff
+                            this.gProc.ProcUpdateStaffById(selectedStaff.Id, firstName, lastName, birthDate, gender, emailAddress, mobileNumber,
+                                                            username, password, role);
                             MessageBox.Show("Staff Successfully Updated");
                             ClearAll();
                         }
@@ -157,6 +169,7 @@ namespace StoreManager
             List<Staff> staffList = gProc.ProcSelectStaff();
             this.staffDict.Clear();
             this.DataGridStaff.RowCount = staffList.Count();
+            this.selectedStaff = null;
 
             for(int i = 0; i < staffList.Count; i++)
             {
@@ -169,6 +182,21 @@ namespace StoreManager
                 this.DataGridStaff.Rows[i].Cells[5].Value = staffList[i].MobileNum;
                 this.DataGridStaff.Rows[i].Cells[6].Value = staffList[i].Username;
                 this.DataGridStaff.Rows[i].Cells[7].Value = staffList[i].RoleType;
+            }
+        }
+
+        private void TbNumOnly_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar))
+            {
+                return;
+            }
+
+            var regex = new Regex(@"[^0-9\s]");
+
+            if (regex.IsMatch(e.KeyChar.ToString()))
+            {
+                e.Handled = true;
             }
         }
 
@@ -213,21 +241,6 @@ namespace StoreManager
             addStaff = false;
             updateStaff = false;
             deleteStaff = true;
-        }
-
-        private void TbNumOnly_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (char.IsControl(e.KeyChar))
-            {
-                return;
-            }
-
-            var regex = new Regex(@"[^0-9\s]");
-
-            if (regex.IsMatch(e.KeyChar.ToString()))
-            {
-                e.Handled = true;
-            }
         }
 
         public void StandardView(bool clear)

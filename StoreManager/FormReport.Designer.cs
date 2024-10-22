@@ -10,8 +10,6 @@ namespace StoreManager
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-        string analyticsReportLocation = Path.Combine(Environment.CurrentDirectory, "..\\..\\AnalyticsReport.rpt");
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -44,7 +42,6 @@ namespace StoreManager
             this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crystalReportViewer1.Location = new System.Drawing.Point(0, 0);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
-            Debug.WriteLine(Environment.CurrentDirectory);
             this.crystalReportViewer1.ReportSource = analyticsReportLocation;
             this.crystalReportViewer1.Size = new System.Drawing.Size(1184, 731);
             this.crystalReportViewer1.TabIndex = 0;

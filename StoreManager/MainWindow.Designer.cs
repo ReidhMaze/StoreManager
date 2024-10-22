@@ -35,12 +35,13 @@ namespace StoreManager
         /// </summary>
         private void InitializeComponent()
         {
-            Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges5 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges6 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.PnlNavigation = new System.Windows.Forms.Panel();
             this.BtnSettings = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton();
             this.BtnStaff = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
@@ -49,6 +50,7 @@ namespace StoreManager
             this.BtnCashier = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.picBoxLogo = new System.Windows.Forms.PictureBox();
             this.PnlContent = new System.Windows.Forms.Panel();
+            this.BtnLogout = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton();
             this.PnlNavigation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLogo)).BeginInit();
             this.SuspendLayout();
@@ -58,6 +60,7 @@ namespace StoreManager
             this.PnlNavigation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.PnlNavigation.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.PnlNavigation.Controls.Add(this.BtnLogout);
             this.PnlNavigation.Controls.Add(this.BtnSettings);
             this.PnlNavigation.Controls.Add(this.BtnStaff);
             this.PnlNavigation.Controls.Add(this.BtnAnalytics);
@@ -86,11 +89,11 @@ namespace StoreManager
             this.BtnSettings.ColorContrastOnClick = 30;
             this.BtnSettings.ColorContrastOnHover = 30;
             this.BtnSettings.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges1.BottomLeft = true;
-            borderEdges1.BottomRight = true;
-            borderEdges1.TopLeft = true;
-            borderEdges1.TopRight = true;
-            this.BtnSettings.CustomizableEdges = borderEdges1;
+            borderEdges2.BottomLeft = true;
+            borderEdges2.BottomRight = true;
+            borderEdges2.TopLeft = true;
+            borderEdges2.TopRight = true;
+            this.BtnSettings.CustomizableEdges = borderEdges2;
             this.BtnSettings.DialogResult = System.Windows.Forms.DialogResult.None;
             this.BtnSettings.Image = ((System.Drawing.Image)(resources.GetObject("BtnSettings.Image")));
             this.BtnSettings.ImageMargin = new System.Windows.Forms.Padding(0);
@@ -122,11 +125,11 @@ namespace StoreManager
             this.BtnStaff.ColorContrastOnClick = 45;
             this.BtnStaff.ColorContrastOnHover = 45;
             this.BtnStaff.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges2.BottomLeft = true;
-            borderEdges2.BottomRight = true;
-            borderEdges2.TopLeft = true;
-            borderEdges2.TopRight = true;
-            this.BtnStaff.CustomizableEdges = borderEdges2;
+            borderEdges3.BottomLeft = true;
+            borderEdges3.BottomRight = true;
+            borderEdges3.TopLeft = true;
+            borderEdges3.TopRight = true;
+            this.BtnStaff.CustomizableEdges = borderEdges3;
             this.BtnStaff.DialogResult = System.Windows.Forms.DialogResult.None;
             this.BtnStaff.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.BtnStaff.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -213,11 +216,11 @@ namespace StoreManager
             this.BtnAnalytics.ColorContrastOnClick = 45;
             this.BtnAnalytics.ColorContrastOnHover = 45;
             this.BtnAnalytics.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges3.BottomLeft = true;
-            borderEdges3.BottomRight = true;
-            borderEdges3.TopLeft = true;
-            borderEdges3.TopRight = true;
-            this.BtnAnalytics.CustomizableEdges = borderEdges3;
+            borderEdges4.BottomLeft = true;
+            borderEdges4.BottomRight = true;
+            borderEdges4.TopLeft = true;
+            borderEdges4.TopRight = true;
+            this.BtnAnalytics.CustomizableEdges = borderEdges4;
             this.BtnAnalytics.DialogResult = System.Windows.Forms.DialogResult.None;
             this.BtnAnalytics.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.BtnAnalytics.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -304,11 +307,11 @@ namespace StoreManager
             this.BtnInventory.ColorContrastOnClick = 45;
             this.BtnInventory.ColorContrastOnHover = 45;
             this.BtnInventory.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges4.BottomLeft = true;
-            borderEdges4.BottomRight = true;
-            borderEdges4.TopLeft = true;
-            borderEdges4.TopRight = true;
-            this.BtnInventory.CustomizableEdges = borderEdges4;
+            borderEdges5.BottomLeft = true;
+            borderEdges5.BottomRight = true;
+            borderEdges5.TopLeft = true;
+            borderEdges5.TopRight = true;
+            this.BtnInventory.CustomizableEdges = borderEdges5;
             this.BtnInventory.DialogResult = System.Windows.Forms.DialogResult.None;
             this.BtnInventory.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.BtnInventory.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -395,11 +398,11 @@ namespace StoreManager
             this.BtnCashier.ColorContrastOnClick = 45;
             this.BtnCashier.ColorContrastOnHover = 45;
             this.BtnCashier.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges5.BottomLeft = true;
-            borderEdges5.BottomRight = true;
-            borderEdges5.TopLeft = true;
-            borderEdges5.TopRight = true;
-            this.BtnCashier.CustomizableEdges = borderEdges5;
+            borderEdges6.BottomLeft = true;
+            borderEdges6.BottomRight = true;
+            borderEdges6.TopLeft = true;
+            borderEdges6.TopRight = true;
+            this.BtnCashier.CustomizableEdges = borderEdges6;
             this.BtnCashier.DialogResult = System.Windows.Forms.DialogResult.None;
             this.BtnCashier.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.BtnCashier.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -490,6 +493,39 @@ namespace StoreManager
             this.PnlContent.Size = new System.Drawing.Size(1168, 682);
             this.PnlContent.TabIndex = 1;
             // 
+            // BtnLogout
+            // 
+            this.BtnLogout.AllowAnimations = true;
+            this.BtnLogout.AllowBorderColorChanges = true;
+            this.BtnLogout.AllowMouseEffects = true;
+            this.BtnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnLogout.AnimationSpeed = 200;
+            this.BtnLogout.BackColor = System.Drawing.Color.Transparent;
+            this.BtnLogout.BackgroundColor = System.Drawing.Color.White;
+            this.BtnLogout.BorderColor = System.Drawing.Color.Gray;
+            this.BtnLogout.BorderRadius = 1;
+            this.BtnLogout.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderStyles.Solid;
+            this.BtnLogout.BorderThickness = 1;
+            this.BtnLogout.ColorContrastOnClick = 30;
+            this.BtnLogout.ColorContrastOnHover = 30;
+            this.BtnLogout.Cursor = System.Windows.Forms.Cursors.Hand;
+            borderEdges1.BottomLeft = true;
+            borderEdges1.BottomRight = true;
+            borderEdges1.TopLeft = true;
+            borderEdges1.TopRight = true;
+            this.BtnLogout.CustomizableEdges = borderEdges1;
+            this.BtnLogout.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.BtnLogout.Image = ((System.Drawing.Image)(resources.GetObject("BtnLogout.Image")));
+            this.BtnLogout.ImageMargin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.BtnLogout.Location = new System.Drawing.Point(164, 644);
+            this.BtnLogout.Name = "BtnLogout";
+            this.BtnLogout.RoundBorders = true;
+            this.BtnLogout.ShowBorders = true;
+            this.BtnLogout.Size = new System.Drawing.Size(35, 35);
+            this.BtnLogout.Style = Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.ButtonStyles.Round;
+            this.BtnLogout.TabIndex = 5;
+            this.BtnLogout.Click += new System.EventHandler(this.BtnLogout_Click);
+            // 
             // MainWindow
             // 
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -525,5 +561,6 @@ namespace StoreManager
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 BtnInventory;
         private Bunifu.UI.WinForms.BunifuButton.BunifuIconButton BtnSettings;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 BtnStaff;
+        private Bunifu.UI.WinForms.BunifuButton.BunifuIconButton BtnLogout;
     }
 }
