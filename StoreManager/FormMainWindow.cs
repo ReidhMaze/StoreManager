@@ -76,18 +76,23 @@ namespace StoreManager
             {
                 this.BtnInventory.Enabled = false;
                 this.BtnAnalytics.Enabled = false;
+                this.BtnStaff.Enabled = false;
                 ShowUserCtrl(buyView);
             }
             else if (loggedStaffRole == "Inventory Manager")
             {
                 this.BtnCashier.Enabled = false;
                 this.BtnAnalytics.Enabled = false;
+                this.BtnStaff.Enabled = false;
                 ShowUserCtrl(inventoryView);
             }
             else
             {
                 ShowUserCtrl(buyView);
                 this.BtnSettings.Visible = true;
+                this.BtnCashier.Enabled = true;
+                this.BtnAnalytics.Enabled = true;
+                this.BtnStaff.Enabled = true;
             }
         }
 
