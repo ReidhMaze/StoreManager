@@ -2,7 +2,6 @@
 using StoreManagerDb;
 using LiveCharts.Wpf;
 using LiveCharts;
-using StoreManager.Database;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

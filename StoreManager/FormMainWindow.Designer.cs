@@ -2,7 +2,6 @@
 using MySql.Data.MySqlClient;
 using System.Data.Common;
 using System.Runtime.CompilerServices;
-using StoreManager.Database;
 using System.Windows.Forms;
 
 namespace StoreManager

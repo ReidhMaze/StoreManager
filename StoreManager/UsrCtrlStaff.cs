@@ -1,5 +1,4 @@
 ﻿using StoreManager.CustomComponentsLinker;
-using StoreManager.Database;
 using StoreManagerDb;
 using StoreManager.Properties;
 using System;

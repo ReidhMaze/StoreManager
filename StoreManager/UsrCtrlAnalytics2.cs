@@ -10,19 +10,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using StoreManagerDb;
-using StoreManager.Database;
 
 namespace StoreManager
 {
     public partial class UsrCtrlAnalytics2 : UserControl
     {
-        private DBConnect dbConnection;
         private GlobalProcedure gProc;
       
-        public UsrCtrlAnalytics2(DBConnect dbConnection, GlobalProcedure gProc)
+        public UsrCtrlAnalytics2(GlobalProcedure gProc)
         {
             InitializeComponent();
-            this.dbConnection = dbConnection;
             this.gProc = gProc;
             displayTotalOrders();
             displayTotalSales();

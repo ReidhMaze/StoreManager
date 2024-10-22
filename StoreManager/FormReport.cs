@@ -1,5 +1,4 @@
 ﻿using StoreManagerDb;
-using StoreManager.Database;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
