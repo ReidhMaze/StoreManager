@@ -46,7 +46,7 @@ namespace StoreManager
             //this.CmbSize.Items.AddRange(gProc.FncGetDistinctSizes());
             //this.CmbType.Items.AddRange(gProc.FncGetProductTypes());
             this.CmbTypeInfo.Items.AddRange(gProc.FncGetProductTypes());
-            this.CmbSizeInfo.Items.AddRange(gProc.FncGetDistinctSizes());
+            //this.CmbSizeInfo.Items.AddRange(gProc.FncGetDistinctSizes());
             this.CmbViewType.SelectedIndex = 0;
         }
 
@@ -430,6 +430,10 @@ namespace StoreManager
 
             for (int i = 0; i < items.Count; i++)
             {
+
+                if (items[i].CurrentStocks <= items[i].RestockThreshold) this.DataGridItems.Rows[i].DefaultCellStyle.ForeColor = Color.Yellow;
+                if (items[i].CurrentStocks == 0) this.DataGridItems.Rows[i].DefaultCellStyle.ForeColor = Color.Red;
+
                 this.rowId.Add(i, items[i]);
                 this.DataGridItems.Rows[i].Cells[0].Value = items[i].Name;              // Name
                 this.DataGridItems.Rows[i].Cells[1].Value = items[i].ItemCode;          // Item Code

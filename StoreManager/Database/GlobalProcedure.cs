@@ -1419,8 +1419,9 @@ namespace StoreManagerDb
 
                 // Execute the stored procedure
                 gProcCmd.ExecuteNonQuery();
-
-                MessageBox.Show("Item deleted successfully.");
+                
+                if(EnableDebugging)
+                    MessageBox.Show("Item deleted successfully.");
             }
             catch (Exception ex)
             {
@@ -1452,8 +1453,9 @@ namespace StoreManagerDb
 
                 // Execute the stored procedure
                 gProcCmd.ExecuteNonQuery();
-
-                MessageBox.Show("Item updated successfully.");
+                
+                if(EnableDebugging)
+                    MessageBox.Show("Item updated successfully.");
             }
             catch (Exception ex)
             {

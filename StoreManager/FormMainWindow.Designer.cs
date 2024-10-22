@@ -34,14 +34,15 @@ namespace StoreManager
         /// </summary>
         private void InitializeComponent()
         {
+            Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMainWindow));
             Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges5 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges6 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMainWindow));
             this.PnlNavigation = new System.Windows.Forms.Panel();
+            this.BtnLogout = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton();
             this.BtnSettings = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton();
             this.BtnStaff = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.BtnAnalytics = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
@@ -49,7 +50,6 @@ namespace StoreManager
             this.BtnCashier = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.picBoxLogo = new System.Windows.Forms.PictureBox();
             this.PnlContent = new System.Windows.Forms.Panel();
-            this.BtnLogout = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton();
             this.PnlNavigation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLogo)).BeginInit();
             this.SuspendLayout();
@@ -71,6 +71,39 @@ namespace StoreManager
             this.PnlNavigation.Name = "PnlNavigation";
             this.PnlNavigation.Size = new System.Drawing.Size(203, 682);
             this.PnlNavigation.TabIndex = 0;
+            // 
+            // BtnLogout
+            // 
+            this.BtnLogout.AllowAnimations = true;
+            this.BtnLogout.AllowBorderColorChanges = true;
+            this.BtnLogout.AllowMouseEffects = true;
+            this.BtnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnLogout.AnimationSpeed = 200;
+            this.BtnLogout.BackColor = System.Drawing.Color.Transparent;
+            this.BtnLogout.BackgroundColor = System.Drawing.Color.White;
+            this.BtnLogout.BorderColor = System.Drawing.Color.Gray;
+            this.BtnLogout.BorderRadius = 1;
+            this.BtnLogout.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderStyles.Solid;
+            this.BtnLogout.BorderThickness = 1;
+            this.BtnLogout.ColorContrastOnClick = 30;
+            this.BtnLogout.ColorContrastOnHover = 30;
+            this.BtnLogout.Cursor = System.Windows.Forms.Cursors.Hand;
+            borderEdges1.BottomLeft = true;
+            borderEdges1.BottomRight = true;
+            borderEdges1.TopLeft = true;
+            borderEdges1.TopRight = true;
+            this.BtnLogout.CustomizableEdges = borderEdges1;
+            this.BtnLogout.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.BtnLogout.Image = ((System.Drawing.Image)(resources.GetObject("BtnLogout.Image")));
+            this.BtnLogout.ImageMargin = new System.Windows.Forms.Padding(0);
+            this.BtnLogout.Location = new System.Drawing.Point(164, 644);
+            this.BtnLogout.Name = "BtnLogout";
+            this.BtnLogout.RoundBorders = true;
+            this.BtnLogout.ShowBorders = true;
+            this.BtnLogout.Size = new System.Drawing.Size(35, 35);
+            this.BtnLogout.Style = Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.ButtonStyles.Round;
+            this.BtnLogout.TabIndex = 5;
+            this.BtnLogout.Click += new System.EventHandler(this.BtnLogout_Click);
             // 
             // BtnSettings
             // 
@@ -492,48 +525,16 @@ namespace StoreManager
             this.PnlContent.Size = new System.Drawing.Size(1168, 682);
             this.PnlContent.TabIndex = 1;
             // 
-            // BtnLogout
-            // 
-            this.BtnLogout.AllowAnimations = true;
-            this.BtnLogout.AllowBorderColorChanges = true;
-            this.BtnLogout.AllowMouseEffects = true;
-            this.BtnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnLogout.AnimationSpeed = 200;
-            this.BtnLogout.BackColor = System.Drawing.Color.Transparent;
-            this.BtnLogout.BackgroundColor = System.Drawing.Color.White;
-            this.BtnLogout.BorderColor = System.Drawing.Color.Gray;
-            this.BtnLogout.BorderRadius = 1;
-            this.BtnLogout.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderStyles.Solid;
-            this.BtnLogout.BorderThickness = 1;
-            this.BtnLogout.ColorContrastOnClick = 30;
-            this.BtnLogout.ColorContrastOnHover = 30;
-            this.BtnLogout.Cursor = System.Windows.Forms.Cursors.Hand;
-            borderEdges1.BottomLeft = true;
-            borderEdges1.BottomRight = true;
-            borderEdges1.TopLeft = true;
-            borderEdges1.TopRight = true;
-            this.BtnLogout.CustomizableEdges = borderEdges1;
-            this.BtnLogout.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.BtnLogout.Image = ((System.Drawing.Image)(resources.GetObject("BtnLogout.Image")));
-            this.BtnLogout.ImageMargin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.BtnLogout.Location = new System.Drawing.Point(164, 644);
-            this.BtnLogout.Name = "BtnLogout";
-            this.BtnLogout.RoundBorders = true;
-            this.BtnLogout.ShowBorders = true;
-            this.BtnLogout.Size = new System.Drawing.Size(35, 35);
-            this.BtnLogout.Style = Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.ButtonStyles.Round;
-            this.BtnLogout.TabIndex = 5;
-            this.BtnLogout.Click += new System.EventHandler(this.BtnLogout_Click);
-            // 
-            // MainWindow
+            // FormMainWindow
             // 
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1370, 681);
             this.Controls.Add(this.PnlContent);
             this.Controls.Add(this.PnlNavigation);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "MainWindow";
+            this.Name = "FormMainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CLC Store Manager";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
