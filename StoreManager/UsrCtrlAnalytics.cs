@@ -38,6 +38,8 @@ namespace StoreManager
             gProc.ProcAddCmbProductSoldItems(cmbProductSold);
             gProc.ProcAddCmbProductSoldItems(cmbProductSales);
             gProc.ProcGetTotalCustomers(lblTotalCustomer);
+            displaySalesPercentageDifference();
+            displayCustomersPercentageDifference();
             defaultProductSoldSalesValue();
             defaultGraphValue();
             getTopProducts();
@@ -296,6 +298,21 @@ namespace StoreManager
         private void panel5_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void bunifuLabel2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void displaySalesPercentageDifference()
+        {
+            gProc.ProcGetSalesPercentageDifference(lblSalesPercentageDifference);
+        }
+
+        public void displayCustomersPercentageDifference()
+        {
+            gProc.ProcGetCustomersPercentageDifference(lblCustomerPercentageDifference);
         }
     }
 }

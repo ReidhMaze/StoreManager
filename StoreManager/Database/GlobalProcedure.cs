@@ -2023,10 +2023,95 @@ namespace LaundrySystem
                 return customers;
             }
 
+        }
 
+        public void ProcGetSalesPercentageDifference(BunifuLabel lbl)
+        {
+            double percentage;
+            try
+            {
+
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                this.sqlAdapter = new MySqlDataAdapter();
+                this.datStoreMgr = new DataTable();
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_sales_today_yesterday_percentage_difference";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+                this.sqlAdapter.SelectCommand = this.sqlCommand;
+
+                this.datStoreMgr.Clear();
+                this.sqlAdapter.Fill(this.datStoreMgr);
+
+                DataTable dataTable = this.datStoreMgr;
+
+
+                percentage = double.Parse(dataTable.Rows[0]["Percentage_Change"].ToString());
+
+                if (percentage > 0)
+                {
+                    lbl.ForeColor = Color.Green;
+                    lbl.Text = (percentage + "% sales from yesterday");
+                }
+                else if (percentage < 0)
+                {
+                    lbl.ForeColor = Color.Red;
+                    lbl.Text = (percentage + "% sales from yesterday");
+                }
+            }
+            catch
+            {
+                lbl.ForeColor= Color.Green;
+                lbl.Text = "0% sales from yesterday";
+            }
 
 
         }
+
+        public void ProcGetCustomersPercentageDifference(BunifuLabel lbl)
+        {
+            try
+            {
+                double percentage;
+
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                this.sqlAdapter = new MySqlDataAdapter();
+                this.datStoreMgr = new DataTable();
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_customers_today_yesterday_percentage_difference";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+                this.sqlAdapter.SelectCommand = this.sqlCommand;
+
+                this.datStoreMgr.Clear();
+                this.sqlAdapter.Fill(this.datStoreMgr);
+
+                DataTable dataTable = this.datStoreMgr;
+
+                percentage = double.Parse(dataTable.Rows[0]["Percentage_Change"].ToString());
+
+                if (percentage > 0)
+                {
+                    lbl.ForeColor = Color.Green;
+                    lbl.Text = (percentage + "% customers from yesterday");
+                }
+                else if (percentage < 0)
+                {
+                    lbl.ForeColor = Color.Red;
+                    lbl.Text = (percentage + "% customers from yesterday");
+                }
+            }
+            catch
+            {
+                lbl.ForeColor = Color.Green;
+                lbl.Text = ("0% customers from yesterday");
+            }
+
+
+        }
+
 
     }
 }
