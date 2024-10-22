@@ -288,11 +288,47 @@
     <None Include="Resources\barchart3.png" />
     <None Include="Resources\customers.png" />
     <None Include="Resources\report.png" />
+    <None Include="Resources\pants.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\jacket.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\cap.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\bag.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\accessories.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\others.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="Resources\search_icon.png" />
     <None Include="Resources\tag.png" />
-    <None Include="Resources\shoes.png" />
-    <Content Include="Resources\staff.png" />
-    <Content Include="Resources\upload_icon.png" />
+  <None Include="Resources\shoes.png">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </None>
+  <None Include="Resources\shoes2.png">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </None>
+  <None Include="Resources\tanktop.png">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </None>
+  <None Include="Resources\socks.png">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </None>
+  <None Include="Resources\shorts.png">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </None>
+  <None Include="Resources\shirt.png">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </None>
+  <Content Include="Resources\staff.png" />
+  <Content Include="Resources\upload_icon.png" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CompoundComponents\" />
