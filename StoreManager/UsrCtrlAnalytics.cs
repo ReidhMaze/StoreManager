@@ -18,6 +18,7 @@ using LiveCharts.WinForms;
 using LiveCharts.Definitions.Charts;
 using System.Globalization;
 using System.Diagnostics;
+using Google.Protobuf.WellKnownTypes;
 
 namespace StoreManager
 {
@@ -220,8 +221,9 @@ namespace StoreManager
         public void displayTotalSales()
         {
             double sales = gProc.FncTotalSales();
-            string totalSales = sales.ToString("0.00");
-            lblTotalSales.Text = "₱" + totalSales;
+           
+            string formatted = String.Format("{0:###,###.00}", sales);
+            lblTotalSales.Text = "₱" + formatted;
 
         }
 
@@ -313,6 +315,16 @@ namespace StoreManager
         public void displayCustomersPercentageDifference()
         {
             gProc.ProcGetCustomersPercentageDifference(lblCustomerPercentageDifference);
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void bunifuLabel1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
