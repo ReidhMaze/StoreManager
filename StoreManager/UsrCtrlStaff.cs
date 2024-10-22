@@ -276,6 +276,25 @@ namespace StoreManager
             this.CmbRole.SelectedIndex = this.CmbRole.Items.IndexOf(selectedStaff.RoleType);
         }
 
+        private void TxtMobileNumber_TextChanged(object sender, EventArgs e)
+        {
+            // Store the position of the caret (cursor) to restore it later
+            int selectionStart = TxtMobileNumber.SelectionStart;
+            int selectionLength = TxtMobileNumber.SelectionLength;
+
+            // Remove all non-numeric characters
+            string cleanedText = Regex.Replace(TxtMobileNumber.Text, @"[^0-9]", "");
+
+            // Set the cleaned text back to the TextBox
+            TxtMobileNumber.Text = cleanedText;
+
+            // Restore the caret position
+            TxtMobileNumber.SelectionStart = selectionStart > TxtMobileNumber.Text.Length
+                                            ? TxtMobileNumber.Text.Length
+                                            : selectionStart;
+            TxtMobileNumber.SelectionLength = selectionLength;
+        }
+
         public void EnabledAll(bool clear)
         {
             TxtFirstName.Enabled = true;
