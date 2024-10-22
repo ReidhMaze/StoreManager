@@ -1,6 +1,6 @@
 ﻿using StoreManager.CustomComponentsLinker;
 using StoreManager.Database;
-using LaundrySystem;
+using StoreManagerDb;
 using StoreManager.Properties;
 using System;
 using System.Collections.Generic;
@@ -22,7 +22,6 @@ namespace StoreManager
 {
     public partial class UsrCtrlInventory : UserControl
     {
-        private DBConnect dbConnection;
         private GlobalProcedure gProc;
 
         string imgLocation;
@@ -38,10 +37,9 @@ namespace StoreManager
 
         public bool Updated = false;
 
-        public UsrCtrlInventory(DBConnect dbConnection, GlobalProcedure gProc)
+        public UsrCtrlInventory(GlobalProcedure gProc)
         {
             InitializeComponent();
-            this.dbConnection = dbConnection;
             this.gProc = gProc;
             this.gProc.FncConnectToDatabase();
             StandardView(true);

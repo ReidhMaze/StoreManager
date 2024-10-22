@@ -1,4 +1,4 @@
-﻿using LaundrySystem;
+﻿using StoreManagerDb;
 using StoreManager.Database;
 using System;
 using System.Collections.Generic;
@@ -16,15 +16,11 @@ namespace StoreManager
     public partial class FormReport : Form
     {
         string customers;
-        private DBConnect dbConnection = new DBConnect();
         private GlobalProcedure gProc = new GlobalProcedure();
         string analyticsReportLocation = Path.Combine(Environment.CurrentDirectory, "..\\..\\AnalyticsReport.rpt");
 
-        public FormReport(DBConnect dbConnection, GlobalProcedure gProc)
+        public FormReport(GlobalProcedure gProc)
         {
-
-
-            this.dbConnection = dbConnection;
             this.gProc = gProc;
             InitializeComponent();
             SetUpAnalyticsReport();

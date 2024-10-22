@@ -13,7 +13,7 @@ using StoreManager.CustomComponentsLinker;
 using CustomComponents;
 using System.Data.Common;
 using System.Text.RegularExpressions;
-using LaundrySystem;
+using StoreManagerDb;
 using System.Configuration;
 using System.Diagnostics;
 using System.IO;
@@ -21,12 +21,11 @@ using System.IO;
 namespace StoreManager
 {
 
-    public partial class MainWindow : Form
+    public partial class FormMainWindow : Form
     {
 
         private int currentPage = 1;
 
-        private DBConnect dbConnection = new DBConnect();
         private GlobalProcedure globalProcedure = new GlobalProcedure();
 
         private ProductsAndOrdersLinker productsAndOrdersLinker;
@@ -39,7 +38,7 @@ namespace StoreManager
         private bool openInFullScreen = bool.Parse(ConfigurationManager.AppSettings["open_in_fullscreen"].ToString());
         private string loggedStaffRole = "Admin";
 
-        public MainWindow()
+        public FormMainWindow()
         {
 
             //DBConnect dbConnection = new DBConnect();
@@ -50,10 +49,10 @@ namespace StoreManager
             //this.productsAndOrdersLinker = new ProductsAndOrdersLinker(this.PnlOrdersPanel, this.PnlProductsPanel);
             //this.PnlProductsPanel.PanelSizeUpdated();
             this.globalProcedure.FncConnectToDatabase();
-            this.buyView = new UsrCtrlCashiering(this.dbConnection, globalProcedure);
-            this.inventoryView = new UsrCtrlInventory(this.dbConnection, globalProcedure);
-            this.analyticsView = new UsrCtrlAnalytics(this.dbConnection, globalProcedure);
-            this.staffView = new UsrCtrlStaff(this.dbConnection, globalProcedure);
+            this.buyView = new UsrCtrlCashiering(globalProcedure);
+            this.inventoryView = new UsrCtrlInventory(globalProcedure);
+            this.analyticsView = new UsrCtrlAnalytics(globalProcedure);
+            this.staffView = new UsrCtrlStaff(globalProcedure);
 
             this.Size = new Size(windowWidth, windowHeight);
             this.WindowState = (openInFullScreen) ? FormWindowState.Maximized : FormWindowState.Normal;

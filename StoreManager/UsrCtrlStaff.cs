@@ -1,6 +1,6 @@
 ﻿using StoreManager.CustomComponentsLinker;
 using StoreManager.Database;
-using LaundrySystem;
+using StoreManagerDb;
 using StoreManager.Properties;
 using System;
 using System.Collections.Generic;
@@ -23,18 +23,16 @@ namespace StoreManager
 {
     public partial class UsrCtrlStaff : UserControl
     {
-        private DBConnect dbConnection;
         private GlobalProcedure gProc;
 
         private Boolean addStaff, updateStaff, deleteStaff;
         private Staff selectedStaff = null;
         private Dictionary<int, Staff> staffDict = new Dictionary<int, Staff>();
 
-        public UsrCtrlStaff(DBConnect dbConnection, GlobalProcedure gproc)
+        public UsrCtrlStaff(GlobalProcedure gproc)
         {
             InitializeComponent();
             StandardView(true);
-            this.dbConnection = dbConnection;
             this.gProc = gproc;
             this.gProc.FncConnectToDatabase();
             InitializeDataGrid();

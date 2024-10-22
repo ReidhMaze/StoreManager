@@ -1,5 +1,5 @@
 ﻿using CustomComponents;
-using LaundrySystem;
+using StoreManagerDb;
 using Org.BouncyCastle.Asn1.Mozilla;
 using StoreManager.CustomComponentsLinker;
 using StoreManager.Database;
@@ -28,7 +28,6 @@ namespace StoreManager
     {
 
         private int currentPage = 1;
-        private DBConnect dbConnection;
         private GlobalProcedure gProc;
 
         private string itemName = string.Empty;
@@ -38,11 +37,10 @@ namespace StoreManager
 
         ProductsAndOrdersLinker productsAndOrdersLinker;
 
-        public UsrCtrlCashiering(DBConnect dbConnection, GlobalProcedure gProc)
+        public UsrCtrlCashiering(GlobalProcedure gProc)
         {
             InitializeComponent();
             this.PnlOrdersPanel.OrderDeleted += new System.EventHandler(OnOrderDeleted);
-            this.dbConnection = dbConnection;
             this.gProc = gProc;
             this.PnlOrdersPanel.TaxRate = gProc.FncGetLatestTaxRate();
             this.LblTax.Text = "VAT (" + (int)(this.PnlOrdersPanel.TaxRate * 100) + "%)";

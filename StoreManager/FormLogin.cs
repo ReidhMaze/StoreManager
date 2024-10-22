@@ -1,4 +1,4 @@
-﻿using LaundrySystem;
+﻿using StoreManagerDb;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -82,7 +82,7 @@ namespace StoreManager
             this.BtnLogin.Text = "LOGGING IN";
 
             int loggedStaffId = this.gProc.FncGetStaffId(userNameIn, passIn);
-            MainWindow mainWindow = new MainWindow();
+            FormMainWindow mainWindow = new FormMainWindow();
 
             this.BtnLogin.Text = "LOG IN";
 

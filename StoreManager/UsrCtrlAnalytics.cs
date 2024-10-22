@@ -1,5 +1,5 @@
 ﻿using Bunifu.UI.WinForms;
-using LaundrySystem;
+using StoreManagerDb;
 using LiveCharts.Wpf;
 using LiveCharts;
 using StoreManager.Database;
@@ -24,15 +24,13 @@ namespace StoreManager
 {
     public partial class UsrCtrlAnalytics : UserControl
     {
-        private DBConnect dbConnection = new DBConnect();
         private GlobalProcedure gProc = new GlobalProcedure();
 
 
-        public UsrCtrlAnalytics(DBConnect dbConnection, GlobalProcedure gProc)
+        public UsrCtrlAnalytics(GlobalProcedure gProc)
         {
             InitializeComponent();
             
-            this.dbConnection = dbConnection;
             this.gProc = gProc;
             loadDefaults();
             
@@ -341,7 +339,7 @@ namespace StoreManager
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            FormReport report = new FormReport(this.dbConnection, gProc);
+            FormReport report = new FormReport(gProc);
             report.ShowDialog();
         }
     }

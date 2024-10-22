@@ -24,7 +24,7 @@ using System.Xml.Linq;
 using System.IO;
 using Org.BouncyCastle.Asn1.X509;
 
-namespace LaundrySystem
+namespace StoreManagerDb
 {
     public class GlobalProcedure
     {

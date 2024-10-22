@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace StoreManager
 {
-    partial class MainWindow
+    partial class FormMainWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -41,7 +41,7 @@ namespace StoreManager
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges5 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges6 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton.BorderEdges();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMainWindow));
             this.PnlNavigation = new System.Windows.Forms.Panel();
             this.BtnSettings = new Bunifu.UI.WinForms.BunifuButton.BunifuIconButton();
             this.BtnStaff = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
