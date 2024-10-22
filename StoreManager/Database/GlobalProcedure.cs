@@ -19,6 +19,8 @@ using ReaLTaiizor.Util;
 using StoreObjects;
 using LiveCharts.Wpf;
 using LiveCharts;
+using Mysqlx.Crud;
+using System.Xml.Linq;
 
 namespace LaundrySystem
 {
@@ -268,6 +270,8 @@ namespace LaundrySystem
                 //return;
             }
 
+            v_supplier_id = FncGetSupplierId(p_supplier_name);
+
             ProcRestockItem(v_item_id, p_qty);
             ProcAddInventoryAdded(v_item_id, p_qty, p_cost_per_item, v_supplier_id, V_Logged_Staff_Id);
 
@@ -509,6 +513,58 @@ namespace LaundrySystem
             return itemList;
         }
 
+        public List<StoreOrder> FncGetOrders()
+        {
+            List<StoreOrder> orders = new List<StoreOrder>();
+
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                this.sqlAdapter = new MySqlDataAdapter();
+                this.datStoreMgr = new DataTable();
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_select_order"; 
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                this.sqlAdapter.SelectCommand = gProcCmd;
+                this.datStoreMgr.Clear();
+                this.sqlAdapter.Fill(this.datStoreMgr);
+
+                if (this.datStoreMgr.Rows.Count > 0)
+                {
+                    foreach (DataRow row in this.datStoreMgr.Rows)
+                    {
+                        int id = int.Parse(row["id"].ToString());
+                        string invoiceNumber = row["invoice_number"].ToString();
+                        double totalPrice = double.Parse(row["total_price"].ToString());
+                        double subtotal = double.Parse(row["subtotal"].ToString());
+                        double vat = double.Parse(row["vat"].ToString());
+                        double taxRate = double.Parse(row["tax_rate"].ToString());
+                        DateTime date = DateTime.Parse(row["date"].ToString());
+                        string staffName = row["staff_name"].ToString();
+
+                        // Create a new StoreOrder object using the constructor
+                        StoreOrder order = new StoreOrder(id, invoiceNumber, totalPrice, subtotal, vat, taxRate, date, staffName);
+                        orders.Add(order);
+                    }
+                }
+                else
+                {
+                    // No data found
+                    MessageBox.Show("No orders found.");
+                }
+
+                ClearData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return orders;
+        }
 
 
         public int FncGetStaffId(string p_username, string p_password)
@@ -717,6 +773,60 @@ namespace LaundrySystem
             return v_exists;
         }
 
+        public List<InventoryLogEntry> FncGetInventoryLog()
+        {
+            List<InventoryLogEntry> log = new List<InventoryLogEntry>();
+
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                this.sqlAdapter = new MySqlDataAdapter();
+                this.datStoreMgr = new DataTable();
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_select_inventory_log";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+
+                this.sqlAdapter.SelectCommand = gProcCmd;
+                this.datStoreMgr.Clear();
+                this.sqlAdapter.Fill(this.datStoreMgr);
+
+                if (this.datStoreMgr.Rows.Count > 0)
+                {
+                    DataTable dataTable = this.datStoreMgr;
+                    int row = 0;
+                    int totalRecords = FncGetTotalRecords();
+
+                    while (row < totalRecords)
+                    {
+
+                        string itemName = dataTable.Rows[row]["item_name"].ToString();
+                        int quantity = int.Parse(dataTable.Rows[row]["quantity removed/added"].ToString());
+                        DateTime date = DateTime.Parse(dataTable.Rows[row]["date"].ToString());
+                        string supplierOrInvoice = dataTable.Rows[row]["supplier/invoice"].ToString();
+                        string staffName = dataTable.Rows[row]["staff_name"].ToString();
+
+                        InventoryLogEntry logEntry = new InventoryLogEntry(itemName, quantity, date, supplierOrInvoice, staffName);
+                        log.Add(logEntry);
+
+                        row++;
+                    }
+                }
+                else
+                {
+                    //MessageBox.Show("No data");
+                }
+
+                ClearData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return log;
+        }
 
         public void ProcAddItem(string p_item_name, string p_size, string p_type, double p_price, double p_cost_per_item, string p_img_name, string p_supplier, int p_restock_threshold)
         {

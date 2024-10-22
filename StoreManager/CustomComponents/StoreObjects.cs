@@ -126,4 +126,49 @@ namespace StoreObjects
             get { return this.stocksLeft; }
         }
     }
+
+    public class StoreOrder
+    {
+        public int Id { get; }
+        public string InvoiceNum { get; }
+        public double TotalPrice { get; }
+        public double Subtotal { get; }
+        public double Vat { get; }
+        public double TaxRate { get; }
+
+        public DateTime Date { get; }
+        public string StaffName { get; }
+
+        public StoreOrder(int id, string invoiceNum, double totalPrice, double subtotal, double vat, double taxRate, DateTime date, string staffName)
+        {
+            Id = id;
+            InvoiceNum = invoiceNum;
+            TotalPrice = totalPrice;
+            Subtotal = subtotal;
+            Vat = vat;
+            TaxRate = taxRate;
+            Date = date;
+            StaffName = staffName;
+        }
+    }
+
+    public class InventoryLogEntry
+    {
+        public string ItemName { get; }
+        public int Quantity { get; }
+        public DateTime Date { get; }
+        public string SupplierOrInvoice { get; }
+        public string StaffName { get; }
+
+        public InventoryLogEntry(string itemName, int quantity, DateTime date, string supplierOrInvoice, string staffName)
+        {
+            ItemName = itemName;
+            Quantity = quantity;
+            Date = date;
+            SupplierOrInvoice = supplierOrInvoice;
+            StaffName = staffName;
+        }
+
+    }
+
 }
