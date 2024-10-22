@@ -113,6 +113,7 @@ namespace StoreManager
                         if (confirmAdd == DialogResult.Yes)
                         {
                             gProc.ProcAddItem(itemName, size, type, price, costPerItem, imgName, supplier, restockThreshold);
+                            MessageBox.Show("Product Successfuly Added");
                             ClearAll();
                         }
                         else
@@ -139,6 +140,7 @@ namespace StoreManager
                         if (confirmEdit == DialogResult.Yes)
                         {
                             gProc.ProcEditItemById(this.selectedItem.Id, itemName, size, type, imgName, restockThreshold, price);
+                            MessageBox.Show("Product Successfuly Edited");
                             ClearAll();
                         }
                         else
@@ -172,6 +174,7 @@ namespace StoreManager
                         if (confirmRestock == DialogResult.Yes)
                         {
                             gProc.ProcRestock(itemName, price, costPerItem, size, type, supplier, quantity);
+                            MessageBox.Show("Product Successfuly Restocked");
                             ClearAll();
                         }
                         else
@@ -208,6 +211,7 @@ namespace StoreManager
                     if (confirmDispose == DialogResult.Yes)
                     {
                         this.gProc.ProcDecreaseItemStock(this.selectedItem.ItemCode, qtyRemoved);
+                        MessageBox.Show("Product Successfuly Disposed");
                         ClearAll();
                     }
                     else
@@ -232,6 +236,7 @@ namespace StoreManager
                     if (confirmDelete == DialogResult.Yes)
                     {
                         this.gProc.ProcDeleteItemById(this.selectedItem.Id);
+                        MessageBox.Show("Product Successfuly Deleted");
                         ClearAll();
                     }
                     else

@@ -53,7 +53,7 @@ namespace StoreManagerDb
         public bool FncConnectToDatabase()
         {
 
-            this.EnableDebugging = true;
+            this.EnableDebugging = false;
 
             try
             {

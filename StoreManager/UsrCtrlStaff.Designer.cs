@@ -539,7 +539,7 @@
             stateProperties4.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.TxtConfirmPassword.OnIdleState = stateProperties4;
             this.TxtConfirmPassword.Padding = new System.Windows.Forms.Padding(3);
-            this.TxtConfirmPassword.PasswordChar = '\0';
+            this.TxtConfirmPassword.PasswordChar = '*';
             this.TxtConfirmPassword.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.TxtConfirmPassword.PlaceholderText = "";
             this.TxtConfirmPassword.ReadOnly = false;
@@ -615,7 +615,7 @@
             stateProperties8.PlaceholderForeColor = System.Drawing.Color.Empty;
             this.TxtPassword.OnIdleState = stateProperties8;
             this.TxtPassword.Padding = new System.Windows.Forms.Padding(3);
-            this.TxtPassword.PasswordChar = '\0';
+            this.TxtPassword.PasswordChar = '*';
             this.TxtPassword.PlaceholderForeColor = System.Drawing.Color.Silver;
             this.TxtPassword.PlaceholderText = "";
             this.TxtPassword.ReadOnly = false;
