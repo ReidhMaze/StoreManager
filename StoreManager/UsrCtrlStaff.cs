@@ -83,7 +83,7 @@ namespace StoreManager
                         {
                             //insert gproc for adding staff
                             gProc.ProcAddStaff(firstName, lastName, birthDate, gender, emailAddress, mobileNumber, username, password, role);
-                            MessageBox.Show("Staff Successfully Added");
+                            //MessageBox.Show("Staff Successfully Added");
                             ClearAll();
                         }
                         else
