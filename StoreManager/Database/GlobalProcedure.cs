@@ -21,6 +21,7 @@ using LiveCharts.Wpf;
 using LiveCharts;
 using Mysqlx.Crud;
 using System.Xml.Linq;
+using System.IO;
 
 namespace LaundrySystem
 {
@@ -1614,10 +1615,12 @@ namespace LaundrySystem
 
             }
         }
-        public void ProcGetTopProducts(BunifuLabel lbl, int row)
+        public void ProcGetTopProducts(BunifuLabel lbl, int row, PictureBox icon)
         {
+            
             try
             {
+                string product_type;
                 MySqlCommand gProcCmd = this.sqlCommand;
 
                 this.sqlAdapter = new MySqlDataAdapter();
@@ -1635,6 +1638,84 @@ namespace LaundrySystem
 
 
                 lbl.Text = dataTable.Rows[row]["item_name"].ToString();
+                product_type = dataTable.Rows[row]["type_id"].ToString();
+
+                string appDirectory, imagePath;
+                appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                imagePath = Path.Combine(appDirectory, "Resources", "shoes2.png");
+                icon.Image = Image.FromFile(imagePath);
+                icon.SizeMode = PictureBoxSizeMode.Zoom;
+
+
+                switch (product_type) 
+                {
+                    case "1":
+
+                        imagePath = Path.Combine(appDirectory, "Resources", "shoes2.png");
+                        icon.Image = Image.FromFile(imagePath);
+                        icon.SizeMode = PictureBoxSizeMode.Zoom; 
+                        break;
+                    case "2":
+
+                        imagePath = Path.Combine(appDirectory, "Resources", "jacket.png");
+                        icon.Image = Image.FromFile(imagePath);
+                        icon.SizeMode = PictureBoxSizeMode.Zoom;
+                        break;
+                    case "3":
+
+                        imagePath = Path.Combine(appDirectory, "Resources", "shirt.png");
+                        icon.Image = Image.FromFile(imagePath);
+                        icon.SizeMode = PictureBoxSizeMode.Zoom;
+                        break;
+                    case "4":
+
+                        imagePath = Path.Combine(appDirectory, "Resources", "shorts.png");
+                        icon.Image = Image.FromFile(imagePath);
+                        icon.SizeMode = PictureBoxSizeMode.Zoom;
+                        break;
+                    case "5":
+
+                        imagePath = Path.Combine(appDirectory, "Resources", "cap.png");
+                        icon.Image = Image.FromFile(imagePath);
+                        icon.SizeMode = PictureBoxSizeMode.Zoom;
+                        break;
+                    case "6":
+
+                        imagePath = Path.Combine(appDirectory, "Resources", "bag.png");
+                        icon.Image = Image.FromFile(imagePath);
+                        icon.SizeMode = PictureBoxSizeMode.Zoom;
+                        break;
+                    case "7":
+
+                        imagePath = Path.Combine(appDirectory, "Resources", "sock.png");
+                        icon.Image = Image.FromFile(imagePath);
+                        icon.SizeMode = PictureBoxSizeMode.Zoom;
+                        break;
+                    case "8":
+
+                        imagePath = Path.Combine(appDirectory, "Resources", "tanktop.png");
+                        icon.Image = Image.FromFile(imagePath);
+                        icon.SizeMode = PictureBoxSizeMode.Zoom;
+                        break;
+                    case "9":
+
+                        imagePath = Path.Combine(appDirectory, "Resources", "accessories.png");
+                        icon.Image = Image.FromFile(imagePath);
+                        icon.SizeMode = PictureBoxSizeMode.Zoom;
+                        break;
+                    case "10":
+
+                        imagePath = Path.Combine(appDirectory, "Resources", "pants.png");
+                        icon.Image = Image.FromFile(imagePath);
+                        icon.SizeMode = PictureBoxSizeMode.Zoom;
+                        break;
+                    case "11":
+
+                        imagePath = Path.Combine(appDirectory, "Resources", "others.png");
+                        icon.Image = Image.FromFile(imagePath);
+                        icon.SizeMode = PictureBoxSizeMode.Zoom;
+                        break;
+                }
 
 
 
@@ -2273,6 +2354,12 @@ namespace LaundrySystem
                     lbl.ForeColor = Color.Red;
                     lbl.Text = (percentage + "% customers from yesterday");
                 }
+                else
+                {
+                    lbl.ForeColor = Color.Green;
+                    lbl.Text = ("0% customers from yesterday");
+                }
+            
             }
             catch
             {

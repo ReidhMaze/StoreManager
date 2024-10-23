@@ -34,6 +34,13 @@ namespace StoreManager
             
             this.dbConnection = dbConnection;
             this.gProc = gProc;
+            loadDefaults();
+            
+
+        }
+
+        public void loadDefaults()
+        {
             displayTotalOrders();
             displayTotalSales();
             gProc.ProcAddCmbProductSoldItems(cmbProductSold);
@@ -44,8 +51,6 @@ namespace StoreManager
             defaultProductSoldSalesValue();
             defaultGraphValue();
             getTopProducts();
-            
-
         }
 
         private void comboBoxEdit1_SelectedIndexChanged(object sender, EventArgs e)
@@ -237,11 +242,11 @@ namespace StoreManager
 
         public void getTopProducts()
         {
-            gProc.ProcGetTopProducts(product1, 0);
-            gProc.ProcGetTopProducts(product2, 1);
-            gProc.ProcGetTopProducts(product3, 2);
-            gProc.ProcGetTopProducts(product4, 3);
-            gProc.ProcGetTopProducts(product5, 4);
+            gProc.ProcGetTopProducts(product1, 0, pbProduct1);
+            gProc.ProcGetTopProducts(product2, 1, pbProduct2);
+            gProc.ProcGetTopProducts(product3, 2, pbProduct3);
+            gProc.ProcGetTopProducts(product4, 3, pbProduct4);
+            gProc.ProcGetTopProducts(product5, 4, pbProduct5);
         }
 
 
@@ -271,6 +276,8 @@ namespace StoreManager
 
         private void cmbDays_SelectedValueChanged(object sender, EventArgs e)
         {
+            displayCustomersPercentageDifference();
+            displaySalesPercentageDifference();
             if(cmbDays.SelectedIndex == 0)
             {
                 addChartSales(pnlMiddle,gProc.FncGetLast30DaysSales(), gProc.FncGetLast30Days(), gProc.FncGetMonth());
@@ -325,6 +332,11 @@ namespace StoreManager
         private void bunifuLabel1_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            loadDefaults();
         }
     }
 }
