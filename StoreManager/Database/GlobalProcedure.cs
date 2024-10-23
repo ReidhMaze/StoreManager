@@ -1837,7 +1837,7 @@ namespace StoreManagerDb
             }
         }
 
-        public string FncGetCurrentSales()
+        public double FncGetCurrentSales()
         {
             try
             {
@@ -1850,18 +1850,20 @@ namespace StoreManagerDb
                 gProcCmd.CommandText = "proc_get_current_sales";
                 gProcCmd.CommandType = CommandType.StoredProcedure;
                 this.sqlAdapter.SelectCommand = this.sqlCommand;
-              
+
                 this.datStoreMgr.Clear();
                 this.sqlAdapter.Fill(this.datStoreMgr);
 
+
                 DataTable dataTable = this.datStoreMgr;
-                return dataTable.Rows[0]["sales"].ToString();
-             
+
+                return double.Parse(dataTable.Rows[0]["sales"].ToString());
+
 
             }
-            catch (Exception ex)
+            catch
             {
-                return "No sales available to report yet";
+                return 0;
             }
         }
 

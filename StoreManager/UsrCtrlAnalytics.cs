@@ -40,6 +40,9 @@ namespace StoreManager
         {
             displayTotalOrders();
             displayTotalSales();
+            cmbProductSales.Items.Clear();
+            cmbProductSold.Items.Clear();
+
             gProc.ProcAddCmbProductSoldItems(cmbProductSold);
             gProc.ProcAddCmbProductSoldItems(cmbProductSales);
             gProc.ProcGetTotalCustomers(lblTotalCustomer);
