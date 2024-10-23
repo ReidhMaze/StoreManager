@@ -59,7 +59,7 @@ namespace LaundrySystem
                 servername = "localhost";
                 databasename = "store_manager_db";
                 username = "root";
-                password = "bajed";
+                password = "umtagum";
                 port = "3306";
 
                 strConnection = "Server=" + servername + ";" +
@@ -1727,6 +1727,34 @@ namespace LaundrySystem
             }
         }
 
+        public string FncGetCurrentSales()
+        {
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                this.sqlAdapter = new MySqlDataAdapter();
+                this.datStoreMgr = new DataTable();
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_current_sales";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+                this.sqlAdapter.SelectCommand = this.sqlCommand;
+              
+                this.datStoreMgr.Clear();
+                this.sqlAdapter.Fill(this.datStoreMgr);
+
+                DataTable dataTable = this.datStoreMgr;
+                return dataTable.Rows[0]["sales"].ToString();
+             
+
+            }
+            catch (Exception ex)
+            {
+                return "No sales available to report yet";
+            }
+        }
+
         public void ProcGetTotalCustomers(BunifuLabel lbl)
         {
             try
@@ -1759,6 +1787,69 @@ namespace LaundrySystem
             catch (Exception ex)
             {
 
+            }
+        }
+
+        public string FncGetCurrentCustomers()
+        {
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                this.sqlAdapter = new MySqlDataAdapter();
+                this.datStoreMgr = new DataTable();
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_current_customers";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+                this.sqlAdapter.SelectCommand = this.sqlCommand;
+
+                this.datStoreMgr.Clear();
+                this.sqlAdapter.Fill(this.datStoreMgr);
+
+                DataTable dataTable = this.datStoreMgr;
+
+                return dataTable.Rows[0]["customers"].ToString();
+
+            }
+            catch (Exception ex)
+            {
+                return "No customers available to report yet";
+            }
+        }
+
+        public string FncGetTotalCustomers()
+        {
+            try
+            {
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                this.sqlAdapter = new MySqlDataAdapter();
+                this.datStoreMgr = new DataTable();
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_total_customers";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+                this.sqlAdapter.SelectCommand = this.sqlCommand;
+
+                this.datStoreMgr.Clear();
+                this.sqlAdapter.Fill(this.datStoreMgr);
+
+                DataTable dataTable = this.datStoreMgr;
+                if (dataTable.Rows.Count <= 0)
+                {
+                    return "0";
+                }
+                else
+                {
+                    return dataTable.Rows[0]["id"].ToString();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return "0";
             }
         }
         public void ProcGetTopProducts(BunifuLabel lbl, int row, PictureBox icon)
@@ -1872,8 +1963,39 @@ namespace LaundrySystem
             }
         }
 
+        public string FncGetTopProducts(int row)
+        {
 
-        public string addDefaultProductToProductSoldSales()
+            try
+            {
+                
+                MySqlCommand gProcCmd = this.sqlCommand;
+
+                this.sqlAdapter = new MySqlDataAdapter();
+                this.datStoreMgr = new DataTable();
+
+                gProcCmd.Parameters.Clear();
+                gProcCmd.CommandText = "proc_get_top_products";
+                gProcCmd.CommandType = CommandType.StoredProcedure;
+                this.sqlAdapter.SelectCommand = this.sqlCommand;
+
+                this.datStoreMgr.Clear();
+                this.sqlAdapter.Fill(this.datStoreMgr);
+
+                DataTable dataTable = this.datStoreMgr;
+
+
+                return  dataTable.Rows[row]["item_name"].ToString();
+                
+            }
+            catch
+            {
+                return "N/A";
+            }
+        }
+
+
+                public string addDefaultProductToProductSoldSales()
         {
             MySqlCommand gProcCmd = this.sqlCommand;
 

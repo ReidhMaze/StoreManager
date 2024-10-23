@@ -24,8 +24,8 @@ namespace StoreManager
 {
     public partial class UsrCtrlAnalytics : UserControl
     {
-        private DBConnect dbConnection;
-        private GlobalProcedure gProc;
+        private DBConnect dbConnection = new DBConnect();
+        private GlobalProcedure gProc = new GlobalProcedure();
 
 
         public UsrCtrlAnalytics(DBConnect dbConnection, GlobalProcedure gProc)
@@ -337,6 +337,12 @@ namespace StoreManager
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             loadDefaults();
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            FormReport report = new FormReport(this.dbConnection, gProc);
+            report.ShowDialog();
         }
     }
 }
